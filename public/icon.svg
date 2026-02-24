@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 背景：角丸四角形 ティールカラー -->
+  <rect width="512" height="512" rx="110" ry="110" fill="#0D9488"/>
+  <!-- 「す」文字 -->
+  <text
+    x="256"
+    y="310"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="'Hiragino Maru Gothic Pro', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif"
+    font-size="260"
+    font-weight="700"
+    fill="white"
+    letter-spacing="-8"
+  >す</text>
+</svg>

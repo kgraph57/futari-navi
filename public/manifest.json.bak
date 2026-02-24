@@ -1,0 +1,20 @@
+{
+  "name": "すくすくナビ - 小児科医が届ける子育て情報",
+  "short_name": "すくすくナビ",
+  "description": "港区の子育て支援情報をパーソナライズしてお届け。手続き・健診・予防接種を「やり忘れない」。",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "categories": ["health", "lifestyle"],
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+[
+  {
+    "id": "social-smile",
+    "category": "social",
+    "title": "社会的微笑",
+    "description": "あやすと笑顔を返してくれるようになります",
+    "ageMonthsTypical": 2,
+    "ageMonthsRange": [1, 3],
+    "icon": "smile"
+  },
+  {
+    "id": "head-control",
+    "category": "motor",
+    "title": "首すわり",
+    "description": "うつ伏せで頭を持ち上げられるようになります",
+    "ageMonthsTypical": 3,
+    "ageMonthsRange": [2, 5],
+    "icon": "activity"
+  },
+  {
+    "id": "cooing",
+    "category": "language",
+    "title": "クーイング",
+    "description": "「あー」「うー」と声を出すようになります",
+    "ageMonthsTypical": 2,
+    "ageMonthsRange": [1, 4],
+    "icon": "message-circle"
+  },
+  {
+    "id": "grasping",
+    "category": "motor",
+    "title": "ものを握る",
+    "description": "おもちゃやガラガラを手で握れるようになります",
+    "ageMonthsTypical": 3,
+    "ageMonthsRange": [2, 5],
+    "icon": "hand"
+  },
+  {
+    "id": "rollover",
+    "category": "motor",
+    "title": "寝返り",
+    "description": "仰向けからうつ伏せ、またはその逆に転がれるようになります",
+    "ageMonthsTypical": 5,
+    "ageMonthsRange": [3, 7],
+    "icon": "rotate-ccw"
+  },
+  {
+    "id": "babbling",
+    "category": "language",
+    "title": "喃語（ばぶばぶ）",
+    "description": "「ばぶ」「だだ」など繰り返しの音を出します",
+    "ageMonthsTypical": 6,
+    "ageMonthsRange": [4, 8],
+    "icon": "message-circle"
+  },
+  {
+    "id": "sitting",
+    "category": "motor",
+    "title": "おすわり",
+    "description": "支えなしで座っていられるようになります",
+    "ageMonthsTypical": 7,
+    "ageMonthsRange": [5, 9],
+    "icon": "armchair"
+  },
+  {
+    "id": "stranger-anxiety",
+    "category": "social",
+    "title": "人見知り",
+    "description": "知らない人を見ると泣いたり不安がったりします",
+    "ageMonthsTypical": 7,
+    "ageMonthsRange": [5, 12],
+    "icon": "eye-off"
+  },
+  {
+    "id": "crawling",
+    "category": "motor",
+    "title": "ハイハイ",
+    "description": "手と膝を使って前に進めるようになります",
+    "ageMonthsTypical": 8,
+    "ageMonthsRange": [6, 11],
+    "icon": "baby"
+  },
+  {
+    "id": "pull-to-stand",
+    "category": "motor",
+    "title": "つかまり立ち",
+    "description": "家具などにつかまって立ち上がれるようになります",
+    "ageMonthsTypical": 9,
+    "ageMonthsRange": [7, 12],
+    "icon": "arrow-up"
+  },
+  {
+    "id": "pincer-grasp",
+    "category": "motor",
+    "title": "つまむ動作",
+    "description": "親指と人差し指で小さなものをつまめるようになります",
+    "ageMonthsTypical": 9,
+    "ageMonthsRange": [7, 12],
+    "icon": "hand"
+  },
+  {
+    "id": "wave-bye",
+    "category": "social",
+    "title": "バイバイ",
+    "description": "手を振ってバイバイのしぐさをします",
+    "ageMonthsTypical": 10,
+    "ageMonthsRange": [8, 14],
+    "icon": "hand"
+  },
+  {
+    "id": "first-word",
+    "category": "language",
+    "title": "はじめてのことば",
+    "description": "「ママ」「パパ」「わんわん」など意味のある言葉を話します",
+    "ageMonthsTypical": 12,
+    "ageMonthsRange": [9, 18],
+    "icon": "message-square"
+  },
+  {
+    "id": "first-steps",
+    "category": "motor",
+    "title": "はじめての一歩",
+    "description": "支えなしで数歩歩けるようになります",
+    "ageMonthsTypical": 12,
+    "ageMonthsRange": [9, 18],
+    "icon": "footprints"
+  },
+  {
+    "id": "pointing",
+    "category": "social",
+    "title": "指さし",
+    "description": "興味のあるものを指さして教えてくれます",
+    "ageMonthsTypical": 12,
+    "ageMonthsRange": [9, 16],
+    "icon": "pointer"
+  },
+  {
+    "id": "spoon-feeding",
+    "category": "daily",
+    "title": "スプーン食べ",
+    "description": "スプーンを使って自分で食べようとします",
+    "ageMonthsTypical": 15,
+    "ageMonthsRange": [12, 20],
+    "icon": "utensils"
+  },
+  {
+    "id": "two-word-sentence",
+    "category": "language",
+    "title": "二語文",
+    "description": "「ママ、きて」「わんわん、いた」など2つの言葉をつなげて話します",
+    "ageMonthsTypical": 20,
+    "ageMonthsRange": [18, 30],
+    "icon": "message-square"
+  },
+  {
+    "id": "running",
+    "category": "motor",
+    "title": "走る",
+    "description": "しっかりとした足取りで走れるようになります",
+    "ageMonthsTypical": 18,
+    "ageMonthsRange": [14, 24],
+    "icon": "zap"
+  },
+  {
+    "id": "pretend-play",
+    "category": "social",
+    "title": "ごっこ遊び",
+    "description": "おままごとや電話のまねっこなど見立て遊びをします",
+    "ageMonthsTypical": 24,
+    "ageMonthsRange": [18, 30],
+    "icon": "sparkles"
+  },
+  {
+    "id": "toilet-training",
+    "category": "daily",
+    "title": "トイレトレーニング開始",
+    "description": "おむつからトイレへの移行を始めます",
+    "ageMonthsTypical": 24,
+    "ageMonthsRange": [18, 36],
+    "icon": "droplets"
+  },
+  {
+    "id": "climbing-stairs",
+    "category": "motor",
+    "title": "階段をのぼる",
+    "description": "手すりや手をつないで階段を上り下りできます",
+    "ageMonthsTypical": 24,
+    "ageMonthsRange": [18, 30],
+    "icon": "trending-up"
+  },
+  {
+    "id": "name-response",
+    "category": "language",
+    "title": "自分の名前を言える",
+    "description": "名前を聞かれて自分の名前を答えられます",
+    "ageMonthsTypical": 30,
+    "ageMonthsRange": [24, 36],
+    "icon": "user"
+  },
+  {
+    "id": "drawing-circle",
+    "category": "motor",
+    "title": "丸を描く",
+    "description": "クレヨンや鉛筆で丸い形を描けるようになります",
+    "ageMonthsTypical": 30,
+    "ageMonthsRange": [24, 36],
+    "icon": "circle"
+  },
+  {
+    "id": "friend-play",
+    "category": "social",
+    "title": "お友だちと遊ぶ",
+    "description": "他の子どもと一緒に遊べるようになります",
+    "ageMonthsTypical": 36,
+    "ageMonthsRange": [30, 42],
+    "icon": "users"
+  },
+  {
+    "id": "dressing-self",
+    "category": "daily",
+    "title": "自分で着替え",
+    "description": "簡単な衣服を自分で着たり脱いだりできます",
+    "ageMonthsTypical": 36,
+    "ageMonthsRange": [30, 42],
+    "icon": "shirt"
+  }
+]

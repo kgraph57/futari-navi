@@ -1,0 +1,40 @@
+{
+  "name": "すくすくナビ - 小児科医が届ける子育て情報",
+  "short_name": "すくすくナビ",
+  "description": "港区の子育て支援情報をパーソナライズしてお届け。手続き・健診・予防接種を「やり忘れない」。",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FEFDFB",
+  "theme_color": "#0D9488",
+  "orientation": "portrait-primary",
+  "categories": ["health", "lifestyle"],
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "緊急連絡先",
+      "short_name": "緊急",
+      "url": "./emergency",
+      "description": "119・#7119・#8000 夜間休日診療"
+    },
+    {
+      "name": "受診判断ガイド",
+      "short_name": "受診判断",
+      "url": "./triage",
+      "description": "症状から受診の目安をチェック"
+    },
+    {
+      "name": "タイムライン",
+      "short_name": "やること",
+      "url": "./my/timeline",
+      "description": "今週やることを確認"
+    }
+  ]
+}

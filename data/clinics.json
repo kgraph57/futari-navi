@@ -1,0 +1,481 @@
+[
+  {
+    "slug": "aiiku-hospital",
+    "name": "愛育病院",
+    "type": "hospital",
+    "address": "港区芝浦1-16-10",
+    "phone": "03-6453-7300",
+    "hours": {
+      "weekday": "8:30-17:00",
+      "saturday": "8:30-12:30",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": "17:00-翌8:30（小児科当直対応）",
+    "features": [
+      "小児科専門",
+      "夜間対応",
+      "予防接種",
+      "乳児健診"
+    ],
+    "emergencyAvailable": true,
+    "website": "https://www.aiiku.net",
+    "onlineBookingUrl": null,
+    "lat": 35.6455,
+    "lng": 139.7485,
+    "nearestStation": "田町駅 徒歩7分 / 芝浦ふ頭駅 徒歩10分",
+    "parkingAvailable": true,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "おかもん先生の勤務先。小児科の他に産婦人科も併設。周産期医療に強み。"
+  },
+  {
+    "slug": "jikei-university-hospital",
+    "name": "東京慈恵会医科大学附属病院",
+    "type": "hospital",
+    "address": "港区西新橋3-25-8",
+    "phone": "03-3433-1111",
+    "hours": {
+      "weekday": "8:00-11:00（初診受付）",
+      "saturday": "8:00-11:00（第1・3のみ）",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": "24時間救急対応（小児科当直あり）",
+    "features": [
+      "小児科専門",
+      "夜間対応",
+      "休日対応",
+      "アレルギー外来",
+      "予防接種"
+    ],
+    "emergencyAvailable": true,
+    "website": "https://www.hosp.jikei.ac.jp/",
+    "onlineBookingUrl": null,
+    "lat": 35.6619,
+    "lng": 139.7514,
+    "nearestStation": "御成門駅 徒歩3分 / 新橋駅 徒歩12分",
+    "parkingAvailable": true,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "紹介状（初診の場合推奨）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "大学病院のため専門的な検査・治療が可能。紹介状があるとスムーズです。"
+  },
+  {
+    "slug": "kitasato-kenkyujo-hospital",
+    "name": "北里大学北里研究所病院",
+    "type": "hospital",
+    "address": "港区白金5-9-1",
+    "phone": "03-3444-6161",
+    "hours": {
+      "weekday": "8:30-11:30（初診受付）",
+      "saturday": null,
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "アレルギー外来",
+      "予防接種",
+      "乳児健診"
+    ],
+    "emergencyAvailable": true,
+    "website": "https://www.kitasato-u.ac.jp/khp/",
+    "onlineBookingUrl": null,
+    "lat": 35.6414,
+    "lng": 139.7266,
+    "nearestStation": "白金高輪駅 徒歩8分 / 広尾駅 徒歩10分",
+    "parkingAvailable": true,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "紹介状（初診の場合推奨）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "アレルギー疾患の専門的な診療に定評があります。"
+  },
+  {
+    "slug": "roppongi-hills-clinic",
+    "name": "六本木ヒルズクリニック",
+    "type": "clinic",
+    "address": "港区六本木6-10-1 六本木ヒルズ森タワー6F",
+    "phone": "03-3796-0066",
+    "hours": {
+      "weekday": "10:00-13:00 / 14:30-18:00",
+      "saturday": "10:00-13:00",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科",
+      "予防接種",
+      "英語対応",
+      "予約制"
+    ],
+    "emergencyAvailable": false,
+    "website": "http://www.66clinic.com/",
+    "onlineBookingUrl": null,
+    "lat": 35.6604,
+    "lng": 139.7292,
+    "nearestStation": "六本木駅 徒歩3分 / 麻布十番駅 徒歩8分",
+    "parkingAvailable": true,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "六本木ヒルズ森タワー内。小児科を含む17科の総合クリニック。"
+  },
+  {
+    "slug": "kamesan-kids-clinic",
+    "name": "かめさんキッズクリニック",
+    "type": "clinic",
+    "address": "港区芝浦3-13-11 Medical Square芝浦2F",
+    "phone": "050-3090-2890",
+    "hours": {
+      "weekday": "8:30-12:30 / 16:00-18:00（月〜木）",
+      "saturday": null,
+      "sunday": "8:30-12:30",
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "予防接種",
+      "乳児健診",
+      "新生児対応"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://kamesan-kids.com/",
+    "onlineBookingUrl": null,
+    "lat": 35.6465,
+    "lng": 139.7478,
+    "nearestStation": "田町駅 徒歩4分 / 三田駅 徒歩5分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "院長・副院長とも小児科専門医。新生児から対応。日曜午前も診療。"
+  },
+  {
+    "slug": "tokyo-city-clinic-mita",
+    "name": "東京シティクリニック三田",
+    "type": "clinic",
+    "address": "港区芝4-5-8 池藤ビル2F",
+    "phone": "03-5439-5566",
+    "hours": {
+      "weekday": "8:45-13:00 / 16:30-18:00",
+      "saturday": "8:30-13:00",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "アレルギー外来",
+      "予防接種",
+      "乳児健診"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://www.tokyocityclinic-mita.com/",
+    "onlineBookingUrl": null,
+    "lat": 35.6505,
+    "lng": 139.7467,
+    "nearestStation": "三田駅 A9出口 徒歩3分 / 田町駅 徒歩7分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "小児科専門医・アレルギー専門医在籍。食物経口負荷試験1,400例以上の実績。すくすく赤ちゃん教室を定期開催。"
+  },
+  {
+    "slug": "kapibara-akachan-kodomo",
+    "name": "カピバラあかちゃんこどもクリニック",
+    "type": "clinic",
+    "address": "港区白金1-26-4 アイム白金高輪1F",
+    "phone": "03-6277-3008",
+    "hours": {
+      "weekday": "8:30-12:00 / 14:00-17:30",
+      "saturday": "9:00-12:00",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "アレルギー外来",
+      "予防接種",
+      "乳児健診"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://kapibara-akachan-kodomo.co.jp/",
+    "onlineBookingUrl": null,
+    "lat": 35.6394,
+    "lng": 139.7316,
+    "nearestStation": "白金高輪駅 4番出口 徒歩1分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "小児科専門医在籍。こころの外来（児童精神科）併設。予防接種と一般診察の時間帯を分離。"
+  },
+  {
+    "slug": "takanawa-marine-kodomo",
+    "name": "高輪マリンこどもクリニック",
+    "type": "clinic",
+    "address": "港区高輪3-7-8 西町ビル2F",
+    "phone": "03-6277-4548",
+    "hours": {
+      "weekday": "8:30-12:00 / 15:30-18:00（月火木金）",
+      "saturday": "9:00-13:00",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "アレルギー外来",
+      "予防接種",
+      "乳児健診"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://www.marine-kodomo.jp/",
+    "onlineBookingUrl": null,
+    "lat": 35.6336,
+    "lng": 139.7351,
+    "nearestStation": "高輪台駅 徒歩4分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "小児科専門医・アレルギー専門医。食物経口負荷試験・舌下免疫療法に対応。WEB予約可。"
+  },
+  {
+    "slug": "sunny-garden-kodomo",
+    "name": "サニーガーデンこどもクリニック",
+    "type": "clinic",
+    "address": "港区麻布十番2-16-4 プラスワンビル3F",
+    "phone": "03-6722-6623",
+    "hours": {
+      "weekday": "8:30-12:30 / 14:00-18:00",
+      "saturday": "9:00-13:00",
+      "sunday": "9:00-13:00（第2・4のみ）",
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "予防接種",
+      "乳児健診",
+      "オンライン診療"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://sunnygardencl.com/",
+    "onlineBookingUrl": null,
+    "lat": 35.6535,
+    "lng": 139.7368,
+    "nearestStation": "麻布十番駅 1番出口 徒歩1分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "全医師が小児科専門医。土日午前も診療。オンライン診療対応。"
+  },
+  {
+    "slug": "urachil-clinic",
+    "name": "うらちるクリニック",
+    "type": "clinic",
+    "address": "港区虎ノ門5-11-2 オランダヒルズ森タワー",
+    "phone": "03-3432-0415",
+    "hours": {
+      "weekday": "9:00-12:00 / 14:30-18:00（月火木金）",
+      "saturday": "8:30-13:00",
+      "sunday": "8:30-13:00",
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "予防接種",
+      "乳児健診",
+      "英語対応"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://urachil.com/",
+    "onlineBookingUrl": null,
+    "lat": 35.6611,
+    "lng": 139.7451,
+    "nearestStation": "神谷町駅 徒歩1分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "小児科専門医・循環器専門医。土日午前も診療。港区の乳幼児健診対応。"
+  },
+  {
+    "slug": "aoyama-allergy-clinic",
+    "name": "青山アレルギークリニック",
+    "type": "clinic",
+    "address": "港区北青山2-12-13 青山KYビル5階",
+    "phone": "03-6271-5083",
+    "hours": {
+      "weekday": "10:00-13:30 / 14:30-18:30（月曜休診）",
+      "saturday": "10:00-13:30 / 14:30-18:30",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "アレルギー専門",
+      "小児科専門",
+      "予防接種",
+      "食物負荷試験"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://aoyama-allergy-clinic.jp/",
+    "onlineBookingUrl": null,
+    "lat": 35.6716,
+    "lng": 139.7174,
+    "nearestStation": "外苑前駅 徒歩1分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "医師全員がアレルギー専門医・指導医と小児科専門医の両資格を保有。キッズスペース・授乳室完備。"
+  },
+  {
+    "slug": "oritsu-kodomo-clinic",
+    "name": "おりつこどもクリニック",
+    "type": "clinic",
+    "address": "港区北青山3-5-4 青山高野ビル5階",
+    "phone": "03-6721-1188",
+    "hours": {
+      "weekday": "8:30-12:00 / 14:00-18:00（月火木金）",
+      "saturday": "8:30-12:00",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "予防接種",
+      "乳児健診",
+      "予約制"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://www.oritsu-kids-clinic.jp",
+    "onlineBookingUrl": null,
+    "lat": 35.6697,
+    "lng": 139.7152,
+    "nearestStation": "表参道駅 A3出口 徒歩5分 / 外苑前駅 徒歩6分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "小児科専門医在籍。ネット予約対応。フルミスト（経鼻インフルエンザワクチン）取り扱い。"
+  },
+  {
+    "slug": "aiiku-clinic",
+    "name": "愛育クリニック",
+    "type": "clinic",
+    "address": "港区南麻布5-6-8",
+    "phone": "03-3473-8310",
+    "hours": {
+      "weekday": "9:00-12:00 / 14:00-17:00",
+      "saturday": "9:00-12:00",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科専門",
+      "予防接種",
+      "乳児健診",
+      "産後ケア"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://www.aiiku.net/clinic/",
+    "onlineBookingUrl": null,
+    "lat": 35.6496,
+    "lng": 139.7239,
+    "nearestStation": "広尾駅 徒歩8分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "愛育病院のクリニック部門。小児科・産婦人科・小児精神保健科。産後ケア・子育てステーション併設。"
+  },
+  {
+    "slug": "floweast-clinic",
+    "name": "フローイーストクリニック",
+    "type": "clinic",
+    "address": "港区南麻布5-10-24 第二佐野ビル701",
+    "phone": "03-6277-3555",
+    "hours": {
+      "weekday": "9:00-13:00 / 15:00-18:30",
+      "saturday": "9:00-13:00",
+      "sunday": null,
+      "holiday": null
+    },
+    "nightHours": null,
+    "features": [
+      "小児科",
+      "アレルギー外来",
+      "予防接種",
+      "英語対応"
+    ],
+    "emergencyAvailable": false,
+    "website": "https://floweast-clinic.com/",
+    "onlineBookingUrl": null,
+    "lat": 35.6507,
+    "lng": 139.7224,
+    "nearestStation": "広尾駅 徒歩1分",
+    "parkingAvailable": false,
+    "requiredItems": [
+      "健康保険証またはマイナンバーカード",
+      "母子健康手帳",
+      "乳幼児医療証（マル乳・マル子）",
+      "お薬手帳（お持ちの方）"
+    ],
+    "notes": "広尾駅前。英語対応可。予防接種・乳幼児健診・入園入学健診に対応。"
+  }
+]

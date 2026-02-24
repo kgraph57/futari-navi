@@ -1,0 +1,568 @@
+[
+  {
+    "slug": "marriage-subsidy",
+    "name": "結婚新生活支援事業",
+    "description": "結婚に伴う新生活のスタートアップ費用（住居費・引越費用・リフォーム費用）を補助する国の事業です。29歳以下の夫婦は最大60万円、30〜39歳の夫婦は最大30万円が支給されます。",
+    "category": "給付金",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": 39,
+      "incomeLimit": "合計所得500万円未満",
+      "residency": "実施自治体",
+      "conditions": [
+        "婚姻日時点で夫婦ともに39歳以下",
+        "夫婦の合計所得が500万円未満（貸与型奨学金の返済額は控除可）",
+        "実施自治体に居住していること",
+        "過去にこの事業の補助を受けていないこと"
+      ]
+    },
+    "amount": {
+      "type": "variable",
+      "value": 600000,
+      "unit": "yen",
+      "description": "29歳以下: 最大60万円、30〜39歳: 最大30万円"
+    },
+    "applicationUrl": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000167820.html",
+    "deadline": "年度末（多くの自治体で3月末締切）",
+    "notes": "全自治体で実施されているわけではありません。2025年度は全国約894市町村で実施。予算が無くなり次第終了する場合があります。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "お住まいの自治体が実施しているか確認",
+        "description": "内閣府の結婚新生活支援事業のWebサイトまたはお住まいの市区町村に確認します。",
+        "tip": "「結婚新生活支援事業　（自治体名）」で検索すると見つかります。"
+      },
+      {
+        "step": 2,
+        "title": "必要書類を準備・提出",
+        "description": "婚姻届受理証明書、所得証明書、住居に関する契約書、引越費用の領収書等を準備し、市区町村窓口に申請します。",
+        "tip": "領収書は引越し前から保管しておきましょう。対象経費は住居費（家賃・敷金・礼金・共益費・仲介手数料）、引越費用、リフォーム費用です。"
+      },
+      {
+        "step": 3,
+        "title": "審査・補助金の受取",
+        "description": "審査後、指定口座に補助金が振り込まれます。",
+        "tip": "申請から交付まで1〜2ヶ月程度かかる場合があります。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "婚姻届受理証明書または戸籍謄本",
+        "obtainHow": "婚姻届を提出した市区町村窓口で取得",
+        "notes": "婚姻の事実を証明するために必要",
+        "downloadUrl": null
+      },
+      {
+        "name": "住民票（夫婦連名）",
+        "obtainHow": "住所地の市区町村窓口またはコンビニで取得",
+        "notes": "同一世帯であることの確認用",
+        "downloadUrl": null
+      },
+      {
+        "name": "所得証明書（夫婦それぞれ）",
+        "obtainHow": "市区町村窓口で取得（前年の所得を証明）",
+        "notes": "合計所得500万円未満の確認用",
+        "downloadUrl": null
+      },
+      {
+        "name": "住居に関する契約書（賃貸契約書等）",
+        "obtainHow": "不動産会社から交付された契約書",
+        "notes": "住居費の補助申請に必要",
+        "downloadUrl": null
+      },
+      {
+        "name": "引越費用の領収書",
+        "obtainHow": "引越業者から受け取る",
+        "notes": "引越費用の補助申請に必要。個人での引越しは対象外の場合あり",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "市区町村窓口で申請",
+        "description": "お住まいの市区町村の担当窓口で申請します。自治体によって担当課が異なります。",
+        "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000167820.html",
+        "address": "各実施市区町村の担当窓口",
+        "hours": "平日 8:30〜17:00（自治体により異なる）"
+      }
+    ],
+    "faq": [
+      {
+        "question": "港区は実施していますか？",
+        "answer": "実施状況は年度ごとに変わります。最新の実施自治体一覧は内閣府のWebサイトまたは港区の窓口でご確認ください。"
+      },
+      {
+        "question": "家賃の何ヶ月分が対象ですか？",
+        "answer": "婚姻届提出日から年度末（3月末）までの家賃が対象です。敷金・礼金・共益費・仲介手数料も含まれます。"
+      },
+      {
+        "question": "夫婦の片方だけが39歳以下でも対象ですか？",
+        "answer": "いいえ、夫婦ともに39歳以下であることが条件です。片方でも40歳以上の場合は対象外となります。"
+      }
+    ],
+    "relatedProgramSlugs": [
+      "tokyo-marriage-passport",
+      "spouse-deduction"
+    ],
+    "processingTime": "申請後約1〜2ヶ月で振込",
+    "minato_available": null
+  },
+  {
+    "slug": "tokyo-marriage-passport",
+    "name": "TOKYOふたり結婚応援パスポート",
+    "description": "結婚を予定しているカップルや新婚夫婦を対象に、協賛店舗で割引や特典を受けられる東京都の事業です。結婚式場、引越し、家具・家電など幅広いジャンルの協賛店が参加しています。",
+    "category": "優待・割引",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": null,
+      "incomeLimit": null,
+      "residency": "tokyo",
+      "conditions": [
+        "1年以内に結婚を予定しているカップル",
+        "または結婚して1年以内の夫婦",
+        "都内在住・在勤・在学のいずれか"
+      ]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "協賛店舗での割引・特典（店舗により内容は異なる）"
+    },
+    "applicationUrl": "https://www.futari-passport.metro.tokyo.lg.jp/",
+    "deadline": "事業期間: 2024年7月16日〜2026年3月31日",
+    "notes": "登録・利用は無料です。協賛店舗は随時追加されています。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "Webサイトまたはアプリで登録",
+        "description": "TOKYOふたり結婚応援パスポートの公式サイトまたはアプリからカップルで登録します。",
+        "tip": "登録は無料。メールアドレスがあれば簡単に登録できます。"
+      },
+      {
+        "step": 2,
+        "title": "パスポート（デジタルカード）を取得",
+        "description": "登録完了後、デジタルパスポートが発行されます。スマートフォンで表示できます。",
+        "tip": "紙のカードを郵送で受け取ることも可能です。"
+      },
+      {
+        "step": 3,
+        "title": "協賛店で提示して特典を受ける",
+        "description": "協賛店舗でパスポートを提示すると割引や特典が受けられます。",
+        "tip": "公式サイトで協賛店舗一覧を確認してから利用するとお得です。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "本人確認書類",
+        "obtainHow": "運転免許証・マイナンバーカード・パスポート等",
+        "notes": "登録時に必要",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "online",
+        "label": "Web・アプリで登録",
+        "description": "公式サイトまたはスマートフォンアプリから登録できます。",
+        "url": "https://www.futari-passport.metro.tokyo.lg.jp/",
+        "address": null,
+        "hours": "24時間受付"
+      },
+      {
+        "method": "counter",
+        "label": "郵送で申込",
+        "description": "紙のパスポートを郵送で受け取ることもできます。",
+        "url": "https://www.futari-passport.metro.tokyo.lg.jp/",
+        "address": null,
+        "hours": null
+      }
+    ],
+    "faq": [
+      {
+        "question": "どんな特典がありますか？",
+        "answer": "結婚式場の割引、引越し費用の割引、家具・家電の特別価格、レストランの特典など多岐にわたります。協賛店舗は随時追加されています。"
+      },
+      {
+        "question": "カップルの片方だけ都内在住でも対象ですか？",
+        "answer": "はい、カップルのどちらかが都内在住・在勤・在学であれば対象になります。"
+      },
+      {
+        "question": "事業期間が終了したらどうなりますか？",
+        "answer": "現在の事業期間は2026年3月31日までです。延長の有無は東京都の公式発表をご確認ください。"
+      }
+    ],
+    "relatedProgramSlugs": [
+      "marriage-subsidy"
+    ],
+    "processingTime": "オンライン登録は即日発行",
+    "minato_available": true
+  },
+  {
+    "slug": "spouse-deduction",
+    "name": "配偶者控除",
+    "description": "配偶者の合計所得金額が48万円以下（給与収入のみなら年収103万円以下）の場合、所得税で最大38万円、住民税で最大33万円の所得控除が受けられます。",
+    "category": "税制優遇",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": null,
+      "incomeLimit": "納税者本人の合計所得金額1,000万円以下",
+      "residency": "japan",
+      "conditions": [
+        "法律上の婚姻関係にあること（事実婚は対象外）",
+        "配偶者の合計所得金額が48万円以下（給与のみなら年収103万円以下）",
+        "納税者本人の合計所得金額が1,000万円以下",
+        "配偶者が青色申告者の事業専従者でないこと"
+      ]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "所得税: 最大38万円控除（70歳以上の配偶者は最大48万円）、住民税: 最大33万円控除"
+    },
+    "applicationUrl": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
+    "deadline": "年末調整時（11〜12月）または確定申告（翌年2月16日〜3月15日）",
+    "notes": "納税者本人の合計所得金額が900万円を超えると控除額が段階的に減少します。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "配偶者の所得を確認",
+        "description": "配偶者の年間合計所得金額が48万円以下（給与のみなら年収103万円以下）であることを確認します。",
+        "tip": "給与のほかにパートやアルバイト、副業の収入も合算されます。"
+      },
+      {
+        "step": 2,
+        "title": "年末調整で申告（会社員の場合）",
+        "description": "「給与所得者の配偶者控除等申告書」に配偶者の情報を記入して勤務先に提出します。",
+        "tip": "結婚した年の年末調整から適用されます（12月31日時点で婚姻していれば対象）。"
+      },
+      {
+        "step": 3,
+        "title": "確定申告で申告（自営業・フリーランスの場合）",
+        "description": "確定申告書の配偶者控除欄に配偶者の情報を記入して申告します。",
+        "tip": "e-Taxを使えば自宅からオンラインで申告できます。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "給与所得者の配偶者控除等申告書",
+        "obtainHow": "勤務先から配布、または国税庁Webサイトからダウンロード",
+        "notes": "年末調整時に使用",
+        "downloadUrl": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_71.htm"
+      },
+      {
+        "name": "配偶者の所得が分かる書類",
+        "obtainHow": "配偶者の源泉徴収票や確定申告書の控え等",
+        "notes": "正確な所得金額の確認のため",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "年末調整（勤務先経由）",
+        "description": "会社員の場合は年末調整時に勤務先に申告書を提出します。",
+        "url": null,
+        "address": "勤務先",
+        "hours": "勤務先の提出期限に準ずる"
+      },
+      {
+        "method": "online",
+        "label": "確定申告（e-Tax）",
+        "description": "自営業の方やフリーランスの方は確定申告で申告します。e-Taxならオンラインで完結します。",
+        "url": "https://www.e-tax.nta.go.jp/",
+        "address": null,
+        "hours": "24時間受付（確定申告期間中）"
+      }
+    ],
+    "faq": [
+      {
+        "question": "103万円の壁とは何ですか？",
+        "answer": "配偶者の給与収入が103万円以下（合計所得48万円以下）なら配偶者控除が受けられるラインです。103万円を超えると配偶者控除は受けられませんが、201万円以下なら配偶者特別控除が使える場合があります。"
+      },
+      {
+        "question": "年の途中で結婚しても控除は受けられますか？",
+        "answer": "はい。12月31日時点で婚姻していれば、その年の控除を受けられます。例えば12月に結婚した場合でもその年の配偶者控除が適用されます。"
+      },
+      {
+        "question": "共働きでも控除は受けられますか？",
+        "answer": "配偶者の合計所得が48万円（給与収入103万円）を超える場合は配偶者控除は受けられません。ただし133万円以下（給与収入約201万円以下）なら配偶者特別控除が適用される可能性があります。"
+      }
+    ],
+    "relatedProgramSlugs": [
+      "spouse-special-deduction",
+      "social-insurance-dependent"
+    ],
+    "processingTime": "年末調整は12月の給与で精算。確定申告は申告後1〜2ヶ月で還付",
+    "minato_available": true
+  },
+  {
+    "slug": "spouse-special-deduction",
+    "name": "配偶者特別控除",
+    "description": "配偶者の合計所得金額が48万円超〜133万円以下の場合に、段階的に所得控除が受けられる制度です。配偶者控除の対象外でも、こちらが適用される可能性があります。",
+    "category": "税制優遇",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": null,
+      "incomeLimit": "納税者本人の合計所得金額1,000万円以下",
+      "residency": "japan",
+      "conditions": [
+        "法律上の婚姻関係にあること",
+        "配偶者の合計所得金額が48万円超〜133万円以下",
+        "納税者本人の合計所得金額が1,000万円以下",
+        "配偶者が他の扶養親族になっていないこと"
+      ]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "所得税: 最大38万円〜最小3万円（段階的に減少）、住民税: 最大33万円〜最小3万円"
+    },
+    "applicationUrl": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm",
+    "deadline": "年末調整時（11〜12月）または確定申告（翌年2月16日〜3月15日）",
+    "notes": "配偶者の所得が増えるほど控除額は段階的に減少します。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "配偶者の正確な所得金額を確認",
+        "description": "配偶者の年間合計所得金額を正確に把握します。パート・アルバイト等の給与収入から給与所得控除55万円を差し引いた額が所得金額です。",
+        "tip": "配偶者の勤務先から源泉徴収票をもらうか、12月分の給与が確定してから計算しましょう。"
+      },
+      {
+        "step": 2,
+        "title": "年末調整または確定申告で申告",
+        "description": "配偶者控除等申告書に配偶者の所得を記入して申告します。手続きは配偶者控除と同じ書類です。",
+        "tip": "配偶者の見込み所得で申告し、実際の所得と異なった場合は確定申告で修正できます。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "給与所得者の配偶者控除等申告書",
+        "obtainHow": "勤務先から配布、または国税庁Webサイトからダウンロード",
+        "notes": "配偶者控除と同じ書類で申告",
+        "downloadUrl": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_71.htm"
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "年末調整（勤務先経由）",
+        "description": "会社員の場合は年末調整時に勤務先に申告書を提出します。",
+        "url": null,
+        "address": "勤務先",
+        "hours": "勤務先の提出期限に準ずる"
+      },
+      {
+        "method": "online",
+        "label": "確定申告（e-Tax）",
+        "description": "e-Taxならオンラインで完結します。",
+        "url": "https://www.e-tax.nta.go.jp/",
+        "address": null,
+        "hours": "24時間受付（確定申告期間中）"
+      }
+    ],
+    "faq": [
+      {
+        "question": "150万円の壁とは何ですか？",
+        "answer": "配偶者の給与収入が150万円以下（合計所得95万円以下）であれば、配偶者特別控除は満額（最大38万円）受けられます。150万円を超えると段階的に控除額が減り、約201万円で控除がゼロになります。"
+      },
+      {
+        "question": "配偶者控除と配偶者特別控除は同時に使えますか？",
+        "answer": "いいえ、どちらか一方のみ適用されます。配偶者の所得に応じて自動的にどちらが適用されるか決まります。"
+      }
+    ],
+    "relatedProgramSlugs": [
+      "spouse-deduction",
+      "social-insurance-dependent"
+    ],
+    "processingTime": "年末調整は12月の給与で精算。確定申告は申告後1〜2ヶ月で還付",
+    "minato_available": true
+  },
+  {
+    "slug": "social-insurance-dependent",
+    "name": "社会保険の扶養（第3号被保険者）",
+    "description": "年収130万円未満の配偶者は、もう一方の配偶者の社会保険（健康保険・厚生年金）の扶養に入ることができます。扶養に入ると、自分で保険料を払わずに健康保険と国民年金（第3号）の適用を受けられます。",
+    "category": "社会保険",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": null,
+      "incomeLimit": "年収130万円未満",
+      "residency": "japan",
+      "conditions": [
+        "配偶者の年収が130万円未満であること",
+        "被保険者（扶養する側）の年収の2分の1未満であること",
+        "被保険者と同居していること（別居の場合は仕送りが必要）",
+        "被保険者が厚生年金・健康保険に加入していること"
+      ]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "健康保険料・国民年金保険料の負担なし（年間約20〜30万円の節約）"
+    },
+    "applicationUrl": "https://www.nenkin.go.jp/service/seidozenpan/20140710.html",
+    "deadline": "婚姻後速やかに（事実発生から5日以内が推奨）",
+    "notes": "130万円の壁を超えると扶養から外れ、自分で保険料を負担する必要があります。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "配偶者の年収を確認",
+        "description": "扶養に入る配偶者の年収が130万円未満であることを確認します。",
+        "tip": "月額約108,333円以下が目安です。今後の見込み年収で判定されます。"
+      },
+      {
+        "step": 2,
+        "title": "被保険者の勤務先に届出",
+        "description": "扶養する側の配偶者の勤務先に「被扶養者異動届」と「国民年金第3号被保険者関係届」を提出します。",
+        "tip": "婚姻届受理証明書や配偶者の所得証明書が必要になる場合があります。勤務先の人事部に確認しましょう。"
+      },
+      {
+        "step": 3,
+        "title": "健康保険証の交付",
+        "description": "手続き完了後、扶養に入った配偶者の健康保険証が交付されます。",
+        "tip": null
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "被扶養者（異動）届",
+        "obtainHow": "勤務先の人事部から入手、または日本年金機構のWebサイトからダウンロード",
+        "notes": null,
+        "downloadUrl": "https://www.nenkin.go.jp/service/kounen/todokesho/hihokensha/20141205.html"
+      },
+      {
+        "name": "国民年金第3号被保険者関係届",
+        "obtainHow": "被扶養者異動届と一体になっている場合が多い",
+        "notes": null,
+        "downloadUrl": null
+      },
+      {
+        "name": "配偶者の収入を確認できる書類",
+        "obtainHow": "源泉徴収票、課税（非課税）証明書、退職証明書等",
+        "notes": "配偶者が無職の場合は退職証明書や離職票が必要",
+        "downloadUrl": null
+      },
+      {
+        "name": "婚姻届受理証明書または戸籍謄本",
+        "obtainHow": "婚姻届を提出した市区町村窓口で取得",
+        "notes": "配偶者であることの証明用",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "勤務先を通じて届出",
+        "description": "扶養する側の配偶者の勤務先の人事部・総務部を通じて届出します。",
+        "url": null,
+        "address": "勤務先",
+        "hours": "勤務先の営業時間に準ずる"
+      }
+    ],
+    "faq": [
+      {
+        "question": "130万円の壁とは何ですか？",
+        "answer": "配偶者の年収が130万円を超えると社会保険の扶養から外れ、自分で健康保険と年金の保険料を負担する必要があります。年間約20〜30万円の負担増になるため「壁」と呼ばれています。"
+      },
+      {
+        "question": "パートを始めたら扶養から外れますか？",
+        "answer": "年収130万円未満（月額約108,333円以下）であれば扶養のままでいられます。ただし2024年10月からは従業員51人以上の企業で週20時間以上働く場合、年収106万円以上で社会保険加入義務が生じます。"
+      },
+      {
+        "question": "扶養に入ると年金はどうなりますか？",
+        "answer": "国民年金の第3号被保険者となり、保険料を払わずに国民年金の加入期間に算入されます。将来の老齢基礎年金も受け取れます。"
+      }
+    ],
+    "relatedProgramSlugs": [
+      "spouse-deduction",
+      "spouse-special-deduction"
+    ],
+    "processingTime": "届出から約1〜2週間で健康保険証が交付",
+    "minato_available": true
+  },
+  {
+    "slug": "minato-marriage-support",
+    "name": "港区の結婚関連支援情報",
+    "description": "港区に居住する新婚夫婦が利用できる支援制度や相談窓口をまとめています。住居支援、生活相談、地域のつながりづくりなどの情報を提供します。",
+    "category": "給付金",
+    "eligibility": {
+      "minAge": null,
+      "maxAge": null,
+      "incomeLimit": null,
+      "residency": "minato",
+      "conditions": [
+        "港区に住所があること"
+      ]
+    },
+    "amount": {
+      "type": "variable",
+      "value": null,
+      "unit": "yen",
+      "description": "制度により異なる"
+    },
+    "applicationUrl": "https://www.city.minato.tokyo.jp/",
+    "deadline": null,
+    "notes": "港区独自の新婚向け給付金制度は2026年2月現在、特に設けられていませんが、住まい・暮らしに関する相談窓口や、東京都の制度（TOKYOふたり結婚応援パスポート等）が利用できます。最新情報は港区公式サイトをご確認ください。",
+    "applicationSteps": [
+      {
+        "step": 1,
+        "title": "港区公式サイトで最新情報を確認",
+        "description": "港区の公式Webサイトで新婚世帯向けの支援策を確認します。",
+        "tip": "「港区　結婚　支援」で検索すると関連情報が見つかります。"
+      },
+      {
+        "step": 2,
+        "title": "各地区総合支所の窓口で相談",
+        "description": "お住まいの地区の総合支所窓口で、利用可能な支援制度について相談できます。",
+        "tip": "転入届の提出時に窓口で聞いてみるのが効率的です。"
+      }
+    ],
+    "requiredDocuments": [
+      {
+        "name": "本人確認書類",
+        "obtainHow": "マイナンバーカード・運転免許証等",
+        "notes": "窓口相談時に必要な場合があります",
+        "downloadUrl": null
+      }
+    ],
+    "applicationMethods": [
+      {
+        "method": "counter",
+        "label": "各地区総合支所窓口",
+        "description": "芝・麻布・赤坂・高輪・芝浦港南の各地区総合支所で相談できます。",
+        "url": "https://www.city.minato.tokyo.jp/shisetsu/sogoshisho/index.html",
+        "address": "各地区総合支所",
+        "hours": "平日 8:30〜17:00"
+      },
+      {
+        "method": "online",
+        "label": "港区公式サイト",
+        "description": "港区の公式Webサイトで各種制度の情報を確認できます。",
+        "url": "https://www.city.minato.tokyo.jp/",
+        "address": null,
+        "hours": "24時間閲覧可能"
+      }
+    ],
+    "faq": [
+      {
+        "question": "港区に結婚新生活支援事業はありますか？",
+        "answer": "2026年2月現在、港区では結婚新生活支援事業は実施されていません。最新の実施状況は港区公式サイトまたは窓口でご確認ください。"
+      },
+      {
+        "question": "港区で新婚夫婦が使える支援はありますか？",
+        "answer": "東京都の「TOKYOふたり結婚応援パスポート」が利用できます。また、港区民向けの住まいに関する相談窓口や、税制優遇（配偶者控除等）は全国共通で利用可能です。"
+      }
+    ],
+    "relatedProgramSlugs": [
+      "tokyo-marriage-passport",
+      "marriage-subsidy",
+      "spouse-deduction"
+    ],
+    "processingTime": "制度により異なる",
+    "minato_available": true
+  }
+]

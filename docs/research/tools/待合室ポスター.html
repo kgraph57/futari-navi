@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小児科おかもん だより - 待合室ポスター</title>
+<style>
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+    color: #333;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .poster {
+    width: 180mm;
+    max-width: 100%;
+    border: 3px solid #4A90D9;
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .poster::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, #4A90D9, #7BC67E, #F5A623);
+  }
+
+  /* ヘッダー */
+  .header {
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 20px;
+  }
+  .header-label {
+    display: inline-block;
+    background: #4A90D9;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  .header h1 {
+    font-size: 32px;
+    color: #2C3E50;
+    margin-top: 12px;
+    letter-spacing: 2px;
+  }
+  .header h1 span {
+    color: #4A90D9;
+  }
+  .header .subtitle {
+    font-size: 15px;
+    color: #666;
+    margin-top: 6px;
+  }
+
+  /* 説明文 */
+  .intro {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 20px;
+    padding: 0 8px;
+  }
+  .intro strong {
+    color: #4A90D9;
+  }
+
+  /* トピックリスト */
+  .topics {
+    background: #F0F7FF;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .topics h2 {
+    font-size: 15px;
+    color: #4A90D9;
+    margin-bottom: 10px;
+  }
+  .topics ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+  }
+  .topics li {
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+  }
+  .topics li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #7BC67E;
+    font-weight: 700;
+  }
+
+  /* QRセクション */
+  .qr-section {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .qr-box {
+    flex: 1;
+    border: 2px solid #E8E8E8;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .qr-box.primary {
+    border-color: #4A90D9;
+    background: #FAFCFF;
+  }
+  .qr-box.secondary {
+    border-color: #7BC67E;
+    background: #FAFFFA;
+  }
+  .qr-box h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .qr-box.primary h3 {
+    color: #4A90D9;
+  }
+  .qr-box.secondary h3 {
+    color: #5AA85A;
+  }
+  .qr-placeholder {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 10px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #999;
+    background: #fff;
+  }
+  .qr-box .desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* フッター */
+  .footer {
+    text-align: center;
+    border-top: 1px solid #E8E8E8;
+    padding-top: 14px;
+  }
+  .footer .hospital {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2C3E50;
+  }
+  .footer .dept {
+    font-size: 13px;
+    color: #666;
+    margin-top: 2px;
+  }
+  .footer .note {
+    font-size: 11px;
+    color: #999;
+    margin-top: 8px;
+  }
+
+  /* 印刷時 */
+  @media print {
+    body {
+      padding: 0;
+    }
+    .poster {
+      border-width: 2px;
+    }
+    .print-note {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <span class="header-label">メルマガ無料配信中</span>
+    <h1>小児科<span>おかもん</span> だより</h1>
+    <p class="subtitle">愛育病院 小児科おかもん先生の育児ニュースレター</p>
+  </div>
+
+  <!-- 説明 -->
+  <p class="intro">
+    おかもん先生が、子育ての<strong>「ギモン」</strong>に<br>
+    エビデンスをもとにお答えします。
+  </p>
+
+  <!-- トピック -->
+  <div class="topics">
+    <h2>こんなテーマを配信しています</h2>
+    <ul>
+      <li>インフルエンザの薬と異常行動</li>
+      <li>発熱と解熱剤のよくある誤解</li>
+      <li>離乳食とアレルギー予防</li>
+      <li>夜間受診の判断と #8000</li>
+      <li>ステロイド外用薬の正しい使い方</li>
+      <li>ワクチン同時接種の安全性</li>
+      <li>ノロウイルスの消毒と予防</li>
+      <li>1ヶ月健診のよくある質問</li>
+    </ul>
+  </div>
+
+  <!-- QRコード -->
+  <div class="qr-section">
+    <div class="qr-box primary">
+      <h3>メルマガに登録する</h3>
+      <div class="qr-placeholder">
+        QRコードを<br>ここに貼付
+      </div>
+      <p class="desc">theLetter登録ページ<br>（無料・メールアドレスのみ）</p>
+    </div>
+    <div class="qr-box secondary">
+      <h3>おかもん先生に質問する</h3>
+      <div class="qr-placeholder">
+        QRコードを<br>ここに貼付
+      </div>
+      <p class="desc">いただいたご質問は<br>メルマガで回答することがあります</p>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <p class="hospital">愛育病院</p>
+    <p class="dept">小児科 おかもん先生</p>
+    <p class="note">※ 緊急のご相談は外来受診または #8000（小児救急電話相談）にお電話ください</p>
+  </div>
+
+</div>
+
+<p class="print-note" style="text-align:center; margin-top:20px; color:#999; font-size:13px;">
+  ※ このページをブラウザで開いて Ctrl+P（Mac: Cmd+P）で印刷してください。<br>
+  ※ QRコード部分は印刷後に貼付するか、画像を差し替えてください。
+</p>
+
+</body>
+</html>
