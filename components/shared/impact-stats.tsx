@@ -2,8 +2,7 @@ import { WatercolorIcon } from "@/components/icons/watercolor-icon"
 import type { WatercolorIconName } from "@/components/icons/watercolor-icon"
 import { getAllArticles } from "@/lib/content"
 import { getAllPrograms } from "@/lib/programs"
-import { getAllVaccines } from "@/lib/vaccines"
-import { getAllCheckups } from "@/lib/checkups"
+import { getAllChecklists } from "@/lib/checklists"
 
 interface StatItem {
   readonly icon: WatercolorIconName
@@ -14,29 +13,23 @@ interface StatItem {
 function buildStats(): readonly StatItem[] {
   const articleCount = getAllArticles().length
   const programCount = getAllPrograms().length
-  const vaccineCount = getAllVaccines().length
-  const checkupCount = getAllCheckups().length
+  const checklistCount = getAllChecklists().length
 
   return [
     {
       icon: "book",
       value: `${String(articleCount)}本`,
-      label: "医師監修記事",
+      label: "解説記事",
     },
     {
       icon: "clipboard",
       value: `${String(programCount)}種類`,
-      label: "制度・手続きガイド",
+      label: "支援制度",
     },
     {
-      icon: "syringe",
-      value: `${String(vaccineCount)}種類`,
-      label: "予防接種スケジュール",
-    },
-    {
-      icon: "stethoscope",
-      value: `${String(checkupCount)}回分`,
-      label: "健診ガイド",
+      icon: "clipboard",
+      value: `${String(checklistCount)}項目`,
+      label: "手続きチェック",
     },
   ]
 }
@@ -47,9 +40,9 @@ export function ImpactStats() {
   return (
     <div className="rounded-xl border border-sage-100 bg-white p-6">
       <h2 className="text-center font-heading text-sm font-semibold text-muted">
-        すくすくナビのコンテンツ
+        ふたりナビのコンテンツ
       </h2>
-      <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="mt-4 grid grid-cols-3 gap-4">
         {stats.map((stat) => (
           <div key={stat.label} className="flex flex-col items-center gap-1.5">
             <WatercolorIcon

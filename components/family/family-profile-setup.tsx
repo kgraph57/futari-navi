@@ -5,7 +5,7 @@ import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { useStore } from "@/lib/store";
 import type { FamilyProfile } from "@/lib/store";
 import { formatAge } from "@/lib/utils/age";
-import { trackChildRegistered } from "@/lib/analytics/events";
+import { trackCTAClick } from "@/lib/analytics/events";
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -242,7 +242,7 @@ export function FamilyProfileSetup({
         const updated = await store.addChild(nickname, birthDate);
         setProfile(updated);
         setShowForm(false);
-        trackChildRegistered(updated.children.length);
+        trackCTAClick("profile_registered", "family_setup");
         onProfileChange?.();
       } catch {
         setError("登録に失敗しました。もう一度お試しください。");

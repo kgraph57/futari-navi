@@ -4,11 +4,11 @@ const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
   ...(isGitHubPages && { output: "export" as const }),
-  basePath: isGitHubPages ? "/sukusuku-navi" : "",
+  basePath: isGitHubPages ? "/futari-navi" : "",
   compress: true,
   poweredByHeader: false,
   env: {
-    NEXT_PUBLIC_BASE_PATH: isGitHubPages ? "/sukusuku-navi" : "",
+    NEXT_PUBLIC_BASE_PATH: isGitHubPages ? "/futari-navi" : "",
   },
   images: {
     unoptimized: true,

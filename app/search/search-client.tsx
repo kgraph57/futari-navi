@@ -1,42 +1,34 @@
-"use client";
+"use client"
 
-import { useState, useMemo, useEffect, useRef, useCallback } from "react";
-import { WatercolorIcon } from "@/components/icons/watercolor-icon";
-import Link from "next/link";
-import { Badge } from "@/components/shared/badge";
-import { SectionHeading } from "@/components/shared/section-heading";
-import type { ArticleCategory } from "@/lib/types";
-import { CATEGORY_LABELS } from "@/lib/types";
-import { useDebounce } from "@/lib/hooks/use-debounce";
-import type { SearchItem } from "./page";
+import { useState, useMemo, useEffect, useRef } from "react"
+import { WatercolorIcon } from "@/components/icons/watercolor-icon"
+import Link from "next/link"
+import { Badge } from "@/components/shared/badge"
+import { SectionHeading } from "@/components/shared/section-heading"
+import type { ArticleCategory } from "@/lib/types"
+import { CATEGORY_LABELS } from "@/lib/types"
+import { useDebounce } from "@/lib/hooks/use-debounce"
+import type { SearchItem } from "./page"
 
-type ContentType =
-  | "all"
-  | "article"
-  | "program"
-  | "vaccine"
-  | "clinic"
-  | "nursery";
+type ContentType = "all" | "article" | "program" | "checklist"
 
 const CONTENT_TYPE_LABELS: Record<ContentType, string> = {
   all: "すべて",
   article: "記事",
   program: "制度",
-  vaccine: "ワクチン",
-  clinic: "小児科",
-  nursery: "保育園",
-};
+  checklist: "チェックリスト",
+}
 
 interface SearchPageClientProps {
-  readonly items: readonly SearchItem[];
+  readonly items: readonly SearchItem[]
 }
 
 function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${year}年${month}月${day}日`;
+  const date = new Date(dateStr)
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${year}年${month}月${day}日`
 }
 
 function matchesQuery(item: SearchItem, lower: string): boolean {
@@ -51,33 +43,18 @@ function matchesQuery(item: SearchItem, lower: string): boolean {
             qa.question.toLowerCase().includes(lower) ||
             qa.answer.toLowerCase().includes(lower),
         )
-      );
+      )
     case "program":
       return (
         item.name.toLowerCase().includes(lower) ||
         item.description.toLowerCase().includes(lower) ||
         item.amountDescription.toLowerCase().includes(lower)
-      );
-    case "vaccine":
+      )
+    case "checklist":
       return (
         item.name.toLowerCase().includes(lower) ||
-        item.nameShort.toLowerCase().includes(lower) ||
-        item.disease.toLowerCase().includes(lower) ||
         item.description.toLowerCase().includes(lower)
-      );
-    case "clinic":
-      return (
-        item.name.toLowerCase().includes(lower) ||
-        item.address.toLowerCase().includes(lower) ||
-        item.features.some((f) => f.toLowerCase().includes(lower)) ||
-        item.nearestStation.toLowerCase().includes(lower)
-      );
-    case "nursery":
-      return (
-        item.name.toLowerCase().includes(lower) ||
-        item.address.toLowerCase().includes(lower) ||
-        item.features.some((f) => f.toLowerCase().includes(lower))
-      );
+      )
   }
 }
 
@@ -85,16 +62,16 @@ function ArticleResult({
   item,
   query,
 }: {
-  readonly item: SearchItem & { type: "article" };
-  readonly query: string;
+  readonly item: SearchItem & { type: "article" }
+  readonly query: string
 }) {
-  const lower = query.toLowerCase();
+  const lower = query.toLowerCase()
   const matchingQa =
     item.qaPairs.find(
       (qa) =>
         qa.question.toLowerCase().includes(lower) ||
         qa.answer.toLowerCase().includes(lower),
-    ) ?? null;
+    ) ?? null
 
   return (
     <Link
@@ -118,7 +95,7 @@ function ArticleResult({
             <WatercolorIcon
               name="message"
               size={12}
-              className="mt-0.5 .5 .5 shrink-0 text-blush-400"
+              className="mt-0.5 shrink-0 text-blush-400"
             />
             <p className="text-xs font-medium text-blush-600 line-clamp-1">
               Q: {matchingQa.question}
@@ -126,10 +103,10 @@ function ArticleResult({
           </div>
           <div className="mt-1.5 flex items-start gap-2">
             <div className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-sage-600 text-[8px] font-bold text-white">
-              医
+              A
             </div>
             <p className="text-xs leading-relaxed text-muted line-clamp-2">
-              A: {matchingQa.answer}
+              {matchingQa.answer}
             </p>
           </div>
         </div>
@@ -150,13 +127,13 @@ function ArticleResult({
         </span>
       </div>
     </Link>
-  );
+  )
 }
 
 function ProgramResult({
   item,
 }: {
-  readonly item: SearchItem & { type: "program" };
+  readonly item: SearchItem & { type: "program" }
 }) {
   return (
     <Link
@@ -185,195 +162,116 @@ function ProgramResult({
         )}
       </div>
     </Link>
-  );
+  )
 }
 
-function VaccineResult({
+function ChecklistResult({
   item,
 }: {
-  readonly item: SearchItem & { type: "vaccine" };
+  readonly item: SearchItem & { type: "checklist" }
 }) {
   return (
     <Link
-      href={`/vaccines/${item.slug}`}
+      href={`/checklists/${item.slug}`}
       className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
     >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
-        <WatercolorIcon name="syringe" size={20} className="text-purple-600" />
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
+        <WatercolorIcon name="clipboard" size={20} className="text-sage-600" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <span className="rounded-full bg-purple-50 px-2 py-0.5 text-[10px] font-medium text-purple-700">
-            {item.vaccineType === "routine" ? "定期接種" : "任意接種"}
+          <span className="rounded-full bg-sage-50 px-2 py-0.5 text-[10px] font-medium text-sage-700">
+            チェックリスト
           </span>
         </div>
         <h3 className="mt-1 font-heading text-base font-semibold text-card-foreground group-hover:text-sage-700">
           {item.name}
         </h3>
-        <p className="mt-1 text-xs text-muted">対象疾患: {item.disease}</p>
         <p className="mt-1 line-clamp-2 text-sm text-muted">
           {item.description}
         </p>
+        <p className="mt-1 text-xs font-medium text-sage-600">
+          {item.itemCount}項目
+        </p>
       </div>
     </Link>
-  );
-}
-
-function ClinicResult({
-  item,
-}: {
-  readonly item: SearchItem & { type: "clinic" };
-}) {
-  return (
-    <Link
-      href={`/clinics/${item.slug}`}
-      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
-    >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-blue-200 bg-blue-50">
-        <WatercolorIcon name="mappin" size={20} className="text-blue-600" />
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
-          <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-700">
-            小児科
-          </span>
-          {item.emergencyAvailable && (
-            <span className="flex items-center gap-0.5 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-medium text-red-700">
-              <WatercolorIcon name="alert" size={8} className=".5 .5" />
-              救急対応
-            </span>
-          )}
-        </div>
-        <h3 className="mt-1 font-heading text-base font-semibold text-card-foreground group-hover:text-sage-700">
-          {item.name}
-        </h3>
-        <p className="mt-1 text-xs text-muted">{item.address}</p>
-        <p className="mt-1 text-xs text-muted">最寄駅: {item.nearestStation}</p>
-      </div>
-    </Link>
-  );
-}
-
-function NurseryResult({
-  item,
-}: {
-  readonly item: SearchItem & { type: "nursery" };
-}) {
-  return (
-    <Link
-      href={`/nurseries/${item.slug}`}
-      className="group flex items-start gap-4 rounded-xl border border-border bg-white p-5 transition-all hover:border-sage-200 hover:shadow-md"
-    >
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-green-200 bg-green-50">
-        <WatercolorIcon name="building" size={20} className="text-green-600" />
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
-          <span className="rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-medium text-green-700">
-            保育園
-          </span>
-        </div>
-        <h3 className="mt-1 font-heading text-base font-semibold text-card-foreground group-hover:text-sage-700">
-          {item.name}
-        </h3>
-        <p className="mt-1 text-xs text-muted">{item.address}</p>
-        {item.features.length > 0 && (
-          <div className="mt-1.5 flex flex-wrap gap-1">
-            {item.features.slice(0, 3).map((f) => (
-              <span
-                key={f}
-                className="rounded bg-ivory-100 px-1.5 py-0.5 text-[10px] text-muted"
-              >
-                {f}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-    </Link>
-  );
+  )
 }
 
 function SearchResultItem({
   item,
   query,
 }: {
-  readonly item: SearchItem;
-  readonly query: string;
+  readonly item: SearchItem
+  readonly query: string
 }) {
   switch (item.type) {
     case "article":
-      return <ArticleResult item={item} query={query} />;
+      return <ArticleResult item={item} query={query} />
     case "program":
-      return <ProgramResult item={item} />;
-    case "vaccine":
-      return <VaccineResult item={item} />;
-    case "clinic":
-      return <ClinicResult item={item} />;
-    case "nursery":
-      return <NurseryResult item={item} />;
+      return <ProgramResult item={item} />
+    case "checklist":
+      return <ChecklistResult item={item} />
   }
 }
 
 export function SearchPageClient({ items }: SearchPageClientProps) {
-  const [query, setQuery] = useState("");
-  const [activeType, setActiveType] = useState<ContentType>("all");
-  const debouncedQuery = useDebounce(query, 300);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [query, setQuery] = useState("")
+  const [activeType, setActiveType] = useState<ContentType>("all")
+  const debouncedQuery = useDebounce(query, 300)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        inputRef.current?.focus();
+        e.preventDefault()
+        inputRef.current?.focus()
       }
     }
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [])
 
   const results = useMemo(() => {
-    if (debouncedQuery.length === 0) return [];
-    const lower = debouncedQuery.toLowerCase();
-    const matched = items.filter((item) => matchesQuery(item, lower));
+    if (debouncedQuery.length === 0) return []
+    const lower = debouncedQuery.toLowerCase()
+    const matched = items.filter((item) => matchesQuery(item, lower))
 
-    if (activeType === "all") return matched;
-    return matched.filter((item) => item.type === activeType);
-  }, [items, debouncedQuery, activeType]);
+    if (activeType === "all") return matched
+    return matched.filter((item) => item.type === activeType)
+  }, [items, debouncedQuery, activeType])
 
   const typeCounts = useMemo(() => {
-    if (debouncedQuery.length === 0) return {};
-    const lower = debouncedQuery.toLowerCase();
-    const matched = items.filter((item) => matchesQuery(item, lower));
-    const counts: Record<string, number> = {};
+    if (debouncedQuery.length === 0) return {}
+    const lower = debouncedQuery.toLowerCase()
+    const matched = items.filter((item) => matchesQuery(item, lower))
+    const counts: Record<string, number> = {}
     for (const item of matched) {
-      counts[item.type] = (counts[item.type] ?? 0) + 1;
+      counts[item.type] = (counts[item.type] ?? 0) + 1
     }
-    return counts;
-  }, [items, debouncedQuery]);
+    return counts
+  }, [items, debouncedQuery])
 
-  const totalCount = Object.values(typeCounts).reduce((a, b) => a + b, 0);
-  const hasQuery = debouncedQuery.length > 0;
+  const totalCount = Object.values(typeCounts).reduce((a, b) => a + b, 0)
+  const hasQuery = debouncedQuery.length > 0
 
-  const articleCount = items.filter((i) => i.type === "article").length;
-  const programCount = items.filter((i) => i.type === "program").length;
-  const vaccineCount = items.filter((i) => i.type === "vaccine").length;
-  const clinicCount = items.filter((i) => i.type === "clinic").length;
-  const nurseryCount = items.filter((i) => i.type === "nursery").length;
+  const articleCount = items.filter((i) => i.type === "article").length
+  const programCount = items.filter((i) => i.type === "program").length
+  const checklistCount = items.filter((i) => i.type === "checklist").length
 
   return (
     <div className="px-4 py-12 sm:py-16">
       <div className="mx-auto max-w-3xl">
-        <SectionHeading subtitle="記事・制度・ワクチン・小児科・保育園をまとめて検索">
+        <SectionHeading subtitle="記事・制度・チェックリストをまとめて検索">
           横断検索
         </SectionHeading>
 
         <div className="mt-6 flex items-center gap-2 rounded-lg border border-sage-100 bg-sage-50/50 px-4 py-2.5">
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sage-600">
             <WatercolorIcon
-              name="stethoscope"
+              name="search"
               size={12}
-              className=".5 .5 text-white"
+              className="text-white"
             />
           </div>
           <p className="text-xs text-muted">
@@ -386,15 +284,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
             </span>
             ・
             <span className="font-medium text-foreground">
-              {vaccineCount}種のワクチン
-            </span>
-            ・
-            <span className="font-medium text-foreground">
-              {clinicCount}件の小児科
-            </span>
-            ・
-            <span className="font-medium text-foreground">
-              {nurseryCount}件の保育園
+              {checklistCount}件のチェックリスト
             </span>
             を横断検索
           </p>
@@ -409,13 +299,13 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
           <input
             ref={inputRef}
             type="search"
-            placeholder="例: 児童手当、MRワクチン、麻布、アレルギー..."
+            placeholder="例: 結婚新生活支援、名義変更、配偶者控除..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full rounded-xl border border-border bg-white py-4 pl-12 pr-20 text-base text-foreground shadow-sm outline-none transition-all placeholder:text-muted/60 focus:border-sage-400 focus:ring-2 focus:ring-sage-400/20"
             autoFocus
           />
-          <kbd className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-0.5 rounded-md border border-border bg-ivory-50 px-2 py-1 text-xs text-muted sm:flex">
+          <kbd className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 items-center gap-0.5 rounded-md border border-border bg-sage-50 px-2 py-1 text-xs text-muted sm:flex">
             <span className="text-[10px]">&#8984;</span>K
           </kbd>
         </div>
@@ -426,8 +316,8 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
               Object.entries(CONTENT_TYPE_LABELS) as [ContentType, string][]
             ).map(([type, label]) => {
               const count =
-                type === "all" ? totalCount : (typeCounts[type] ?? 0);
-              if (type !== "all" && count === 0) return null;
+                type === "all" ? totalCount : (typeCounts[type] ?? 0)
+              if (type !== "all" && count === 0) return null
 
               return (
                 <button
@@ -443,7 +333,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
                   {label}
                   <span className="ml-1 opacity-70">{count}</span>
                 </button>
-              );
+              )
             })}
           </div>
         )}
@@ -470,7 +360,7 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
 
         {hasQuery && totalCount === 0 && (
           <div className="mt-12 text-center">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-ivory-100">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-sage-50">
               <WatercolorIcon name="search" size={28} className="text-muted" />
             </div>
             <p className="mt-4 text-base text-muted">
@@ -487,12 +377,12 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               {[
                 ...Object.entries(CATEGORY_LABELS).map(([, label]) => label),
-                "児童手当",
-                "産後ケア",
-                "おたふく",
-                "BCG",
-                "麻布",
-                "一時保育",
+                "結婚新生活支援",
+                "名義変更",
+                "婚姻届",
+                "配偶者控除",
+                "引越し",
+                "港区",
               ].map((keyword) => (
                 <button
                   key={keyword}
@@ -508,5 +398,5 @@ export function SearchPageClient({ items }: SearchPageClientProps) {
         )}
       </div>
     </div>
-  );
+  )
 }

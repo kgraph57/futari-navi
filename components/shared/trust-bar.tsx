@@ -2,20 +2,20 @@ import { WatercolorIcon } from "@/components/icons/watercolor-icon"
 
 const TRUST_SIGNALS = [
   {
-    icon: "stethoscope" as const,
-    text: "愛育病院 小児科医監修",
+    icon: "clipboard" as const,
+    text: "専門家監修",
   },
   {
     icon: "book" as const,
-    text: "医学論文に基づく情報",
+    text: "公的制度準拠",
   },
   {
     icon: "refresh" as const,
-    text: "定期的に内容を更新",
+    text: "毎月更新",
   },
   {
     icon: "mappin" as const,
-    text: "港区特化の子育て情報",
+    text: "港区特化",
   },
 ] as const
 

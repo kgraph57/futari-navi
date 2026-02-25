@@ -25,36 +25,13 @@ const NAV_GROUPS: readonly NavGroup[] = [
         href: "/articles",
         label: "記事一覧",
         icon: "book",
-        description: "小児科医監修の子育て情報",
+        description: "結婚の手続き・制度の解説記事",
       },
-      {
-        href: "/vaccines",
-        label: "予防接種",
-        icon: "syringe",
-        description: "接種スケジュールと詳細",
-      },
-      {
-        href: "/checkups",
-        label: "健診ガイド",
-        icon: "stethoscope",
-        description: "乳幼児健診の時期と内容",
-      },
-      {
-        href: "/infection-alerts",
-        label: "感染症アラート",
-        icon: "alert" as const,
-        description: "今流行している感染症と予防情報",
-      },
-    ],
-  },
-  {
-    label: "手続き",
-    items: [
       {
         href: "/programs",
         label: "制度一覧",
         icon: "clipboard",
-        description: "助成金・給付金・支援制度",
+        description: "給付金・税制優遇・支援制度",
       },
       {
         href: "/simulator",
@@ -62,37 +39,54 @@ const NAV_GROUPS: readonly NavGroup[] = [
         icon: "calculator",
         description: "受給額をかんたん計算",
       },
+    ],
+  },
+  {
+    label: "手続き",
+    items: [
       {
         href: "/checklists",
-        label: "手続きガイド",
+        label: "チェックリスト",
         icon: "clipboard",
-        description: "出産前後のやることリスト",
+        description: "結婚前後のやることリスト",
+      },
+      {
+        href: "/my/timeline",
+        label: "タイムライン",
+        icon: "calendar",
+        description: "あなた専用のスケジュール",
       },
     ],
   },
   {
-    label: "探す",
+    label: "サポート",
     items: [
       {
-        href: "/clinics",
-        label: "小児科マップ",
-        icon: "mappin",
-        description: "港区の小児科・夜間対応",
+        href: "/faq",
+        label: "よくある質問",
+        icon: "help" as const,
+        description: "みんなの疑問に回答",
       },
       {
-        href: "/nurseries",
-        label: "保育園探し",
-        icon: "building",
-        description: "認可・認証保育園の情報",
+        href: "/glossary",
+        label: "用語集",
+        icon: "book",
+        description: "手続き・制度の用語解説",
+      },
+      {
+        href: "/contact",
+        label: "お問い合わせ",
+        icon: "mail" as const,
+        description: "ご質問・ご要望はこちら",
       },
     ],
   },
 ] as const;
 
 const STANDALONE_NAV = {
-  href: "/triage",
-  label: "受診判断",
-  icon: "alert" as WatercolorIconName,
+  href: "/about",
+  label: "ふたりナビとは",
+  icon: "user" as WatercolorIconName,
 } as const;
 
 function DropdownMenu({
@@ -355,7 +349,7 @@ export function Header() {
             </span>
           </div>
           <span className="font-heading text-lg tracking-wide text-foreground">
-            すくすくナビ
+            ふたりナビ
           </span>
         </Link>
 
@@ -415,7 +409,7 @@ export function Header() {
           <div className="flex h-full flex-col px-6 pt-6 pb-8">
             <div className="flex items-center justify-between">
               <span className="font-heading text-lg tracking-wide text-foreground">
-                すくすくナビ
+                ふたりナビ
               </span>
               <button
                 type="button"

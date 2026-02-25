@@ -14,8 +14,8 @@ interface NavTab {
 const TABS: readonly NavTab[] = [
   { href: "/", label: "ホーム", icon: "home" },
   { href: "/my/timeline", label: "タイムライン", icon: "calendar" },
-  { href: "/articles", label: "記事", icon: "book" },
-  { href: "/triage", label: "受診判断", icon: "alert" },
+  { href: "/checklists", label: "チェック", icon: "clipboard" },
+  { href: "/programs", label: "制度", icon: "clipboard" },
   { href: "/my", label: "マイページ", icon: "user" },
 ] as const;
 
@@ -40,9 +40,7 @@ export function BottomNav() {
               key={tab.href}
               href={tab.href}
               className={`flex min-h-[56px] flex-1 flex-col items-center justify-center gap-0.5 px-1 py-2 text-center transition-colors ${
-                active
-                  ? "text-sage-700"
-                  : "text-muted hover:text-sage-600"
+                active ? "text-sage-700" : "text-muted hover:text-sage-600"
               }`}
               aria-current={active ? "page" : undefined}
             >

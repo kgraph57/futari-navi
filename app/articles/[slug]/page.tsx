@@ -10,7 +10,7 @@ import {
   getArticleSlugs,
   getRelatedArticles,
 } from "@/lib/content";
-import { CATEGORY_LABELS, AGE_GROUP_LABELS } from "@/lib/types";
+import { CATEGORY_LABELS } from "@/lib/types";
 import { extractCitations } from "@/lib/extract-citations";
 import { createMdxComponents } from "@/components/article/mdx-components";
 import { KeyPointsBox } from "@/components/article/key-points-box";
@@ -34,7 +34,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
-const SITE_URL = "https://kgraph57.github.io/sukusuku-navi";
+const SITE_URL = "https://kgraph57.github.io/futari-navi";
 
 export async function generateMetadata({
   params,
@@ -48,7 +48,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    authors: [{ name: "岡本賢（おかもん先生）" }],
+    authors: [{ name: "ふたりナビ編集部" }],
     alternates: {
       canonical: `/articles/${slug}`,
     },
@@ -57,11 +57,11 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime: publishedAt,
-      authors: ["岡本賢（愛育病院 小児科医）"],
+      authors: ["ふたりナビ編集部"],
       tags: [
         CATEGORY_LABELS[category as keyof typeof CATEGORY_LABELS],
-        "小児科",
-        "子育て",
+        "結婚",
+        "手続き",
         "港区",
       ],
     },
@@ -84,7 +84,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const { frontmatter, content } = article;
   const { vol, title, description, category, publishedAt } = frontmatter;
-  const ageGroups = frontmatter.ageGroups ?? [];
   const keyPoints = frontmatter.keyPoints ?? [];
 
   const citations = extractCitations(content);
@@ -99,31 +98,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
+    "@type": "WebPage",
     name: frontmatter.title,
     description: frontmatter.description,
     url: `${SITE_URL}/articles/${frontmatter.slug}`,
     datePublished: frontmatter.publishedAt,
     author: {
-      "@type": "Person",
-      name: "岡本賢",
-      jobTitle: "小児科医",
-      worksFor: {
-        "@type": "Hospital",
-        name: "愛育病院",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "港区",
-          addressRegion: "東京都",
-        },
-      },
+      "@type": "Organization",
+      name: "ふたりナビ編集部",
     },
     publisher: {
       "@type": "Organization",
-      name: "すくすくナビ",
+      name: "ふたりナビ",
       url: SITE_URL,
     },
-    medicalAudience: { "@type": "Patient" },
     inLanguage: "ja",
   };
 
@@ -256,20 +244,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </Link>
           </div>
           <div className="flex items-center gap-1">
-            <WatercolorIcon name="user" size={12} className=".5 .5" />
-            <span>
-              {ageGroups.map((ag) => AGE_GROUP_LABELS[ag]).join("・")}
-            </span>
-          </div>
-          <div className="flex items-center gap-1">
             <WatercolorIcon name="clock" size={12} />
             <span>約{readingTime}分で読めます</span>
           </div>
           <BookmarkButton articleSlug={frontmatter.slug} />
           <ShareButton
             title={title}
-            text={`${title} | すくすくナビ`}
-            url={`https://kgraph57.github.io/sukusuku-navi/articles/${slug}`}
+            text={`${title} | ふたりナビ`}
+            url={`${SITE_URL}/articles/${slug}`}
             contentType="article"
             contentId={slug}
           />
@@ -311,7 +293,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       {/* Disclaimer */}
       <div className="mt-8 rounded-lg bg-ivory-100 p-4 text-xs leading-relaxed text-muted">
         ※
-        この記事は一般的な医学情報の提供を目的としており、個別の診断・治療を行うものではありません。お子さんの症状が心配な場合は、かかりつけの小児科医にご相談ください。
+        この記事は一般的な行政手続き・制度情報の提供を目的としています。個別の状況により適用条件が異なる場合がありますので、詳細はお住まいの自治体窓口にご確認ください。
       </div>
 
       {/* Related articles */}

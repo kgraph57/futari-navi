@@ -1,13 +1,13 @@
 {
-  "name": "すくすくナビ - 小児科医が届ける子育て情報",
-  "short_name": "すくすくナビ",
-  "description": "港区の子育て支援情報をパーソナライズしてお届け。手続き・健診・予防接種を「やり忘れない」。",
+  "name": "ふたりナビ - 新婚カップルの行政手続き・給付金ガイド",
+  "short_name": "ふたりナビ",
+  "description": "婚姻届を出したその日から、やるべきことを一つずつ。手続きチェックリスト、給付金シミュレーター、タイムラインで新生活をサポート。",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#FEFDFB",
-  "theme_color": "#0D9488",
+  "background_color": "#FAF7F2",
+  "theme_color": "#A85D33",
   "orientation": "portrait-primary",
-  "categories": ["health", "lifestyle"],
+  "categories": ["lifestyle", "finance"],
   "lang": "ja",
   "icons": [
     {
@@ -19,22 +19,22 @@
   ],
   "shortcuts": [
     {
-      "name": "緊急連絡先",
-      "short_name": "緊急",
-      "url": "./emergency",
-      "description": "119・#7119・#8000 夜間休日診療"
-    },
-    {
-      "name": "受診判断ガイド",
-      "short_name": "受診判断",
-      "url": "./triage",
-      "description": "症状から受診の目安をチェック"
-    },
-    {
       "name": "タイムライン",
       "short_name": "やること",
       "url": "./my/timeline",
       "description": "今週やることを確認"
+    },
+    {
+      "name": "手続きチェック",
+      "short_name": "チェック",
+      "url": "./checklists",
+      "description": "結婚手続きの進捗を確認"
+    },
+    {
+      "name": "給付金シミュレーター",
+      "short_name": "給付金",
+      "url": "./simulator",
+      "description": "対象の給付金をチェック"
     }
   ]
 }
