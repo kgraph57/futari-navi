@@ -22,7 +22,7 @@
         "notes": "証人2名の署名・押印が必要です。届出用紙は全国どの市区町村でも入手できます。",
         "priority": "high",
         "applicableConditions": null,
-        "url": null
+        "url": "https://www.moj.go.jp/MINJI/minji04_00072.html"
       },
       {
         "id": "marriage-reg-2",
@@ -40,7 +40,7 @@
         "notes": "婚姻届の受理から戸籍の編製まで約1週間〜10日かかります。",
         "priority": "high",
         "applicableConditions": null,
-        "url": null
+        "url": "https://www.city.minato.tokyo.jp/kosekitodoke/kurashi/todoke/koseki/shomei.html"
       },
       {
         "id": "marriage-reg-3",
@@ -58,7 +58,7 @@
         "notes": "住民票の姓は婚姻届受理と同時に更新されます。",
         "priority": "high",
         "applicableConditions": "姓が変わる場合",
-        "url": null
+        "url": "https://www.city.minato.tokyo.jp/jumin/kurashi/todoke/jumin/juminhyo.html"
       }
     ]
   },
@@ -85,7 +85,7 @@
         "notes": "住所変更も同時にある場合は転入届と一緒に手続きできます。",
         "priority": "high",
         "applicableConditions": "姓が変わる場合",
-        "url": null
+        "url": "https://www.kojinbango-card.go.jp/procedures-change/"
       },
       {
         "id": "name-priority-2",
@@ -103,7 +103,7 @@
         "notes": "変更届出は無料です。免許センターは混雑することがあるため、警察署がおすすめです。",
         "priority": "high",
         "applicableConditions": "姓が変わる場合・運転免許証を持っている場合",
-        "url": null
+        "url": "https://www.keishicho.metro.tokyo.lg.jp/menkyo/koshin/kisaijiko/index.html"
       },
       {
         "id": "name-priority-3",
@@ -121,7 +121,7 @@
         "notes": "国民健康保険の場合は婚姻届提出後14日以内に届出が必要です。",
         "priority": "high",
         "applicableConditions": "姓が変わる場合",
-        "url": null
+        "url": "https://www.nenkin.go.jp/service/kounen/todokesho/hihokensha/20150407-02.html"
       },
       {
         "id": "name-priority-4",
@@ -139,7 +139,7 @@
         "notes": "厚生年金は勤務先が手続きを代行します。",
         "priority": "high",
         "applicableConditions": "姓が変わる場合",
-        "url": null
+        "url": "https://www.nenkin.go.jp/service/seidozenpan/mynumber/mynumber.html"
       }
     ]
   },
@@ -166,7 +166,7 @@
         "notes": "記載事項変更は残存有効期限のまま。切替なら新たに5年or10年の有効期限。",
         "priority": "medium",
         "applicableConditions": "姓が変わる場合・パスポートを持っている場合",
-        "url": null
+        "url": "https://www.mofa.go.jp/mofaj/toko/passport/pass_5.html"
       },
       {
         "id": "name-other-2",
@@ -184,7 +184,7 @@
         "notes": "銀行によって必要書類が異なります。事前に各銀行のWebサイトで確認してください。",
         "priority": "medium",
         "applicableConditions": "姓が変わる場合",
-        "url": null
+        "url": "https://www.zenginkyo.or.jp/article/tag-c/7705/"
       },
       {
         "id": "name-other-3",
@@ -202,7 +202,7 @@
         "notes": "引き落とし口座の名義変更も忘れずに行いましょう。",
         "priority": "medium",
         "applicableConditions": "姓が変わる場合",
-        "url": null
+        "url": "https://www.j-credit.or.jp/customer/attention/registration.html"
       },
       {
         "id": "name-other-4",
@@ -238,7 +238,7 @@
         "notes": "受取人変更は氏名変更とは別の手続きになる場合があります。",
         "priority": "medium",
         "applicableConditions": "姓が変わる場合・保険に加入している場合",
-        "url": null
+        "url": "https://www.seiho.or.jp/contact/"
       }
     ]
   },
@@ -265,7 +265,7 @@
         "notes": "同一市区町村内の引越しの場合は転出届ではなく転居届になります。",
         "priority": "high",
         "applicableConditions": "引越しをする場合（別の市区町村へ）",
-        "url": null
+        "url": "https://www.city.minato.tokyo.jp/jumin/kurashi/todoke/jumin/tenshutsu.html"
       },
       {
         "id": "moving-2",
@@ -283,7 +283,7 @@
         "notes": "正当な理由なく届出が遅れると過料（最大5万円）の対象になる可能性があります。",
         "priority": "high",
         "applicableConditions": "引越しをする場合（別の市区町村へ）",
-        "url": null
+        "url": "https://www.city.minato.tokyo.jp/jumin/kurashi/todoke/jumin/tennyuu.html"
       },
       {
         "id": "moving-3",
@@ -319,7 +319,7 @@
         "notes": "新居でセット割引プランが使えないか確認すると節約になります。",
         "priority": "medium",
         "applicableConditions": "引越しをする場合",
-        "url": null
+        "url": "https://www.city.minato.tokyo.jp/jumin/kurashi/sumai/hikkoshi.html"
       },
       {
         "id": "moving-5",
@@ -382,7 +382,7 @@
         "notes": "扶養に入れる場合は「5日以内」の届出が推奨されます。",
         "priority": "high",
         "applicableConditions": "配偶者を扶養に入れる場合",
-        "url": null
+        "url": "https://www.nenkin.go.jp/service/kounen/todokesho/hifuyousha/20141224.html"
       },
       {
         "id": "employer-3",
@@ -445,7 +445,7 @@
         "notes": "控除額は納税者本人の合計所得金額によっても段階的に変わります。",
         "priority": "medium",
         "applicableConditions": null,
-        "url": null
+        "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm"
       },
       {
         "id": "tax-2",
@@ -463,7 +463,7 @@
         "notes": "配偶者控除等申告書も別途必要になります。",
         "priority": "medium",
         "applicableConditions": "会社員・公務員の場合",
-        "url": null
+        "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
       },
       {
         "id": "tax-3",
@@ -481,7 +481,7 @@
         "notes": "自営業・フリーランスの方は確定申告が必要です。会社員は年末調整で済む場合が多いです。",
         "priority": "low",
         "applicableConditions": "年末調整で配偶者控除を申告していない場合",
-        "url": null
+        "url": "https://www.e-tax.nta.go.jp/"
       }
     ]
   },
@@ -544,7 +544,7 @@
         "notes": "港区の場合は港区公式サイトで最新情報をご確認ください。",
         "priority": "low",
         "applicableConditions": null,
-        "url": null
+        "url": "https://www.city.minato.tokyo.jp/"
       }
     ]
   }

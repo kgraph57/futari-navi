@@ -38,8 +38,8 @@ const DEFINITIONS: readonly Def[] = [
     id: "marriage-registration",
     category: "registration",
     daysFromMarriage: 0,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl: "https://www.moj.go.jp/MINJI/minji04_00072.html",
+    actionLabel: "法務省で確認",
     title: "婚姻届を提出する",
     description: "市区町村の窓口に婚姻届を提出します。365日24時間受付可能。",
     location: "市区町村の戸籍窓口",
@@ -50,8 +50,9 @@ const DEFINITIONS: readonly Def[] = [
     id: "new-koseki",
     category: "registration",
     daysFromMarriage: 7,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl:
+      "https://www.city.minato.tokyo.jp/kosekitodoke/kurashi/todoke/koseki/shomei.html",
+    actionLabel: "港区の窓口情報",
     title: "新しい戸籍謄本を取得",
     description: "各種名義変更に必要。複数部取得しておくと便利。",
     location: "本籍地の市区町村窓口",
@@ -62,8 +63,9 @@ const DEFINITIONS: readonly Def[] = [
     id: "new-juminhyo",
     category: "registration",
     daysFromMarriage: 7,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl:
+      "https://www.city.minato.tokyo.jp/jumin/kurashi/todoke/jumin/juminhyo.html",
+    actionLabel: "港区の窓口情報",
     title: "住民票を取得（新姓）",
     description: "名義変更の際に必要になります。",
     location: "住所地の市区町村窓口",
@@ -76,8 +78,8 @@ const DEFINITIONS: readonly Def[] = [
     category: "name_change",
     daysFromMarriage: 7,
     deadlineDaysFromMarriage: 14,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl: "https://www.kojinbango-card.go.jp/procedures-change/",
+    actionLabel: "公式サイトで確認",
     title: "マイナンバーカードの氏名変更",
     description: "他の手続きで身分証として使うため最優先で変更。",
     location: "市区町村窓口",
@@ -89,8 +91,9 @@ const DEFINITIONS: readonly Def[] = [
     id: "drivers-license",
     category: "name_change",
     daysFromMarriage: 7,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl:
+      "https://www.keishicho.metro.tokyo.lg.jp/menkyo/koshin/kisaijiko/index.html",
+    actionLabel: "警視庁で確認",
     title: "運転免許証の氏名・住所変更",
     description: "身分証明書として使うため早めに変更。",
     location: "警察署 or 運転免許センター",
@@ -102,8 +105,9 @@ const DEFINITIONS: readonly Def[] = [
     category: "name_change",
     daysFromMarriage: 7,
     deadlineDaysFromMarriage: 14,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl:
+      "https://www.nenkin.go.jp/service/kounen/todokesho/hihokensha/20150407-02.html",
+    actionLabel: "年金機構で確認",
     title: "健康保険証の氏名変更",
     description: "国保は14日以内に届出が必要。社保は会社経由。",
     location: "市区町村窓口（国保）/ 勤務先（社保）",
@@ -115,8 +119,9 @@ const DEFINITIONS: readonly Def[] = [
     category: "name_change",
     daysFromMarriage: 7,
     deadlineDaysFromMarriage: 14,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl:
+      "https://www.nenkin.go.jp/service/seidozenpan/mynumber/mynumber.html",
+    actionLabel: "ねんきんネット",
     title: "年金の氏名変更",
     description: "国民年金は14日以内。厚生年金は会社経由。",
     location: "市区町村窓口 / 年金事務所",
@@ -127,8 +132,8 @@ const DEFINITIONS: readonly Def[] = [
     id: "passport",
     category: "name_change",
     daysFromMarriage: 14,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl: "https://www.mofa.go.jp/mofaj/toko/passport/pass_5.html",
+    actionLabel: "外務省で確認",
     title: "パスポートの変更",
     description: "旅行予定があれば早めに。申請から約1週間で受取。",
     location: "旅券事務所",
@@ -139,8 +144,8 @@ const DEFINITIONS: readonly Def[] = [
     id: "bank-accounts",
     category: "name_change",
     daysFromMarriage: 14,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl: "https://www.zenginkyo.or.jp/article/tag-c/7705/",
+    actionLabel: "銀行協会で確認",
     title: "銀行口座の名義変更",
     description: "届出印も変更が必要な場合があります。",
     location: "各銀行窓口",
@@ -175,8 +180,8 @@ const DEFINITIONS: readonly Def[] = [
     id: "insurance-policies",
     category: "name_change",
     daysFromMarriage: 21,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl: "https://www.seiho.or.jp/contact/",
+    actionLabel: "生命保険協会",
     title: "生命保険・損害保険の変更",
     description: "受取人変更も忘れずに確認。",
     location: "各保険会社",
@@ -189,8 +194,9 @@ const DEFINITIONS: readonly Def[] = [
     id: "move-out-notice",
     category: "moving",
     daysFromMarriage: -14,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl:
+      "https://www.city.minato.tokyo.jp/jumin/kurashi/todoke/jumin/tenshutsu.html",
+    actionLabel: "港区の窓口情報",
     title: "転出届の提出",
     description: "旧住所の市区町村に届出。引越し14日前から可能。",
     location: "旧住所の市区町村窓口",
@@ -202,8 +208,9 @@ const DEFINITIONS: readonly Def[] = [
     category: "moving",
     daysFromMarriage: 0,
     deadlineDaysFromMarriage: 14,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl:
+      "https://www.city.minato.tokyo.jp/jumin/kurashi/todoke/jumin/tennyuu.html",
+    actionLabel: "港区の窓口情報",
     title: "転入届の提出",
     description: "新住所の市区町村に14日以内に届出。",
     location: "新住所の市区町村窓口",
@@ -214,8 +221,8 @@ const DEFINITIONS: readonly Def[] = [
     id: "mail-forwarding",
     category: "moving",
     daysFromMarriage: -7,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl: "https://www.post.japanpost.jp/service/tenkyo/",
+    actionLabel: "e転居で申込",
     title: "郵便転送届の提出",
     description: "旧住所宛の郵便を1年間自動転送。",
     location: "郵便局 or e転居（Web）",
@@ -265,8 +272,9 @@ const DEFINITIONS: readonly Def[] = [
     category: "work",
     daysFromMarriage: 0,
     deadlineDaysFromMarriage: 30,
-    actionUrl: "/checklists",
-    actionLabel: "手続きを確認",
+    actionUrl:
+      "https://www.nenkin.go.jp/service/kounen/todokesho/hifuyousha/20141224.html",
+    actionLabel: "年金機構で確認",
     title: "扶養の申請",
     description: "配偶者を扶養に入れる場合の手続き。",
     location: "勤務先の人事部",
@@ -292,8 +300,9 @@ const DEFINITIONS: readonly Def[] = [
     id: "spouse-deduction-check",
     category: "tax",
     daysFromMarriage: 30,
-    actionUrl: "/articles/vol-003-spouse-deduction",
-    actionLabel: "記事を読む",
+    actionUrl:
+      "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
+    actionLabel: "国税庁で確認",
     title: "配偶者控除の確認",
     description: "年末調整で配偶者控除が適用されるか確認。",
     location: "勤務先",
@@ -304,8 +313,9 @@ const DEFINITIONS: readonly Def[] = [
     id: "year-end-adjustment",
     category: "tax",
     daysFromMarriage: 30,
-    actionUrl: "/articles/vol-003-spouse-deduction",
-    actionLabel: "記事を読む",
+    actionUrl:
+      "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+    actionLabel: "国税庁で確認",
     title: "年末調整書類の更新",
     description: "扶養控除等申告書の配偶者欄を更新。",
     location: "勤務先",
@@ -323,7 +333,12 @@ const DEFINITIONS: readonly Def[] = [
     title: "結婚新生活支援事業の申請",
     description: "住居費・引越費用を最大60万円補助。自治体による。",
     location: "市区町村窓口",
-    requiredDocuments: ["婚姻届受理証明書", "住民票", "所得証明書", "住居費の領収書等"],
+    requiredDocuments: [
+      "婚姻届受理証明書",
+      "住民票",
+      "所得証明書",
+      "住居費の領収書等",
+    ],
     tip: "全自治体で実施されているわけではありません。予算がなくなり次第終了の場合も。",
   },
   {
@@ -364,15 +379,17 @@ function diffDays(a: Date, b: Date): number {
 function computeUrgency(
   scheduledDate: Date,
   deadlineDate: Date | undefined,
-  today: Date
+  today: Date,
 ): MarriageUrgency {
   const daysUntilScheduled = diffDays(scheduledDate, today);
   const daysUntilDeadline = deadlineDate
     ? diffDays(deadlineDate, today)
     : undefined;
 
-  if (daysUntilDeadline !== undefined && daysUntilDeadline < 0) return "overdue";
-  if (daysUntilDeadline !== undefined && daysUntilDeadline <= 3) return "urgent";
+  if (daysUntilDeadline !== undefined && daysUntilDeadline < 0)
+    return "overdue";
+  if (daysUntilDeadline !== undefined && daysUntilDeadline <= 3)
+    return "urgent";
   if (daysUntilScheduled <= 0) return "soon";
   if (daysUntilScheduled <= 14) return "upcoming";
   return "future";
@@ -387,19 +404,22 @@ export function generateMarriageTimeline(
   marriageDate: Date,
   options: MarriageTimelineOptions = {},
   completedIds: ReadonlySet<string> = new Set(),
-  today: Date = new Date()
+  today: Date = new Date(),
 ): readonly MarriageTimelineItem[] {
   const { includeMoving = false, nameChanged = true } = options;
 
   return DEFINITIONS.filter((def) => {
-    if (!includeMoving && def.applicableConditions?.includes("引越しあり")) return false;
-    if (!nameChanged && def.applicableConditions?.includes("姓変更あり")) return false;
+    if (!includeMoving && def.applicableConditions?.includes("引越しあり"))
+      return false;
+    if (!nameChanged && def.applicableConditions?.includes("姓変更あり"))
+      return false;
     return true;
   }).map((def) => {
     const scheduledDate = addDays(marriageDate, def.daysFromMarriage);
-    const deadlineDate = def.deadlineDaysFromMarriage !== undefined
-      ? addDays(marriageDate, def.deadlineDaysFromMarriage)
-      : undefined;
+    const deadlineDate =
+      def.deadlineDaysFromMarriage !== undefined
+        ? addDays(marriageDate, def.deadlineDaysFromMarriage)
+        : undefined;
     const urgency = computeUrgency(scheduledDate, deadlineDate, today);
 
     return {
@@ -411,19 +431,19 @@ export function generateMarriageTimeline(
 }
 
 export function getThisWeekEvents(
-  items: readonly MarriageTimelineItem[]
+  items: readonly MarriageTimelineItem[],
 ): readonly MarriageTimelineItem[] {
   return items.filter(
     (item) =>
       !item.completed &&
       (item.urgency === "overdue" ||
         item.urgency === "urgent" ||
-        item.urgency === "soon")
+        item.urgency === "soon"),
   );
 }
 
 export function getThisMonthEvents(
-  items: readonly MarriageTimelineItem[]
+  items: readonly MarriageTimelineItem[],
 ): readonly MarriageTimelineItem[] {
   return items.filter(
     (item) =>
@@ -431,12 +451,12 @@ export function getThisMonthEvents(
       (item.urgency === "overdue" ||
         item.urgency === "urgent" ||
         item.urgency === "soon" ||
-        item.urgency === "upcoming")
+        item.urgency === "upcoming"),
   );
 }
 
 export function groupByCategory(
-  items: readonly MarriageTimelineItem[]
+  items: readonly MarriageTimelineItem[],
 ): ReadonlyArray<{
   readonly category: MarriageCategory;
   readonly label: string;
