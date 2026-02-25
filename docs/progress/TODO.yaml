@@ -166,7 +166,7 @@ phase_0_social:
         note: "メール文テンプレート作成済み"
       - task: "ユーザーインタビュー3名分を実施・記録"
         done: false
-      - task: "愛育病院でQRコード付き紹介カードを配布"
+      - task: "でQRコード付き紹介カードを配布"
         done: false
       - task: "10名の実ユーザー達成"
         done: false
@@ -236,7 +236,7 @@ phase_2_social:
       done: false
     - task: "Code for Japan Brigadeで発表"
       done: false
-    - task: "愛育病院での正式配布開始"
+    - task: "での正式配布開始"
       done: false
     - task: "インパクトデータ収集 (手続き完了率、接種率、トリアージ利用率)"
       done: false

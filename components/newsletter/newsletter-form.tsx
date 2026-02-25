@@ -63,7 +63,7 @@ export function NewsletterForm() {
         メルマガに登録しませんか？
       </h2>
       <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted">
-        おかもん先生が月2回、最新の小児医療トピックをわかりやすく解説します。登録は無料、いつでも解除できます。
+        みなと先生が月2回、結婚後の手続き・暮らしのお役立ち情報をわかりやすく解説します。登録は無料、いつでも解除できます。
       </p>
       <form
         onSubmit={handleSubmit}

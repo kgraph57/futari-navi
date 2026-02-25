@@ -26,26 +26,25 @@ export default function ArticlesPage() {
             記事一覧
           </h1>
           <p className="mt-1 text-sm text-muted">
-            小児科医おかもんのQ&A記事（全{frontmatters.length}本）
+            くらしアドバイザーみなと先生のQ&A記事（全{frontmatters.length}本）
           </p>
         </div>
       </div>
 
-      {/* おかもん先生からの一言 */}
+      {/* みなと先生からの一言 */}
       <Link
         href="/about"
         className="group mt-6 flex items-start gap-4 rounded-xl border border-sage-100 bg-sage-50/50 p-5 transition-colors hover:border-sage-200 hover:bg-sage-50"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-600 shadow-sm">
-          <WatercolorIcon name="stethoscope" size={20} className="text-white" />
+          <WatercolorIcon name="book" size={20} className="text-white" />
         </div>
         <div className="flex-1 min-w-0">
           <p className="font-heading text-sm font-semibold text-foreground">
-            おかもん先生より
+            みなと先生より
           </p>
           <p className="mt-1 text-sm leading-relaxed text-muted">
-            外来で何度も聞かれる質問を、Q&A形式でまとめました。
-            「夜中に熱が出た」「発疹が出た」など、すぐに答えが見つかるように書いています。
+            結婚後の届出・お金・暮らしで「よく聞かれる質問」をQ&A形式でまとめました。
             すべての記事に参考文献をつけていますので、安心してお読みください。
           </p>
           <span className="mt-2 inline-block text-xs font-medium text-sage-600 group-hover:underline">

@@ -1,5 +1,5 @@
 /**
- * 「おかもん先生に聞いてみたい！」Googleフォーム自動生成スクリプト
+ * 「みなと先生に聞いてみたい！」Googleフォーム自動生成スクリプト
  *
  * 使い方:
  * 1. https://script.google.com にアクセス
@@ -12,12 +12,12 @@
 
 function createQuestionForm() {
   // ── フォーム作成 ──
-  var form = FormApp.create("おかもん先生に聞いてみたい！");
+  var form = FormApp.create("みなと先生に聞いてみたい！");
 
   form.setDescription(
-    "愛育病院小児科のおかもん先生が、みなさまのギモンにお答えします。\n" +
+    "くらしアドバイザーのみなと先生が、みなさまのギモンにお答えします。\n" +
     "「こんなこと聞いていいのかな？」というご質問こそ大歓迎です。\n\n" +
-    "・お寄せいただいたご質問は、メルマガ「小児科おかもん だより」の\n" +
+    "・お寄せいただいたご質問は、メルマガ「小児科みなと先生 だより」の\n" +
     "　【読者のギモン回答】コーナーで取り上げさせていただくことがあります。\n" +
     "・個人が特定される情報は掲載しません。\n" +
     "・すべてのご質問に個別にお答えすることは難しい場合がございます。\n" +
@@ -26,7 +26,7 @@ function createQuestionForm() {
 
   form.setConfirmationMessage(
     "ご質問ありがとうございます！\n" +
-    "おかもん先生が確認させていただきます。\n\n" +
+    "みなと先生が確認させていただきます。\n\n" +
     "メルマガで取り上げさせていただく場合がありますので、\n" +
     "楽しみにお待ちください。\n\n" +
     "※ 緊急のご相談は外来受診または #8000 にお電話ください。"
@@ -100,7 +100,7 @@ function createQuestionForm() {
   email.setRequired(false);
 
   // ── スプレッドシート連携 ──
-  var ss = SpreadsheetApp.create("おかもん だより 質問管理シート");
+  var ss = SpreadsheetApp.create("みなと先生 だより 質問管理シート");
   form.setDestination(FormApp.DestinationType.SPREADSHEET, ss.getId());
 
   // ── 管理用シートを追加 ──

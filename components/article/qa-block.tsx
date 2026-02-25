@@ -4,7 +4,7 @@ interface QaBubbleProps {
 }
 
 function isDoctor(speaker: string): boolean {
-  return speaker.includes("おかもん") || speaker.includes("先生")
+  return speaker.includes("みなと") || speaker.includes("先生")
 }
 
 export function QaBubble({ speaker, children }: QaBubbleProps) {

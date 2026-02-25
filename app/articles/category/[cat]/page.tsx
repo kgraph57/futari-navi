@@ -26,7 +26,7 @@ export async function generateMetadata({
 
   return {
     title: `${label}の記事一覧`,
-    description: `小児科医おかもんの「${label}」に関するQ&A記事の一覧です。`,
+    description: `くらしアドバイザーみなと先生の「${label}」に関するQ&A記事の一覧です。`,
   }
 }
 

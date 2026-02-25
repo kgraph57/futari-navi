@@ -15,14 +15,14 @@ export const WELCOME_MESSAGE: LineReplyFlexMessage = {
       contents: [
         {
           type: "text",
-          text: "すくすくナビへようこそ！",
+          text: "ふたりナビへようこそ！",
           weight: "bold",
           size: "lg",
           color: "#0D9488",
         },
         {
           type: "text",
-          text: "港区の小児科医おかもんが作った子育て支援ツールです。給付金シミュレーター、受診判断ガイド、予防接種スケジュールなどをご利用いただけます。",
+          text: "結婚後の届出・手続き・お金のことをサポートするツールです。給付金シミュレーター、手続きガイド、暮らしのQ&Aなどをご利用いただけます。",
           wrap: true,
           size: "sm",
           color: "#666666",
@@ -90,7 +90,7 @@ export const TRIAGE_REPLY: LineReplyFlexMessage = {
         },
         {
           type: "text",
-          text: "お子さんの症状から、今すぐ受診すべきか、明日でいいかを30秒で判断できます。小児科医おかもん先生が監修。",
+          text: "届出・手続きの進め方をステップ形式で確認できます。くらしアドバイザーのみなと先生が監修。",
           wrap: true,
           size: "sm",
           color: "#666666",
@@ -168,12 +168,12 @@ export const SIMULATOR_REPLY: LineReplyFlexMessage = {
 
 export const VACCINE_REPLY: LineReplyTextMessage = {
   type: "text",
-  text: `予防接種スケジュールはこちらからご確認いただけます。\n\n${SITE_URL}/vaccines\n\nすくすくナビでは、お子さんの年齢に合わせた接種スケジュールや、港区の助成対象ワクチンの情報を確認できます。`,
+  text: `手続きガイドはこちらからご確認いただけます。\n\n${SITE_URL}/articles\n\nふたりナビでは、結婚後に必要な届出・手続き・お金の情報をQ&A形式で確認できます。`,
 } as const;
 
 export const DEFAULT_REPLY: LineReplyTextMessage = {
   type: "text",
-  text: `すくすくナビをご利用ありがとうございます！\n\n以下のキーワードで情報をお探しいただけます：\n・「熱」「発熱」→ 受診判断ガイド\n・「助成金」「給付」→ 給付金シミュレーター\n・「ワクチン」「予防接種」→ 接種スケジュール\n\nサイトはこちら：\n${SITE_URL}`,
+  text: `ふたりナビをご利用ありがとうございます！\n\n以下のキーワードで情報をお探しいただけます：\n・「届出」「手続き」→ 手続きガイド\n・「助成金」「給付」→ 給付金シミュレーター\n・「記事」「Q&A」→ 記事一覧\n\nサイトはこちら：\n${SITE_URL}`,
 } as const;
 
 // --- Rich Menu Layout Spec ---
