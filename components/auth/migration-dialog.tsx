@@ -19,7 +19,7 @@ export function MigrationDialog({ onComplete }: MigrationDialogProps) {
   const hasLocalData = useCallback(() => {
     if (typeof window === "undefined") return false;
     try {
-      const raw = localStorage.getItem("sukusuku-family");
+      const raw = localStorage.getItem("futari-family");
       if (!raw) return false;
       const data = JSON.parse(raw);
       return data.children && data.children.length > 0;

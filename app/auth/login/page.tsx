@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { Suspense, useState } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -25,7 +23,7 @@ function LoginForm() {
     return (
       <div className="mx-auto max-w-md px-4 py-12 text-center">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
-          <WatercolorIcon name="baby" size={28} className="text-sage-600" />
+          <WatercolorIcon name="heart" size={28} className="text-sage-600" />
         </div>
         <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
           ログイン機能は準備中です
@@ -68,13 +66,13 @@ function LoginForm() {
     <div className="mx-auto max-w-md px-4 py-12">
       <div className="text-center">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-100">
-          <WatercolorIcon name="baby" size={28} className="text-sage-600" />
+          <WatercolorIcon name="heart" size={28} className="text-sage-600" />
         </div>
         <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
           ログイン
         </h1>
         <p className="mt-2 text-sm text-muted">
-          すくすくナビにログインして、お子さんのデータを同期しましょう
+          ふたりナビにログインして、手続きの進捗を同期しましょう
         </p>
       </div>
 
@@ -138,7 +136,11 @@ function LoginForm() {
             メールアドレス
           </label>
           <div className="relative mt-1">
-            <WatercolorIcon name="mail" size={16} className="absolute left-3 top-1/2   -translate-y-1/2 text-muted" />
+            <WatercolorIcon
+              name="mail"
+              size={16}
+              className="absolute left-3 top-1/2   -translate-y-1/2 text-muted"
+            />
             <input
               id="email"
               type="email"

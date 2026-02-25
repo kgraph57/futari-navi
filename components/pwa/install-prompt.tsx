@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState, useEffect, useCallback } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -10,7 +8,7 @@ interface BeforeInstallPromptEvent extends Event {
   readonly userChoice: Promise<{ readonly outcome: "accepted" | "dismissed" }>;
 }
 
-const DISMISSED_KEY = "sukusuku-pwa-dismissed";
+const DISMISSED_KEY = "futari-pwa-dismissed";
 
 export function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] =

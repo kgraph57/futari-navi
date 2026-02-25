@@ -4,255 +4,183 @@ import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import { SectionHeading } from "@/components/shared/section-heading";
 
 export const metadata: Metadata = {
-  title: "緊急連絡先・夜間休日診療",
+  title: "相談窓口・サポート",
   description:
-    "港区の子どもの急病・けが時の緊急連絡先一覧。#7119、救急車、中毒110番、夜間休日診療所の情報。",
+    "結婚手続きで困ったときの相談先一覧。市区町村窓口、法テラス、税務署、年金事務所などの連絡先。",
 };
 
-const EMERGENCY_NUMBERS = [
+const CONSULTATION_CONTACTS = [
   {
-    number: "119",
-    label: "救急車",
-    description: "意識がない、呼吸がおかしい、けいれんが止まらないなど、命に関わる緊急時。",
-    color: "red",
-    iconName: "alert" as const,
-  },
-  {
-    number: "#7119",
-    label: "救急安心センター東京",
-    description:
-      "救急車を呼ぶか迷ったとき、24時間看護師に電話相談できます。小児の相談にも対応。",
-    color: "orange",
-    iconName: "phone" as const,
-  },
-  {
-    number: "#8000",
-    label: "小児救急電話相談",
-    description:
-      "子どもの急な病気・けがについて、小児科医や看護師に電話相談できます。東京都では毎日18時〜翌朝8時（休日は8時〜翌朝8時）。",
+    name: "市区町村の戸籍課・住民課",
+    description: "婚姻届の提出、住民票の異動、印鑑登録など、基本的な届出手続き全般。",
     color: "teal",
-    iconName: "phone" as const,
+    iconName: "building" as const,
+    note: "お住まいの市区町村役場の窓口へ。多くの自治体でオンライン予約が可能。",
+  },
+  {
+    name: "年金事務所",
+    description:
+      "国民年金の氏名変更、第3号被保険者への切替、扶養手続きなど。",
+    color: "blue",
+    iconName: "shield" as const,
+    note: "最寄りの年金事務所へ。電話予約で待ち時間を短縮できます。",
+  },
+  {
+    name: "税務署",
+    description:
+      "配偶者控除・配偶者特別控除、確定申告に関する相談。",
+    color: "orange",
+    iconName: "clipboard" as const,
+    note: "確定申告期間（2〜3月）以外でも電話相談が可能です。",
   },
 ] as const;
 
-const POISON_CENTERS = [
+const SUPPORT_SERVICES = [
   {
-    name: "日本中毒情報センター（大阪）",
-    number: "072-727-2499",
+    name: "法テラス（日本司法支援センター）",
+    number: "0570-078374",
+    hours: "平日 9:00〜21:00、土曜 9:00〜17:00",
+    description: "法的なトラブル全般の無料相談。婚姻に関する法律相談も。",
+  },
+  {
+    name: "よりそいホットライン",
+    number: "0120-279-338",
     hours: "24時間対応",
+    description: "DVやパートナーとの問題、生活の悩みなど、なんでも相談できる窓口。",
   },
   {
-    name: "日本中毒情報センター（つくば）",
-    number: "029-852-9999",
-    hours: "9時〜21時",
-  },
-] as const;
-
-const NIGHT_CLINICS = [
-  {
-    name: "港区休日診療所（小児科）",
-    address: "港区三田1-4-10 みなと保健所2階",
-    hours: "日曜・祝日 10:00〜12:00、13:00〜16:30",
-    note: "受付は終了30分前まで。健康保険証・医療証を持参。",
-  },
-  {
-    name: "東京都小児救急（広尾病院）",
-    address: "渋谷区恵比寿2-34-10",
-    hours: "平日夜間 17:00〜翌8:00、休日 8:00〜翌8:00",
-    note: "港区から最も近い都立小児救急。事前に#7119で相談推奨。",
-  },
-  {
-    name: "済生会中央病院 救急外来",
-    address: "港区三田1-4-17",
-    hours: "24時間（救急外来）",
-    note: "小児科常駐ではないため、事前電話確認を推奨。03-3451-8211。",
+    name: "配偶者暴力相談支援センター",
+    number: "0570-0-55210（最寄りのセンターへ接続）",
+    hours: "各センターにより異なる",
+    description: "DV被害に関する相談、一時保護、自立支援の情報提供。",
   },
 ] as const;
 
 const USEFUL_LINKS = [
   {
-    label: "東京消防庁 救急相談センター",
-    url: "https://www.tfd.metro.tokyo.lg.jp/lfe/kyuu-adv/soudan-center.htm",
+    label: "マイナポータル（行政手続きオンライン）",
+    url: "https://myna.go.jp/",
   },
   {
-    label: "東京都こども医療ガイド",
-    url: "https://www.guide.metro.tokyo.lg.jp/",
+    label: "日本年金機構",
+    url: "https://www.nenkin.go.jp/",
   },
   {
-    label: "港区 子どもの急病ガイド",
-    url: "https://www.city.minato.tokyo.jp/kodomokyufu/kenko/ninshin/kodomo/kyubyou.html",
+    label: "国税庁（確定申告等作成コーナー）",
+    url: "https://www.keisan.nta.go.jp/",
   },
   {
-    label: "日本中毒情報センター",
-    url: "https://www.j-poison-ic.jp/",
+    label: "法テラス",
+    url: "https://www.houterasu.or.jp/",
   },
 ] as const;
 
 const COLOR_MAP: Record<string, string> = {
-  red: "border-red-200 bg-red-50",
-  orange: "border-orange-200 bg-orange-50",
   teal: "border-teal-200 bg-teal-50",
+  blue: "border-blue-200 bg-blue-50",
+  orange: "border-orange-200 bg-orange-50",
 };
 
 const TEXT_COLOR_MAP: Record<string, string> = {
-  red: "text-red-600",
-  orange: "text-orange-600",
   teal: "text-teal-600",
+  blue: "text-blue-600",
+  orange: "text-orange-600",
 };
 
 export default function EmergencyPage() {
   return (
     <div className="px-4 py-12 sm:py-16">
       <div className="mx-auto max-w-3xl">
-        <SectionHeading subtitle="お子さんの急病・けが時の相談先">
-          緊急連絡先
+        <SectionHeading subtitle="結婚手続きで困ったときの相談先">
+          相談窓口・サポート
         </SectionHeading>
 
-        {/* Emergency notice */}
-        <div className="mt-8 rounded-xl border-2 border-red-200 bg-red-50 p-5">
-          <div className="flex items-start gap-3">
-            <WatercolorIcon
-              name="alert"
-              size={24}
-              className="shrink-0 text-red-600"
-            />
-            <div>
-              <p className="font-heading text-sm font-bold text-red-800">
-                意識がない・呼吸がおかしい・大量出血時は迷わず119番
-              </p>
-              <p className="mt-1 text-sm leading-relaxed text-red-700/80">
-                お子さんの状態が明らかにおかしいと感じたら、まず救急車を呼んでください。判断に迷ったときは#7119に電話してください。
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Emergency numbers */}
+        {/* Main consultation contacts */}
         <div className="mt-10 space-y-4">
           <h2 className="font-heading text-lg font-semibold text-foreground">
-            緊急電話番号
+            主な相談先
           </h2>
-          {EMERGENCY_NUMBERS.map((item) => (
-            <a
-              key={item.number}
-              href={`tel:${item.number.replace("#", "")}`}
-              className={`flex items-start gap-4 rounded-xl border-2 p-5 transition-all hover:shadow-md ${COLOR_MAP[item.color]}`}
+          {CONSULTATION_CONTACTS.map((item) => (
+            <div
+              key={item.name}
+              className={`flex items-start gap-4 rounded-xl border-2 p-5 ${COLOR_MAP[item.color]}`}
             >
               <div
-                className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ${TEXT_COLOR_MAP[item.color]}`}
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white shadow-sm ${TEXT_COLOR_MAP[item.color]}`}
               >
-                <span className="text-lg font-bold">{item.number}</span>
+                <WatercolorIcon name={item.iconName} size={24} />
               </div>
               <div>
                 <h3
                   className={`font-heading text-base font-bold ${TEXT_COLOR_MAP[item.color]}`}
                 >
-                  {item.label}
+                  {item.name}
                 </h3>
                 <p className="mt-1 text-sm leading-relaxed text-foreground/70">
                   {item.description}
                 </p>
+                {item.note && (
+                  <p className="mt-2 rounded-lg bg-white/60 px-3 py-2 text-xs leading-relaxed text-muted">
+                    {item.note}
+                  </p>
+                )}
               </div>
-            </a>
+            </div>
           ))}
         </div>
 
-        {/* Poison center */}
+        {/* Support services */}
         <div className="mt-10">
           <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-foreground">
-            <WatercolorIcon name="shield" size={20} className="text-purple-600" />
-            誤飲・中毒時の相談
+            <WatercolorIcon name="phone" size={20} className="text-sage-600" />
+            電話相談窓口
           </h2>
-          <p className="mt-2 text-sm text-muted">
-            お子さんが薬品・洗剤・たばこなどを飲み込んでしまったとき。
-          </p>
           <div className="mt-4 space-y-3">
-            {POISON_CENTERS.map((center) => (
-              <a
-                key={center.number}
-                href={`tel:${center.number}`}
-                className="flex items-center justify-between rounded-xl border border-purple-200 bg-purple-50/50 p-4 transition-all hover:shadow-md"
-              >
-                <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    {center.name}
-                  </p>
-                  <p className="mt-0.5 text-xs text-muted">{center.hours}</p>
-                </div>
-                <span className="shrink-0 rounded-full bg-purple-100 px-3 py-1.5 text-sm font-bold text-purple-700">
-                  {center.number}
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Night/holiday clinics */}
-        <div className="mt-10">
-          <h2 className="flex items-center gap-2 font-heading text-lg font-semibold text-foreground">
-            <WatercolorIcon name="building" size={20} className="text-blue-600" />
-            夜間・休日診療（港区近辺）
-          </h2>
-          <div className="mt-4 space-y-4">
-            {NIGHT_CLINICS.map((clinic) => (
+            {SUPPORT_SERVICES.map((service) => (
               <div
-                key={clinic.name}
+                key={service.name}
                 className="rounded-xl border border-border bg-card p-5"
               >
                 <h3 className="font-heading text-sm font-bold text-foreground">
-                  {clinic.name}
+                  {service.name}
                 </h3>
-                <div className="mt-2 space-y-1.5">
-                  <div className="flex items-start gap-2 text-sm text-muted">
-                    <WatercolorIcon
-                      name="building"
-                      size={14}
-                      className="mt-0.5 shrink-0"
-                    />
-                    <span>{clinic.address}</span>
-                  </div>
-                  <div className="flex items-start gap-2 text-sm text-muted">
-                    <WatercolorIcon
-                      name="clock"
-                      size={14}
-                      className="mt-0.5 shrink-0"
-                    />
-                    <span>{clinic.hours}</span>
-                  </div>
-                  {clinic.note && (
-                    <p className="mt-2 rounded-lg bg-ivory-100 px-3 py-2 text-xs leading-relaxed text-muted">
-                      {clinic.note}
-                    </p>
-                  )}
+                <p className="mt-1 text-sm text-muted">
+                  {service.description}
+                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-3">
+                  <span className="rounded-full bg-sage-100 px-3 py-1 text-sm font-bold text-sage-700">
+                    {service.number}
+                  </span>
+                  <span className="text-xs text-muted">{service.hours}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Triage link */}
-        <div className="mt-10 rounded-xl border border-red-200 bg-gradient-to-r from-red-50 to-white p-6">
+        {/* Checklist link */}
+        <div className="mt-10 rounded-xl border border-sage-200 bg-gradient-to-r from-sage-50 to-white p-6">
           <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-red-100">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-100">
               <WatercolorIcon
-                name="stethoscope"
+                name="clipboard"
                 size={24}
-                className="text-red-600"
+                className="text-sage-600"
               />
             </div>
             <div className="flex-1">
               <h3 className="font-heading text-base font-bold text-foreground">
-                症状から受診判断をチェック
+                手続きの漏れがないかチェック
               </h3>
               <p className="mt-0.5 text-sm text-muted">
-                今すぐ救急？明日でいい？30秒で判断できます
+                婚姻届から名義変更まで、やることリストで確認
               </p>
             </div>
             <Link
-              href="/triage"
-              className="shrink-0 rounded-full bg-red-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-red-700"
+              href="/checklists"
+              className="shrink-0 rounded-full bg-sage-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
-              症状チェック
+              チェックリスト
             </Link>
           </div>
         </div>
@@ -286,7 +214,7 @@ export default function EmergencyPage() {
 
         {/* Disclaimer */}
         <div className="mt-10 rounded-lg bg-ivory-100 p-4 text-xs leading-relaxed text-muted">
-          ※ 掲載情報は2025年4月時点のものです。診療時間・対応内容は変更される場合があります。受診前に電話で確認することをおすすめします。
+          ※ 掲載情報は2025年4月時点のものです。受付時間・対応内容は変更される場合があります。最新情報は各機関のウェブサイトでご確認ください。
         </div>
       </div>
     </div>

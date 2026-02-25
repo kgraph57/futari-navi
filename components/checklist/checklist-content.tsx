@@ -585,7 +585,7 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
           <div className="flex items-center gap-2">
             <WatercolorIcon name="user" size={20} className="text-sage-600" />
             <p className="text-sm text-sage-800">
-              お子さんを登録すると、進捗を保存できます
+              ログインすると、進捗を保存できます
             </p>
           </div>
           <Link

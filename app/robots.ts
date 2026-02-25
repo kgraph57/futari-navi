@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://kgraph57.github.io/sukusuku-navi/sitemap.xml",
+    sitemap: "https://kgraph57.github.io/futari-navi/sitemap.xml",
   };
 }

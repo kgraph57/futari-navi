@@ -9,11 +9,11 @@ import { getAllChecklists } from "@/lib/checklists";
 export const metadata: Metadata = {
   title: "手続きチェックリスト",
   description:
-    "出産前から小学校入学まで、港区で必要な手続きをステップごとにガイド。妊娠届、出生届、児童手当、保育園申込など。",
+    "婚姻届の提出から名義変更・保険・税金まで、結婚に伴う手続きをステップごとにガイド。",
 };
 
 const ICON_MAP: Record<string, WatercolorIconName> = {
-  baby: "baby",
+  baby: "heart",
   "file-text": "clipboard",
   heart: "heart",
   school: "building",
@@ -38,87 +38,61 @@ interface TimelinePhase {
 
 const TIMELINE_PHASES: readonly TimelinePhase[] = [
   {
-    label: "妊娠中",
-    period: "妊娠判明〜出産",
+    label: "婚姻届の提出",
+    period: "入籍日前後",
     items: [
-      "妊娠届出・母子手帳の受取",
-      "妊婦健診（14回）",
-      "出産準備クラス・両親学級",
-      "分娩施設の予約",
-      "産前休業の手続き",
+      "婚姻届の入手・記入",
+      "戸籍謄本の取得（本籍地以外に届出する場合）",
+      "証人2名のサイン",
+      "婚姻届の提出",
     ],
-    checklistSlug: "pregnancy",
+    checklistSlug: "marriage-registration",
     color: "bg-pink-500",
   },
   {
-    label: "出産直後",
-    period: "出生〜2週間以内",
+    label: "氏名・住所変更",
+    period: "入籍後〜2週間以内",
     items: [
-      "出生届の提出（14日以内）",
-      "健康保険の加入",
-      "児童手当の申請（15日以内）",
-      "子ども医療費助成の申請",
-      "出産育児一時金の手続き",
+      "転入届・転居届の提出（引っ越しがある場合）",
+      "マイナンバーカードの氏名・住所変更",
+      "運転免許証の氏名・住所変更",
+      "パスポートの氏名変更",
     ],
-    checklistSlug: "birth",
+    checklistSlug: "marriage-registration",
     color: "bg-sage-500",
   },
   {
-    label: "1ヶ月",
-    period: "生後1ヶ月頃",
+    label: "保険・年金",
+    period: "入籍後〜1ヶ月以内",
     items: [
-      "1ヶ月健診",
-      "出産・子育て応援交付金（出産後分）",
-      "育児休業給付金の申請",
+      "健康保険の氏名変更・扶養手続き",
+      "国民年金の氏名変更",
+      "生命保険・医療保険の受取人変更",
     ],
-    checklistSlug: "birth",
-    color: "bg-sage-500",
-  },
-  {
-    label: "3〜4ヶ月",
-    period: "生後2〜4ヶ月",
-    items: [
-      "予防接種スタート（生後2ヶ月〜）",
-      "3-4ヶ月健診",
-      "産後ケアの利用",
-      "こんにちは赤ちゃん訪問",
-    ],
-    checklistSlug: "infant",
+    checklistSlug: "marriage-registration",
     color: "bg-blue-500",
   },
   {
-    label: "1歳",
-    period: "生後6ヶ月〜1歳",
+    label: "銀行・カード等",
+    period: "入籍後〜1ヶ月以内",
     items: [
-      "BCG接種",
-      "6-7ヶ月健診・9-10ヶ月健診",
-      "離乳食の開始",
-      "保活スタート（情報収集）",
+      "銀行口座の氏名・届出印変更",
+      "クレジットカードの氏名変更",
+      "携帯電話の契約名義変更",
+      "各種会員サービスの登録情報変更",
     ],
-    checklistSlug: "infant",
-    color: "bg-blue-500",
-  },
-  {
-    label: "3歳",
-    period: "1歳〜就学前",
-    items: [
-      "おたふくかぜワクチン接種",
-      "保育園・幼稚園の申込",
-      "幼児教育・保育の無償化手続き",
-    ],
-    checklistSlug: "nursery",
+    checklistSlug: "marriage-registration",
     color: "bg-purple-500",
   },
   {
-    label: "就学前",
-    period: "5〜6歳",
+    label: "税金・届出",
+    period: "年末調整 or 確定申告時",
     items: [
-      "就学時健康診断",
-      "入学通知書の確認",
-      "学童保育の申込",
-      "入学準備品の購入",
+      "配偶者控除・配偶者特別控除の確認",
+      "扶養控除等申告書の更新",
+      "会社への届出（結婚届・家族手当など）",
     ],
-    checklistSlug: "school",
+    checklistSlug: "marriage-registration",
     color: "bg-orange-500",
   },
 ];
@@ -139,7 +113,7 @@ export default function ChecklistsPage() {
             手続きチェックリスト
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
-            出産前から小学校入学まで、必要な手続きをステップごとにガイドします。
+            婚姻届の提出から名義変更・保険・税金まで、必要な手続きをステップごとにガイドします。
           </p>
         </div>
       </section>
@@ -204,7 +178,7 @@ export default function ChecklistsPage() {
               時系列ガイド
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              妊娠中から就学前まで、いつ何をすればよいか一目でわかります。
+              婚姻届の提出から税金の手続きまで、いつ何をすればよいか一目でわかります。
             </p>
           </div>
 

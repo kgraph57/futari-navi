@@ -1,6 +1,4 @@
-"use client"
-
-;
+"use client";
 
 import { useState, useEffect } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
@@ -38,7 +36,7 @@ const ONBOARDING_STEPS = [
   },
 ] as const;
 
-const DISMISSED_KEY = "sukusuku-onboarding-dismissed";
+const DISMISSED_KEY = "futari-onboarding-dismissed";
 
 export function OnboardingBanner() {
   const store = useStore();
@@ -105,7 +103,12 @@ export function OnboardingBanner() {
                   <div
                     className={`flex h-10 w-10 items-center justify-center rounded-lg ${step.color}`}
                   >
-                    <WatercolorIcon name={step.icon as import("@/components/icons/watercolor-icon").WatercolorIconName} size={20} />
+                    <WatercolorIcon
+                      name={
+                        step.icon as import("@/components/icons/watercolor-icon").WatercolorIconName
+                      }
+                      size={20}
+                    />
                   </div>
                   <span className="absolute -left-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-sage-600 text-[10px] font-bold text-white">
                     {index + 1}
@@ -119,7 +122,11 @@ export function OnboardingBanner() {
                     {step.description}
                   </p>
                 </div>
-                <WatercolorIcon name="arrow_right" size={16} className="shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100" />
+                <WatercolorIcon
+                  name="arrow_right"
+                  size={16}
+                  className="shrink-0 text-muted opacity-0 transition-opacity group-hover:opacity-100"
+                />
               </Link>
             ))}
           </div>

@@ -5,29 +5,29 @@ import { SectionHeading } from "@/components/shared/section-heading";
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
-    "すくすくナビに関するお問い合わせはこちらから。メールでご連絡ください。",
+    "ふたりナビに関するお問い合わせはこちらから。メールでご連絡ください。",
 };
 
 const INQUIRY_TYPES = [
   {
     iconName: "users" as const,
-    label: "保護者の方からの質問・フィードバック",
+    label: "ご利用者からの質問・フィードバック",
     description:
       "記事の内容に関するご質問、テーマのリクエスト、誤りのご指摘など。",
-    subject: "【すくすくナビ】質問・フィードバック",
+    subject: "【ふたりナビ】質問・フィードバック",
   },
   {
     iconName: "building" as const,
-    label: "医療機関・自治体との連携について",
+    label: "自治体・企業との連携について",
     description:
-      "退院時資料への掲載、保健センターでの配布、データ連携などのご相談。",
-    subject: "【すくすくナビ】連携のご相談",
+      "婚姻届窓口での配布、福利厚生への導入、データ連携などのご相談。",
+    subject: "【ふたりナビ】連携のご相談",
   },
   {
     iconName: "message" as const,
     label: "メディア・取材について",
-    description: "すくすくナビに関する取材・掲載のお問い合わせ。",
-    subject: "【すくすくナビ】取材・メディア掲載",
+    description: "ふたりナビに関する取材・掲載のお問い合わせ。",
+    subject: "【ふたりナビ】取材・メディア掲載",
   },
 ] as const;
 
@@ -36,7 +36,7 @@ const GUIDELINES = [
     iconName: "shield" as const,
     title: "個人情報の保護",
     description:
-      "お問い合わせの際は、お子さまの氏名や具体的な症状など、個人を特定できる情報の記載はお控えください。",
+      "お問い合わせの際は、個人を特定できる情報の記載はお控えください。",
   },
   {
     iconName: "message" as const,
@@ -61,12 +61,12 @@ export default function ContactPage() {
         </SectionHeading>
 
         {/* Important Notice */}
-        <div className="mt-10 rounded-xl border-2 border-red-100 bg-red-50/50 p-5">
-          <p className="text-sm font-medium text-red-800">
-            個別の医療相談にはお答えできません
+        <div className="mt-10 rounded-xl border-2 border-amber-100 bg-amber-50/50 p-5">
+          <p className="text-sm font-medium text-amber-800">
+            個別の法律相談・税務相談にはお答えできません
           </p>
-          <p className="mt-1 text-sm leading-relaxed text-red-700/80">
-            お子さまの具体的な症状や治療に関するご質問は、かかりつけの小児科にご相談ください。緊急時は迷わず119番に電話してください。
+          <p className="mt-1 text-sm leading-relaxed text-amber-700/80">
+            具体的な法律・税務のご質問は、お住まいの自治体窓口や専門家にご相談ください。
           </p>
         </div>
 
@@ -82,7 +82,7 @@ export default function ContactPage() {
             {INQUIRY_TYPES.map((type) => (
               <a
                 key={type.label}
-                href={`mailto:contact@sukusuku-navi.jp?subject=${encodeURIComponent(type.subject)}`}
+                href={`mailto:contact@futari-navi.jp?subject=${encodeURIComponent(type.subject)}`}
                 className="group flex flex-col rounded-xl border border-border bg-card p-5 transition-all hover:border-teal-200 hover:shadow-md"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50">
@@ -102,7 +102,7 @@ export default function ContactPage() {
             ))}
           </div>
           <p className="mt-4 text-center text-xs text-muted">
-            送信先: contact@sukusuku-navi.jp
+            送信先: contact@futari-navi.jp
           </p>
         </div>
 
@@ -140,7 +140,7 @@ export default function ContactPage() {
               </p>
               <p className="mt-1 text-sm text-muted">
                 A.
-                Substackのメール下部にある「Unsubscribe」リンクから、いつでも解除できます。解除後すぐに配信が停止されます。
+                メール下部にある「Unsubscribe」リンクから、いつでも解除できます。解除後すぐに配信が停止されます。
               </p>
             </div>
             <div>
@@ -149,7 +149,7 @@ export default function ContactPage() {
               </p>
               <p className="mt-1 text-sm text-muted">
                 A.
-                記事の医学的内容に関するご質問はメールでお送りください。今後の記事の参考にさせていただきます。ただし、個別の医療相談にはお答えできません。
+                記事の内容に関するご質問はメールでお送りください。今後の記事の参考にさせていただきます。ただし、個別の法律・税務相談にはお答えできません。
               </p>
             </div>
             <div>

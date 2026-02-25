@@ -233,12 +233,15 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* ── Sukusuku-navi Link ── */}
+      {/* ── Related Project Link ── */}
       <section className="border-t border-ivory-200 bg-ivory-100/30 py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="text-sm text-gold-500">妊娠・出産を考え始めたら</p>
+          <p className="text-sm text-gold-500">関連プロジェクト</p>
           <p className="mt-2 font-heading text-lg font-bold text-sage-800">
-            スクスクなび — 港区の子育て支援ナビゲーター
+            すくすくナビ — 港区の子育て支援ナビゲーター
+          </p>
+          <p className="mt-1 text-sm text-muted">
+            お子さんが生まれたら、予防接種・健診・届出をまとめてサポート
           </p>
           <a
             href="https://kgraph57.github.io/sukusuku-navi/"
@@ -246,7 +249,7 @@ export default function HomePage() {
             rel="noopener noreferrer"
             className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sage-600 transition-colors hover:text-sage-800"
           >
-            スクスクなびを見る
+            すくすくナビを見る
             <WatercolorIcon name="chevron_right" size={16} />
           </a>
         </div>

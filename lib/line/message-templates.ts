@@ -1,12 +1,12 @@
 import type { LineReplyFlexMessage, LineReplyTextMessage } from "./types";
 
-const SITE_URL = "https://kgraph57.github.io/sukusuku-navi";
+const SITE_URL = "https://kgraph57.github.io/futari-navi";
 
 // --- Welcome message (sent on follow) ---
 
 export const WELCOME_MESSAGE: LineReplyFlexMessage = {
   type: "flex",
-  altText: "すくすくナビへようこそ！港区の子育て情報をお届けします。",
+  altText: "ふたりナビへようこそ！結婚手続き・給付金の情報をお届けします。",
   contents: {
     type: "bubble",
     body: {

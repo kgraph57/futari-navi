@@ -1,4 +1,4 @@
--- sukusuku-navi Initial Schema
+-- futari-navi Initial Schema
 -- Created: 2026-02-20
 
 -- ============================================================

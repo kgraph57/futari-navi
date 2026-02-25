@@ -8,9 +8,9 @@ import type {
   MilestoneRecord,
 } from "./types";
 
-const FAMILY_KEY = "sukusuku-family";
-const VACCINATION_KEY = "sukusuku-vaccinations";
-const MILESTONE_KEY = "sukusuku-milestones";
+const FAMILY_KEY = "futari-family";
+const VACCINATION_KEY = "futari-records";
+const MILESTONE_KEY = "futari-milestones";
 
 function isSSR(): boolean {
   return typeof window === "undefined";
@@ -168,9 +168,7 @@ export function createLocalStore(): DataStore {
 
     async upsertVaccinationRecord(record) {
       const all =
-        readJson<Record<string, VaccinationRecord[]>>(
-          VACCINATION_KEY,
-        ) ?? {};
+        readJson<Record<string, VaccinationRecord[]>>(VACCINATION_KEY) ?? {};
       const childRecords = all[record.childId] ?? [];
 
       const existingIndex = childRecords.findIndex(
@@ -199,9 +197,8 @@ export function createLocalStore(): DataStore {
 
     async getMilestoneRecords(childId) {
       const all =
-        readJson<Record<string, readonly MilestoneRecord[]>>(
-          MILESTONE_KEY,
-        ) ?? {};
+        readJson<Record<string, readonly MilestoneRecord[]>>(MILESTONE_KEY) ??
+        {};
       return all[childId] ?? [];
     },
 

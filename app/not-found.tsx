@@ -34,9 +34,9 @@ export default function NotFoundPage() {
         <div className="mt-3 flex flex-wrap justify-center gap-2">
           {[
             { href: "/articles", label: "記事一覧" },
-            { href: "/triage", label: "受診判断" },
-            { href: "/vaccines", label: "予防接種" },
+            { href: "/checklists", label: "手続きチェックリスト" },
             { href: "/simulator", label: "給付金シミュレーター" },
+            { href: "/glossary", label: "用語集" },
           ].map((link) => (
             <Link
               key={link.href}

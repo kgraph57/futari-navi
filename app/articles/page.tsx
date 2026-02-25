@@ -8,7 +8,7 @@ import { ImpactStats } from "@/components/shared/impact-stats";
 export const metadata: Metadata = {
   title: "記事一覧",
   description:
-    "小児科医おかもんが書いたQ&A形式の子育て・医療記事。感染症、アレルギー、予防接種、発達など50本以上。",
+    "新婚カップル向けの結婚手続き・暮らしのQ&A記事。婚姻届、名義変更、税金、保険など。",
 };
 
 export default function ArticlesPage() {

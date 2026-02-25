@@ -1,7 +1,7 @@
 import QRCode from "qrcode";
 import { PrintButton } from "@/components/print/print-button";
 
-const SITE_URL = "https://kgraph57.github.io/sukusuku-navi/";
+const SITE_URL = "https://kgraph57.github.io/futari-navi/";
 
 async function generateQRDataURL(): Promise<string> {
   return QRCode.toDataURL(SITE_URL, {
@@ -16,7 +16,7 @@ export default async function PrintQRCardPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 print:max-w-none print:p-0">
-      {/* ─── Screen-only instructions ─── */}
+      {/* Screen-only instructions */}
       <div className="mb-8 rounded-xl border border-sage-200 bg-sage-50 p-6 print:hidden">
         <h1 className="font-heading text-xl font-bold text-foreground">
           配布用カード・チラシ
@@ -30,7 +30,7 @@ export default async function PrintQRCardPage() {
         </div>
       </div>
 
-      {/* ─── Business Card (名刺サイズ 91mm × 55mm) ─── */}
+      {/* Business Card (91mm x 55mm) */}
       <section className="mb-12 print:mb-0 print:break-after-page">
         <h2 className="mb-4 font-heading text-lg font-semibold text-foreground print:hidden">
           名刺サイズカード（91mm × 55mm）
@@ -43,24 +43,23 @@ export default async function PrintQRCardPage() {
             {/* Left: Text */}
             <div className="flex-1">
               <p className="font-heading text-[11px] font-bold leading-tight text-teal-700">
-                すくすくナビ
+                ふたりナビ
               </p>
               <p className="mt-1 text-[9px] font-bold leading-snug text-foreground">
-                港区の助成金、
+                結婚手続き、
                 <br />
-                もらい忘れていませんか？
+                何から始める？
               </p>
               <div className="mt-1.5 h-px w-12 bg-teal-200" />
               <p className="mt-1 text-[7px] leading-tight text-muted">
-                給付金シミュレーター・受診判断
+                手続きチェックリスト・届出ガイド
                 <br />
-                予防接種スケジュール・60本以上の記事
+                給付金シミュレーター・名義変更ナビ
               </p>
               <div className="mt-1.5">
                 <p className="text-[7px] font-medium text-teal-600">
-                  おかもん先生（岡本 賢）
+                  無料・登録不要
                 </p>
-                <p className="text-[6px] text-muted">愛育病院 小児科</p>
               </div>
             </div>
             {/* Right: QR Code */}
@@ -79,7 +78,7 @@ export default async function PrintQRCardPage() {
         </div>
       </section>
 
-      {/* ─── A5 Flyer (148mm × 210mm) ─── */}
+      {/* A5 Flyer (148mm x 210mm) */}
       <section className="print:break-after-page">
         <h2 className="mb-4 font-heading text-lg font-semibold text-foreground print:hidden">
           A5チラシ（148mm × 210mm）
@@ -92,17 +91,17 @@ export default async function PrintQRCardPage() {
             {/* Header badge */}
             <div className="text-center">
               <p className="inline-flex items-center gap-1 rounded-full bg-teal-100 px-3 py-1 text-[10px] font-medium text-teal-700">
-                愛育病院 小児科医が作りました
+                結婚手続き・届出ガイド
               </p>
               <h1 className="mt-3 font-heading text-[18px] font-bold leading-tight text-foreground">
-                港区の助成金、
+                結婚手続き、
                 <br />
-                もらい忘れて
+                何から始めれば
                 <br />
-                いませんか？
+                いいの？
               </h1>
               <p className="mt-2 text-[10px] text-muted">
-                港区在住なら年間最大84万円の助成金があります
+                婚姻届から名義変更まで、やるべきことをステップごとにガイド
               </p>
             </div>
 
@@ -110,20 +109,20 @@ export default async function PrintQRCardPage() {
             <div className="mt-5 space-y-2.5">
               {[
                 {
+                  label: "手続きチェックリスト",
+                  desc: "婚姻届〜税金まで漏れなく確認",
+                },
+                {
                   label: "給付金シミュレーター",
-                  desc: "2分で受けられる助成金がわかる",
+                  desc: "受けられる制度を2分でチェック",
                 },
                 {
-                  label: "受診判断ガイド",
-                  desc: "30秒で救急か明日かがわかる",
+                  label: "届出ガイド",
+                  desc: "必要書類と手順をわかりやすく",
                 },
                 {
-                  label: "予防接種スケジュール",
-                  desc: "接種漏れを防ぐリマインド",
-                },
-                {
-                  label: "60本以上の医療記事",
-                  desc: "小児科医が書き下ろし",
+                  label: "用語集・Q&A",
+                  desc: "はじめてでも安心の解説付き",
                 },
               ].map(({ label, desc }) => (
                 <div key={label} className="flex items-start gap-2">
@@ -150,17 +149,17 @@ export default async function PrintQRCardPage() {
                 スマホでスキャンして今すぐチェック
               </p>
               <p className="mt-0.5 text-center text-[7px] text-muted">
-                すくすくナビ　無料・登録不要
+                ふたりナビ　無料・登録不要
               </p>
             </div>
 
-            {/* Doctor info */}
+            {/* Footer */}
             <div className="mt-4 border-t border-teal-100 pt-3 text-center">
               <p className="text-[10px] font-medium text-foreground">
-                おかもん先生 / 岡本 賢
+                ふたりナビ - 結婚手続き、もう迷わない。
               </p>
               <p className="text-[8px] text-muted">
-                愛育病院 小児科 ・ 港区在住 ・ 2児の父
+                futari-navi.jp
               </p>
             </div>
           </div>

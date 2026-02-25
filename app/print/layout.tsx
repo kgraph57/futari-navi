@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "印刷用 | すくすくナビ",
+  title: "印刷用 | ふたりナビ",
 };
 
 export default function PrintLayout({

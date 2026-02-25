@@ -471,7 +471,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
     loadProfile();
 
     const handleStorage = (e: StorageEvent) => {
-      if (e.key === "sukusuku-family") {
+      if (e.key === "futari-family") {
         loadProfile();
       }
     };
@@ -483,7 +483,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
   useEffect(() => {
     if (!user) return;
     try {
-      const raw = localStorage.getItem("sukusuku-family");
+      const raw = localStorage.getItem("futari-family");
       if (raw) {
         const data = JSON.parse(raw);
         if (data.children && data.children.length > 0) {

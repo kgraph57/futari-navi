@@ -65,7 +65,7 @@ export function FeedbackButton() {
       ) : (
         <>
           <p className="mt-2 text-xs text-muted">
-            すくすくナビはいかがですか?
+            ふたりナビはいかがですか?
           </p>
 
           <div className="mt-3 flex justify-center gap-2">

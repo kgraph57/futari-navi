@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 /** Required for static export (GitHub Pages) */
 export const dynamic = "force-static";
-export const alt = "すくすくナビ - 港区の子育て、もう迷わない";
+export const alt = "ふたりナビ - 結婚手続き、もう迷わない";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -43,7 +43,7 @@ export default function OGImage() {
             letterSpacing: "0.04em",
           }}
         >
-          すくすくナビ
+          ふたりナビ
         </div>
         <div
           style={{
@@ -53,7 +53,7 @@ export default function OGImage() {
             textAlign: "center",
           }}
         >
-          港区の子育て、もう迷わない。
+          結婚手続き、もう迷わない。
         </div>
         <div
           style={{
@@ -64,10 +64,10 @@ export default function OGImage() {
           }}
         >
           {[
-            "医師監修の記事",
+            "手続きチェックリスト",
             "給付金シミュレーター",
-            "受診判断ガイド",
-            "予防接種管理",
+            "届出ガイド",
+            "名義変更ナビ",
           ].map((label) => (
             <div
               key={label}
@@ -92,7 +92,7 @@ export default function OGImage() {
             color: "#6B7280",
           }}
         >
-          愛育病院 小児科医おかもんが届ける子育て情報
+          ふたりの新生活をスムーズにスタート
         </div>
       </div>
     </div>,

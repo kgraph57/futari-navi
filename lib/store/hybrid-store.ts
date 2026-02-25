@@ -44,8 +44,7 @@ export async function migrateLocalToSupabase(
       await supabaseStore.toggleCompletedItem(newChild.id, itemId);
     }
 
-    const localVaccinations =
-      await localStore.getVaccinationRecords(child.id);
+    const localVaccinations = await localStore.getVaccinationRecords(child.id);
     for (const vax of localVaccinations) {
       await supabaseStore.upsertVaccinationRecord({
         childId: newChild.id,
@@ -60,8 +59,7 @@ export async function migrateLocalToSupabase(
       });
     }
 
-    const localMilestones =
-      await localStore.getMilestoneRecords(child.id);
+    const localMilestones = await localStore.getMilestoneRecords(child.id);
     for (const ms of localMilestones) {
       await supabaseStore.upsertMilestoneRecord({
         childId: newChild.id,
@@ -84,9 +82,9 @@ export async function migrateLocalToSupabase(
 export function clearLocalData(): void {
   if (typeof window === "undefined") return;
   try {
-    localStorage.removeItem("sukusuku-family");
-    localStorage.removeItem("sukusuku-vaccinations");
-    localStorage.removeItem("sukusuku-milestones");
+    localStorage.removeItem("futari-family");
+    localStorage.removeItem("futari-records");
+    localStorage.removeItem("futari-milestones");
   } catch {
     // Ignore localStorage errors
   }
