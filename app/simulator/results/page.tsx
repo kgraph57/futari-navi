@@ -6,7 +6,6 @@ import { useMemo, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { runSimulation } from "@/lib/simulator/engine";
 import { ResultCard } from "@/components/simulator/result-card";
-import { LifePlanTimeline } from "@/components/simulator/life-plan-timeline";
 import type { SimulatorInput, SimulatorResult } from "@/lib/types";
 import { trackSimulatorResultsViewed } from "@/lib/analytics/events";
 import { ShareButton } from "@/components/shared/share-button";
@@ -29,6 +28,31 @@ function parseFormData(searchParams: URLSearchParams): SimulatorInput | null {
     return null;
   }
 }
+
+const MARRIAGE_SCHEDULE_ITEMS = [
+  {
+    period: "婚姻届提出前",
+    items: [
+      "TOKYOふたり結婚応援パスポートに登録（特典を活用）",
+      "結婚新生活支援事業の対象自治体か確認",
+    ],
+  },
+  {
+    period: "婚姻届提出後〜2週間",
+    items: [
+      "社会保険の扶養手続き（該当する場合）",
+      "姓変更に伴う各種届出（銀行・免許証等）",
+      "引越しに伴う転入届・転出届",
+    ],
+  },
+  {
+    period: "年末調整・確定申告時",
+    items: [
+      "配偶者控除・配偶者特別控除の申告",
+      "結婚新生活支援事業の補助金申請（該当する場合）",
+    ],
+  },
+] as const;
 
 function ResultsContent() {
   const searchParams = useSearchParams();
@@ -61,19 +85,19 @@ function ResultsContent() {
           <WatercolorIcon
             name="alert"
             size={48}
-            className="mx-auto   text-blush-500"
+            className="mx-auto text-sage-500"
           />
           <h1 className="mt-4 font-heading text-2xl font-semibold text-foreground">
             データが見つかりません
           </h1>
           <p className="mt-2 text-sm text-muted">
-            シミュレーションの入力データが見つかりませんでした。もう一度お試しください。
+            チェッカーの入力データが見つかりませんでした。もう一度お試しください。
           </p>
           <Link
             href="/simulator/start"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-sage-700"
           >
-            シミュレーションをやり直す
+            チェックをやり直す
           </Link>
         </div>
       </div>
@@ -98,29 +122,28 @@ function ResultsContent() {
               className="text-sage-200"
             />
             <h1 className="font-heading text-lg font-semibold">
-              シミュレーション結果
+              チェック結果
             </h1>
           </div>
 
-          <div className="mt-6 text-center">
-            <p className="text-sm text-sage-200">年間推定受給額</p>
-            <div className="mt-2 flex items-baseline justify-center gap-1">
-              <WatercolorIcon name="star" size={32} className="text-sage-200" />
-              <span className="font-heading text-5xl font-semibold tracking-tight sm:text-6xl">
-                {formatTotalAmount(result.totalAnnualEstimate)}
-              </span>
+          {result.totalAnnualEstimate > 0 && (
+            <div className="mt-6 text-center">
+              <p className="text-sm text-sage-200">推定受給額</p>
+              <div className="mt-2 flex items-baseline justify-center gap-1">
+                <WatercolorIcon name="star" size={32} className="text-sage-200" />
+                <span className="font-heading text-5xl font-semibold tracking-tight sm:text-6xl">
+                  {formatTotalAmount(result.totalAnnualEstimate)}
+                </span>
+              </div>
+              <p className="mt-3 text-xs text-sage-200">
+                ※ 金額は概算です。実際の受給額とは異なる場合があります。
+              </p>
             </div>
-            <p className="mt-3 text-xs text-sage-200">
-              ※ 金額は概算です。実際の受給額とは異なる場合があります。
-            </p>
-          </div>
+          )}
 
           <div className="mt-6 flex items-center justify-center gap-4 text-sm">
             <span className="rounded-full bg-white/10 px-3 py-1 text-sage-100">
               対象制度: {result.eligiblePrograms.length}件
-            </span>
-            <span className="rounded-full bg-white/10 px-3 py-1 text-sage-100">
-              お子さん: {input.children.length}人
             </span>
           </div>
         </div>
@@ -128,7 +151,7 @@ function ResultsContent() {
         {financialPrograms.length > 0 && (
           <section className="mt-8">
             <h2 className="font-heading text-xl font-semibold text-foreground">
-              受給できる給付金・助成
+              受給できる給付金・補助
             </h2>
             <p className="mt-1 text-sm text-muted">
               金額が推定できる制度です。
@@ -144,10 +167,10 @@ function ResultsContent() {
         {servicePrograms.length > 0 && (
           <section className="mt-8">
             <h2 className="font-heading text-xl font-semibold text-foreground">
-              利用できるサービス・制度
+              利用できる制度・優遇
             </h2>
             <p className="mt-1 text-sm text-muted">
-              金額は利用状況によって変わる制度です。
+              状況に応じて活用できる制度です。
             </p>
             <div className="mt-4 space-y-4">
               {servicePrograms.map((ep) => (
@@ -159,16 +182,38 @@ function ResultsContent() {
 
         <section className="mt-8">
           <h2 className="font-heading text-xl font-semibold text-foreground">
-            お子さんのライフプラン
+            結婚後の手続きスケジュール
           </h2>
           <p className="mt-1 text-sm text-muted">
-            年齢ごとに受けられる制度の一覧です。
+            時期ごとにやるべき手続きの目安です。
           </p>
-          <div className="mt-4">
-            <LifePlanTimeline
-              children={input.children}
-              eligiblePrograms={result.eligiblePrograms}
-            />
+          <div className="mt-4 space-y-4">
+            {MARRIAGE_SCHEDULE_ITEMS.map((schedule) => (
+              <div
+                key={schedule.period}
+                className="rounded-xl border border-border bg-card p-4"
+              >
+                <h3 className="flex items-center gap-2 font-heading text-sm font-semibold text-sage-700">
+                  <WatercolorIcon name="clock" size={16} />
+                  {schedule.period}
+                </h3>
+                <ul className="mt-2 space-y-1.5">
+                  {schedule.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2 text-sm text-card-foreground"
+                    >
+                      <WatercolorIcon
+                        name="check"
+                        size={14}
+                        className="mt-0.5 shrink-0 text-sage-500"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -178,7 +223,7 @@ function ResultsContent() {
             className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-white px-6 py-3 text-sm font-medium text-sage-700 transition-colors hover:bg-sage-50"
           >
             <WatercolorIcon name="plus" size={16} />
-            もう一度シミュレーション
+            もう一度チェック
           </Link>
           <Link
             href="/programs"
@@ -187,9 +232,9 @@ function ResultsContent() {
             すべての制度を見る
           </Link>
           <ShareButton
-            title="給付金シミュレーター結果 | すくすくナビ"
-            text={`港区の子育て給付金シミュレーション結果：年間推定 ${formatTotalAmount(result.totalAnnualEstimate)}（対象制度${result.eligiblePrograms.length}件）`}
-            url="https://kgraph57.github.io/sukusuku-navi/simulator"
+            title="結婚制度チェッカー結果 | ふたりナビ"
+            text={`結婚制度チェック結果：対象制度${result.eligiblePrograms.length}件${result.totalAnnualEstimate > 0 ? `（推定受給額 ${formatTotalAmount(result.totalAnnualEstimate)}）` : ""}`}
+            url="https://futari-navi.com/simulator"
             contentType="simulator_result"
             contentId="simulator"
           />
@@ -197,7 +242,7 @@ function ResultsContent() {
 
         <div className="mt-8 rounded-xl border border-border bg-ivory-100 p-4">
           <p className="text-xs leading-relaxed text-muted">
-            本シミュレーション結果は港区の公開情報に基づく概算です。実際の受給額は個別の状況や制度の詳細条件によって異なります。正確な情報は港区の各担当窓口やウェブサイトでご確認ください。入力された情報はブラウザ上でのみ処理され、サーバーに送信・保存されることはありません。
+            本チェック結果は公開情報に基づく概算です。実際の受給額や対象要件は個別の状況や制度の詳細条件によって異なります。正確な情報は各制度の公式サイトや担当窓口でご確認ください。入力された情報はブラウザ上でのみ処理され、サーバーに送信・保存されることはありません。
           </p>
         </div>
 
@@ -207,7 +252,7 @@ function ResultsContent() {
             className="inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
           >
             <WatercolorIcon name="arrow_right" size={16} />
-            シミュレーターのトップに戻る
+            チェッカーのトップに戻る
           </Link>
         </div>
       </div>
@@ -224,9 +269,9 @@ export default function SimulatorResultsPage() {
             <WatercolorIcon
               name="calculator"
               size={32}
-              className="mx-auto   animate-pulse text-sage-600"
+              className="mx-auto animate-pulse text-sage-600"
             />
-            <p className="mt-4 text-sm text-muted">計算中...</p>
+            <p className="mt-4 text-sm text-muted">チェック中...</p>
           </div>
         </div>
       }

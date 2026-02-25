@@ -12,24 +12,17 @@ interface ResultCardProps {
 import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
 
 const CATEGORY_ICON_MAP: Record<string, WatercolorIconName> = {
-  medical: "heart",
-  financial: "calculator",
-  childcare: "baby",
-  support: "users",
+  給付金: "calculator",
+  税制優遇: "book",
+  "優待・割引": "heart",
+  社会保険: "shield",
 };
 
 const CATEGORY_COLOR_MAP: Record<string, string> = {
-  medical: "bg-red-50 text-red-600 border-red-200",
-  financial: "bg-sage-50 text-sage-600 border-sage-200",
-  childcare: "bg-blue-50 text-blue-600 border-blue-200",
-  support: "bg-purple-50 text-purple-600 border-purple-200",
-};
-
-const CATEGORY_BADGE_MAP: Record<string, string> = {
-  medical: "医療",
-  financial: "給付金・手当",
-  childcare: "保育・預かり",
-  support: "子育て支援",
+  給付金: "bg-sage-50 text-sage-600 border-sage-200",
+  税制優遇: "bg-blue-50 text-blue-600 border-blue-200",
+  "優待・割引": "bg-purple-50 text-purple-600 border-purple-200",
+  社会保険: "bg-amber-50 text-amber-600 border-amber-200",
 };
 
 function formatAmount(amount: number): string {
@@ -51,7 +44,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
   const colorClass =
     CATEGORY_COLOR_MAP[program.category] ??
     "bg-gray-50 text-gray-600 border-gray-200";
-  const badgeLabel = CATEGORY_BADGE_MAP[program.category] ?? program.category;
+  const badgeLabel = program.category;
 
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-card transition-shadow hover:shadow-md">
@@ -82,7 +75,7 @@ export function ResultCard({ eligibleProgram }: ResultCardProps) {
 
             {estimatedAmount > 0 && (
               <div className="mt-3 inline-flex items-baseline gap-1 rounded-lg bg-sage-50 px-3 py-1.5">
-                <span className="text-sm text-sage-700">年間推定</span>
+                <span className="text-sm text-sage-700">推定</span>
                 <span className="font-heading text-xl font-semibold text-sage-700">
                   {formatAmount(estimatedAmount)}
                 </span>

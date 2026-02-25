@@ -1,103 +1,60 @@
 import type { Metadata } from "next";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
-import Image from "next/image";
-import { withBasePath } from "@/lib/image-path";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "給付金シミュレーター",
+  title: "結婚の届出・給付金チェッカー",
   description:
-    "お子さんの年齢と世帯情報を入力するだけで、港区で受けられる給付金・助成制度を一括検索。約2分で結果がわかります。",
+    "結婚予定日と世帯情報を入力するだけで、利用できる制度・給付金を一括チェック。約2分で結果がわかります。",
 };
 
 const FEATURES = [
   {
     iconName: "clock" as const,
     title: "約2分で完了",
-    description: "4ステップの簡単な質問に答えるだけ。",
-    character: "/characters/poses/haruto_running.png",
-    charAlt: "ハルト",
+    description: "3ステップの簡単な質問に答えるだけ。",
   },
   {
     iconName: "shield" as const,
     title: "個人情報不要",
     description: "入力内容はサーバーに保存されません。",
-    character: "/characters/poses/pochi_sitting.png",
-    charAlt: "ぽち",
   },
   {
     iconName: "check" as const,
-    title: "17制度を一括チェック",
-    description: "港区の子育て支援制度をまとめて確認。",
-    character: "/characters/poses/risu_acorn.png",
-    charAlt: "りすちゃん",
+    title: "6つの制度を一括チェック",
+    description: "結婚に関する制度・給付金をまとめて確認。",
   },
 ];
 
 export default function SimulatorPage() {
   return (
     <>
-      <section className="bg-gradient-to-b from-blush-50 to-ivory-50 px-4 pb-16 pt-12 sm:pb-24 sm:pt-20">
+      <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-16 pt-12 sm:pb-24 sm:pt-20">
         <div className="mx-auto max-w-3xl">
-          <div className="flex flex-col items-center sm:flex-row sm:items-end sm:justify-center sm:gap-8">
-            {/* キャラクター左 */}
-            <div className="hidden sm:block">
-              <Image
-                src={withBasePath("/characters/poses/pankun_pointing.png")}
-                alt="ぱんくん"
-                width={130}
-                height={130}
-                className="drop-shadow-sm"
-              />
+          <div className="text-center">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-sage-600 text-white">
+              <WatercolorIcon name="calculator" size={32} />
             </div>
-            {/* テキスト中央 */}
-            <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blush-500 text-white">
-                <WatercolorIcon name="calculator" size={32} />
-              </div>
 
-              <h1 className="mt-6 font-heading text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
-                給付金シミュレーター
-              </h1>
+            <h1 className="mt-6 font-heading text-3xl font-semibold leading-tight text-foreground sm:text-4xl">
+              結婚の届出・給付金チェッカー
+            </h1>
 
-              <div className="mx-auto mt-4 max-w-xl rounded-xl bg-blush-50 border border-blush-200 px-4 py-3">
-                <p className="text-center text-base font-semibold leading-relaxed text-blush-700 sm:text-lg">
-                  港区の新生児家庭が受け取れる給付金・助成の合計は
-                  <span className="font-heading text-xl sm:text-2xl">
-                    最大約84万円/年
-                  </span>
-                  。
-                  <br className="hidden sm:block" />
-                  申請漏れを防ぎましょう。
-                </p>
-              </div>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+              結婚予定日と世帯情報を入力するだけで、利用できる
+              <strong className="text-foreground">
+                制度・給付金
+              </strong>
+              を一括チェックできます。
+            </p>
 
-              <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-                お子さんの年齢と世帯の情報から、港区で受けられる
-                <strong className="text-foreground">
-                  給付金・助成・子育て支援制度
-                </strong>
-                を一括検索します。
-              </p>
-
-              <Link
-                href="/simulator/start"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-blush-500 px-8 py-4 text-base font-bold text-white transition-colors hover:bg-blush-600"
-              >
-                シミュレーションを始める
-                <WatercolorIcon name="arrow_right" size={20} />
-              </Link>
-            </div>
-            {/* キャラクター右 */}
-            <div className="hidden sm:block">
-              <Image
-                src={withBasePath("/characters/poses/usagi_happy.png")}
-                alt="うさぎーさん"
-                width={120}
-                height={120}
-                className="drop-shadow-sm"
-              />
-            </div>
+            <Link
+              href="/simulator/start"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-sage-600 px-8 py-4 text-base font-bold text-white transition-colors hover:bg-sage-700"
+            >
+              チェックを始める
+              <WatercolorIcon name="arrow_right" size={20} />
+            </Link>
           </div>
         </div>
       </section>
@@ -114,15 +71,6 @@ export default function SimulatorPage() {
                 key={feature.title}
                 className="rounded-xl border border-border bg-card p-6 text-center"
               >
-                <div className="mx-auto mb-3 flex justify-center">
-                  <Image
-                    src={withBasePath(feature.character)}
-                    alt={feature.charAlt}
-                    width={72}
-                    height={72}
-                    className="drop-shadow-sm"
-                  />
-                </div>
                 <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-sage-50 text-sage-600">
                   <WatercolorIcon name={feature.iconName} size={28} />
                 </div>
@@ -141,7 +89,7 @@ export default function SimulatorPage() {
       <section className="border-t border-border bg-ivory-100/50 px-4 py-12">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs leading-relaxed text-muted">
-            本シミュレーターの結果は概算です。実際の受給額や対象要件は、制度ごとの詳細条件により異なる場合があります。正確な情報は港区の窓口またはウェブサイトでご確認ください。入力された情報はブラウザ上でのみ処理され、サーバーに送信・保存されることはありません。
+            本チェッカーの結果は概算です。実際の受給額や対象要件は、制度ごとの詳細条件により異なる場合があります。正確な情報は各制度の公式サイトや窓口でご確認ください。入力された情報はブラウザ上でのみ処理され、サーバーに送信・保存されることはありません。
           </p>
         </div>
       </section>
