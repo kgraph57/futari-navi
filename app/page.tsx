@@ -4,6 +4,7 @@ import { getAllArticles } from "@/lib/content";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Card, CardTitle, CardDescription } from "@/components/shared/card";
 import { Badge } from "@/components/shared/badge";
+import { DailyQuestionPreview } from "@/components/home/daily-question-preview";
 import type { ArticleCategory } from "@/lib/types";
 /* ── Features ── */
 const FEATURES = [
@@ -87,6 +88,13 @@ export default function HomePage() {
               給付金をチェック
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── Daily Question Preview ── */}
+      <section className="border-b border-ivory-200 bg-white/60 py-12 sm:py-16">
+        <div className="mx-auto max-w-2xl px-6">
+          <DailyQuestionPreview />
         </div>
       </section>
 
@@ -232,6 +240,59 @@ export default function HomePage() {
           </div>
         </section>
       )}
+
+      {/* ── Relationship Features ── */}
+      <section className="border-t border-ivory-200 bg-ivory-100/50 py-20 sm:py-28">
+        <div className="mx-auto max-w-5xl px-6">
+          <SectionHeading
+            subtitle="毎日5分の積み重ねで、ふたりの絆をもっと深く"
+            align="center"
+          >
+            ふたりの関係を育てよう
+          </SectionHeading>
+          <div className="mt-14 grid gap-6 sm:grid-cols-3">
+            <Link href="/daily" className="group">
+              <div className="rounded-2xl border border-ivory-200 bg-white p-8 transition-all group-hover:border-sage-300 group-hover:shadow-md">
+                <div className="mb-4 inline-flex rounded-xl bg-blue-50 p-3">
+                  <WatercolorIcon name="message" size={28} className="text-blue-500" />
+                </div>
+                <h3 className="font-heading text-lg font-bold text-sage-900">
+                  今日の質問
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-gold-600">
+                  毎日5分。ふたりの会話が深まる質問を。
+                </p>
+              </div>
+            </Link>
+            <Link href="/my/gamification" className="group">
+              <div className="rounded-2xl border border-ivory-200 bg-white p-8 transition-all group-hover:border-sage-300 group-hover:shadow-md">
+                <div className="mb-4 inline-flex rounded-xl bg-coral-50 p-3">
+                  <WatercolorIcon name="heart" size={28} className="text-coral-500" />
+                </div>
+                <h3 className="font-heading text-lg font-bold text-sage-900">
+                  愛情タンク
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-gold-600">
+                  ふたりの愛情メーター。毎日少しずつ満たそう。
+                </p>
+              </div>
+            </Link>
+            <Link href="/my/gamification" className="group">
+              <div className="rounded-2xl border border-ivory-200 bg-white p-8 transition-all group-hover:border-sage-300 group-hover:shadow-md">
+                <div className="mb-4 inline-flex rounded-xl bg-yellow-50 p-3">
+                  <WatercolorIcon name="star" size={28} className="text-yellow-500" />
+                </div>
+                <h3 className="font-heading text-lg font-bold text-sage-900">
+                  バッジコレクション
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-gold-600">
+                  ふたりの成長を記録する10のバッジ。
+                </p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ── Related Project Link ── */}
       <section className="border-t border-ivory-200 bg-ivory-100/30 py-16">

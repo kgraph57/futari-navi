@@ -13,9 +13,9 @@ interface NavTab {
 
 const TABS: readonly NavTab[] = [
   { href: "/", label: "ホーム", icon: "home" },
+  { href: "/daily", label: "今日の質問", icon: "heart" },
   { href: "/my/timeline", label: "タイムライン", icon: "calendar" },
   { href: "/checklists", label: "チェック", icon: "clipboard" },
-  { href: "/programs", label: "制度", icon: "clipboard" },
   { href: "/my", label: "マイページ", icon: "user" },
 ] as const;
 

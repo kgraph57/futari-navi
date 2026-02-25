@@ -1,0 +1,12 @@
+[
+  {"id":"first-question","name":"はじめの一歩","description":"最初のデイリー質問に回答した","icon":"🌱","tier":"bronze"},
+  {"id":"streak-3","name":"3日連続","description":"3日連続でデイリー質問に回答した","icon":"🔥","tier":"bronze"},
+  {"id":"streak-7","name":"1週間連続","description":"7日連続でデイリー質問に回答した","icon":"⭐","tier":"silver"},
+  {"id":"streak-30","name":"30日連続","description":"30日連続でデイリー質問に回答した","icon":"🏆","tier":"gold"},
+  {"id":"explorer","name":"記事マスター","description":"5つ以上の記事を読んだ","icon":"📚","tier":"bronze"},
+  {"id":"planner","name":"計画上手","description":"チェックリストを初めて完了した","icon":"✅","tier":"silver"},
+  {"id":"simulator-pro","name":"シミュレーター達人","description":"給付金シミュレーターを使った","icon":"🔍","tier":"bronze"},
+  {"id":"all-categories","name":"全カテゴリ制覇","description":"全カテゴリの質問に回答した","icon":"🌈","tier":"silver"},
+  {"id":"love-tank-full","name":"愛情満タン","description":"愛情タンクが100%に到達した","icon":"💖","tier":"gold"},
+  {"id":"first-week","name":"1週間記念","description":"アプリを使い始めて1週間が経った","icon":"🎉","tier":"bronze"}
+]
