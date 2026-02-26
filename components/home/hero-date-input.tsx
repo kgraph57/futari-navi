@@ -10,9 +10,9 @@ import {
   type MarriageTimelineOptions,
 } from "@/lib/marriage-timeline-engine";
 
-const STORAGE_KEY = "futari-marriage-date";
-const OPTIONS_KEY = "futari-timeline-options";
-const COMPLETED_KEY = "futari-completed-items";
+const STORAGE_KEY = "futari-navi-marriage-date";
+const OPTIONS_KEY = "futari-navi-marriage-options";
+const COMPLETED_KEY = "futari-navi-completed-items";
 
 function loadStoredDate(): string {
   if (typeof window === "undefined") return "";
