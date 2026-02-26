@@ -13,10 +13,10 @@ interface NavTab {
 
 const TABS: readonly NavTab[] = [
   { href: "/", label: "ホーム", icon: "home" },
-  { href: "/daily", label: "今日の質問", icon: "heart" },
   { href: "/my/timeline", label: "タイムライン", icon: "calendar" },
   { href: "/checklists", label: "チェック", icon: "clipboard" },
-  { href: "/my", label: "マイページ", icon: "user" },
+  { href: "/simulator", label: "給付金", icon: "calculator" },
+  { href: "/articles", label: "記事", icon: "book" },
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {

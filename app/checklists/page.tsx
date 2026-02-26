@@ -228,6 +228,37 @@ export default function ChecklistsPage() {
           </div>
         </div>
       </section>
+
+      {/* Timeline CTA */}
+      <section className="px-4 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <div className="rounded-2xl border border-sage-200 bg-gradient-to-r from-sage-50 to-ivory-50 p-6 sm:p-8">
+            <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
+              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-sage-100">
+                <WatercolorIcon
+                  name="calendar"
+                  size={28}
+                  className="text-sage-600"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-heading text-base font-bold text-foreground">
+                  結婚日を入れて、パーソナライズされたタイムラインを作成
+                </h3>
+                <p className="mt-1 text-sm text-muted">
+                  期限付きのタスクを自動生成。完了率で進捗を管理できます。
+                </p>
+              </div>
+              <Link
+                href="/my/timeline"
+                className="flex-shrink-0 rounded-full bg-sage-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-sage-700"
+              >
+                タイムラインへ
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

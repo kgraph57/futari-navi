@@ -121,16 +121,18 @@ function ResultsContent() {
               size={24}
               className="text-sage-200"
             />
-            <h1 className="font-heading text-lg font-semibold">
-              チェック結果
-            </h1>
+            <h1 className="font-heading text-lg font-semibold">チェック結果</h1>
           </div>
 
           {result.totalAnnualEstimate > 0 && (
             <div className="mt-6 text-center">
               <p className="text-sm text-sage-200">推定受給額</p>
               <div className="mt-2 flex items-baseline justify-center gap-1">
-                <WatercolorIcon name="star" size={32} className="text-sage-200" />
+                <WatercolorIcon
+                  name="star"
+                  size={32}
+                  className="text-sage-200"
+                />
                 <span className="font-heading text-5xl font-semibold tracking-tight sm:text-6xl">
                   {formatTotalAmount(result.totalAnnualEstimate)}
                 </span>
@@ -238,6 +240,33 @@ function ResultsContent() {
             contentType="simulator_result"
             contentId="simulator"
           />
+        </div>
+
+        {/* Timeline CTA */}
+        <div className="mt-8 rounded-xl border border-sage-200 bg-sage-50 p-5">
+          <div className="flex items-center gap-4">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-sage-100">
+              <WatercolorIcon
+                name="calendar"
+                size={20}
+                className="text-sage-600"
+              />
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-sage-800">
+                次は手続きを始めましょう
+              </p>
+              <p className="mt-0.5 text-xs text-sage-600">
+                結婚日を入れると、やるべき手続きのタイムラインを自動作成します。
+              </p>
+            </div>
+            <Link
+              href="/my/timeline"
+              className="flex-shrink-0 rounded-full bg-sage-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-sage-700"
+            >
+              タイムラインへ
+            </Link>
+          </div>
         </div>
 
         <div className="mt-8 rounded-xl border border-border bg-ivory-100 p-4">

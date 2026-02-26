@@ -318,6 +318,33 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <NewsletterForm />
       </div>
 
+      {/* Timeline CTA */}
+      <div className="mt-12 rounded-xl border border-sage-200 bg-sage-50 p-5">
+        <div className="flex items-center gap-4">
+          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-sage-100">
+            <WatercolorIcon
+              name="calendar"
+              size={20}
+              className="text-sage-600"
+            />
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-semibold text-sage-800">
+              手続きの進捗を管理しよう
+            </p>
+            <p className="mt-0.5 text-xs text-sage-600">
+              結婚日を入力するだけ。やるべき手続きと期限が一目でわかります。
+            </p>
+          </div>
+          <Link
+            href="/my/timeline"
+            className="flex-shrink-0 rounded-full bg-sage-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-sage-700"
+          >
+            タイムラインへ
+          </Link>
+        </div>
+      </div>
+
       {/* Back to list */}
       <div className="mt-12 text-center">
         <Link
