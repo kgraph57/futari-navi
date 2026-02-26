@@ -12,28 +12,28 @@ import type { Program } from "@/lib/types";
 export const metadata: Metadata = {
   title: "制度一覧",
   description:
-    "港区の子育て支援制度・給付金・助成金の一覧。医療費助成、児童手当、産後ケア、一時保育など17の制度をまとめて確認できます。",
+    "結婚に関する給付金・税制優遇・社会保険制度の一覧。結婚新生活支援事業、配偶者控除、社会保険扶養などをまとめて確認できます。",
 };
 
 const CATEGORY_ICON_MAP: Record<string, WatercolorIconName> = {
-  medical: "heart",
-  financial: "calculator",
-  childcare: "baby",
-  support: "users",
+  給付金: "calculator",
+  税制優遇: "clipboard",
+  社会保険: "shield",
+  "優待・割引": "heart",
 };
 
 const CATEGORY_COLOR_MAP: Record<string, string> = {
-  medical: "bg-red-50 text-red-600 border-red-200",
-  financial: "bg-sage-50 text-sage-600 border-sage-200",
-  childcare: "bg-blue-50 text-blue-600 border-blue-200",
-  support: "bg-purple-50 text-purple-600 border-purple-200",
+  給付金: "bg-sage-50 text-sage-600 border-sage-200",
+  税制優遇: "bg-blue-50 text-blue-600 border-blue-200",
+  社会保険: "bg-purple-50 text-purple-600 border-purple-200",
+  "優待・割引": "bg-coral-50 text-coral-600 border-coral-200",
 };
 
 const CATEGORY_HEADER_COLOR_MAP: Record<string, string> = {
-  medical: "text-red-600",
-  financial: "text-sage-600",
-  childcare: "text-blue-600",
-  support: "text-purple-600",
+  給付金: "text-sage-600",
+  税制優遇: "text-blue-600",
+  社会保険: "text-purple-600",
+  "優待・割引": "text-coral-600",
 };
 
 function formatAgeRange(program: Program): string {
@@ -107,13 +107,11 @@ function ProgramCard({ program }: { readonly program: Program }) {
   );
 }
 
-// Programs commonly applied for (high priority for most families)
+// Programs commonly applied for (high priority for most couples)
 const RECOMMENDED_SLUGS = [
-  "child-allowance",
-  "child-medical-subsidy",
-  "birth-childcare-grant",
-  "childbirth-lump-sum",
-  "infant-health-checkup",
+  "marriage-subsidy",
+  "spouse-deduction",
+  "tokyo-marriage-passport",
 ] as const;
 
 export default function ProgramsPage() {
@@ -134,10 +132,10 @@ export default function ProgramsPage() {
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-12 pt-12 sm:pb-16 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-heading text-3xl font-semibold text-foreground sm:text-4xl">
-            港区の子育て支援制度
+            結婚に関する制度一覧
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted">
-            港区で利用できる子育て支援制度・給付金・助成金をカテゴリ別にまとめました。全
+            結婚に伴う給付金・税制優遇・社会保険制度をカテゴリ別にまとめました。全
             {allPrograms.length}制度を確認できます。
           </p>
           <Link
@@ -164,7 +162,7 @@ export default function ProgramsPage() {
               </h2>
             </div>
             <p className="mt-1 text-sm text-muted">
-              ほとんどの子育て家庭が利用する基本的な制度です。まずはこちらを確認しましょう。
+              多くの新婚カップルが利用する基本的な制度です。まずはこちらを確認しましょう。
             </p>
             <div className="mt-4 space-y-3">
               {recommendedPrograms.map((program) => (

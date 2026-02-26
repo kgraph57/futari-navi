@@ -3,30 +3,76 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import { FamilyProfileSetup } from "@/components/family/family-profile-setup";
-import { MigrationDialog } from "@/components/auth/migration-dialog";
-import { useStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth/auth-provider";
-import type { FamilyProfile, ChildProfile } from "@/lib/store";
-import { getChildAge } from "@/lib/utils/age";
 import { getAllChecklists } from "@/lib/checklists";
-import { generateTimeline } from "@/lib/timeline-engine";
+import {
+  generateMarriageTimeline,
+  getThisWeekEvents,
+  getThisMonthEvents,
+} from "@/lib/marriage-timeline-engine";
+import type {
+  MarriageTimelineItem,
+  MarriageTimelineOptions,
+} from "@/lib/marriage-timeline-engine";
 
 interface MyPageClientProps {
   readonly articleTitles: Record<string, string>;
 }
 
 // ---------------------------------------------------------------------------
-// Account status banner
+// localStorage helpers
+// ---------------------------------------------------------------------------
+
+const STORAGE_KEYS = {
+  date: "futari-navi-marriage-date",
+  options: "futari-navi-marriage-options",
+  completed: "futari-navi-completed-items",
+  savedArticles: "futari-saved-articles",
+} as const;
+
+function loadStoredDate(): string | null {
+  try {
+    return localStorage.getItem(STORAGE_KEYS.date);
+  } catch {
+    return null;
+  }
+}
+
+function loadStoredOptions(): MarriageTimelineOptions {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.options);
+    return raw ? (JSON.parse(raw) as MarriageTimelineOptions) : {};
+  } catch {
+    return {};
+  }
+}
+
+function loadCompletedIds(): ReadonlySet<string> {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.completed);
+    return raw ? new Set(JSON.parse(raw) as string[]) : new Set();
+  } catch {
+    return new Set();
+  }
+}
+
+function loadSavedArticles(): readonly string[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.savedArticles);
+    return raw ? (JSON.parse(raw) as string[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Account banner
 // ---------------------------------------------------------------------------
 
 function AccountBanner() {
   const { user, signOut, configured } = useAuth();
 
-  // Supabase 未設定時はログインバナーを非表示
-  if (!configured) {
-    return null;
-  }
+  if (!configured) return null;
 
   if (!user) {
     return (
@@ -40,13 +86,13 @@ function AccountBanner() {
               ログインでデータをクラウド保存
             </h3>
             <p className="mt-1 text-xs leading-relaxed text-muted">
-              ログインすると、お子さんのデータがクラウドに保存され、どのデバイスからでもアクセスできます。
+              ログインすると、進捗データがクラウドに保存され、どのデバイスからでもアクセスできます。
             </p>
             <Link
               href="/auth/login"
               className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-sage-600 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-sage-700"
             >
-              <WatercolorIcon name="shield" size={12} className=".5 .5" />
+              <WatercolorIcon name="shield" size={12} />
               ログイン / 新規登録
             </Link>
           </div>
@@ -86,40 +132,155 @@ function AccountBanner() {
 }
 
 // ---------------------------------------------------------------------------
-// Checklist progress card
+// Marriage summary dashboard
 // ---------------------------------------------------------------------------
 
-function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
+function MarriageSummaryDashboard({
+  items,
+}: {
+  readonly items: readonly MarriageTimelineItem[];
+}) {
+  const weekItems = getThisWeekEvents(items);
+  const monthItems = getThisMonthEvents(items);
+  const overdueItems = items.filter(
+    (i) => !i.completed && i.urgency === "overdue",
+  );
+  const completedCount = items.filter((i) => i.completed).length;
+
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      <Link
+        href="/my/timeline"
+        className={`rounded-xl border p-4 transition-all hover:shadow-md ${
+          overdueItems.length > 0
+            ? "border-red-200 bg-gradient-to-br from-red-50 to-white"
+            : "border-border bg-gradient-to-br from-ivory-50 to-white"
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <div
+            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
+              overdueItems.length > 0 ? "bg-red-100" : "bg-ivory-100"
+            }`}
+          >
+            <WatercolorIcon
+              name="alert"
+              size={16}
+              className={
+                overdueItems.length > 0 ? "text-red-600" : "text-muted"
+              }
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs text-muted">期限超過</p>
+            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
+              {overdueItems.length > 0
+                ? `${overdueItems.length}件`
+                : "なし"}
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      <Link
+        href="/my/timeline"
+        className="rounded-xl border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-4 transition-all hover:shadow-md"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange-100">
+            <WatercolorIcon
+              name="calendar"
+              size={16}
+              className="text-orange-600"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs text-muted">今週やること</p>
+            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
+              {weekItems.length > 0 ? `${weekItems.length}件` : "なし"}
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      <Link
+        href="/my/timeline"
+        className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-4 transition-all hover:shadow-md"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-100">
+            <WatercolorIcon
+              name="building"
+              size={16}
+              className="text-blue-600"
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs text-muted">今月やること</p>
+            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
+              {monthItems.length > 0 ? `${monthItems.length}件` : "なし"}
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      <Link
+        href="/my/timeline"
+        className="rounded-xl border border-sage-200 bg-gradient-to-br from-sage-50 to-white p-4 transition-all hover:shadow-md"
+      >
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sage-100">
+            <WatercolorIcon name="check" size={16} className="text-sage-600" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs text-muted">完了済み</p>
+            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
+              {completedCount}件
+            </p>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Checklist progress
+// ---------------------------------------------------------------------------
+
+function ChecklistProgressSection() {
   const checklists = getAllChecklists();
-  const { years, months } = getChildAge(child.birthDate);
+  const [completedMap, setCompletedMap] = useState<
+    Record<string, ReadonlySet<string>>
+  >({});
+
+  useEffect(() => {
+    const map: Record<string, ReadonlySet<string>> = {};
+    for (const cl of checklists) {
+      try {
+        const raw = localStorage.getItem(`checklist-${cl.slug}`);
+        map[cl.slug] = raw ? new Set(JSON.parse(raw) as string[]) : new Set();
+      } catch {
+        map[cl.slug] = new Set();
+      }
+    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
+    setCompletedMap(map);
+  }, [checklists]);
 
   return (
     <div className="rounded-xl border border-border bg-card p-5">
-      <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-100">
-          <WatercolorIcon name="baby" size={20} className="text-sage-600" />
-        </div>
-        <div>
-          <h3 className="font-heading text-base font-semibold text-card-foreground">
-            {child.nickname}
-          </h3>
-          <p className="text-xs text-muted">
-            {years}歳{months}ヶ月
-          </p>
-        </div>
-      </div>
-
-      <div className="mt-4 space-y-3">
+      <div className="space-y-3">
         {checklists.map((checklist) => {
+          const completed = completedMap[checklist.slug] ?? new Set();
           const totalItems = checklist.items.length;
           const completedCount = checklist.items.filter((item) =>
-            child.completedItems.includes(item.id),
+            completed.has(item.id),
           ).length;
           const percentage =
             totalItems > 0
               ? Math.round((completedCount / totalItems) * 100)
               : 0;
-          const isComplete = completedCount === totalItems;
 
           return (
             <Link
@@ -127,19 +288,15 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
               href={`/checklists/${checklist.slug}`}
               className="flex items-center gap-3 rounded-lg border border-border p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/50"
             >
-              {isComplete ? (
-                <WatercolorIcon
-                  name="check"
-                  size={20}
-                  className="shrink-0 text-sage-500"
-                />
-              ) : (
-                <WatercolorIcon
-                  name="check"
-                  size={20}
-                  className="shrink-0 text-gray-300"
-                />
-              )}
+              <WatercolorIcon
+                name="check"
+                size={20}
+                className={`shrink-0 ${
+                  completedCount === totalItems
+                    ? "text-sage-500"
+                    : "text-gray-300"
+                }`}
+              />
               <div className="min-w-0 flex-1">
                 <p className="text-sm font-medium text-card-foreground">
                   {checklist.name}
@@ -170,7 +327,7 @@ function ChecklistProgressCard({ child }: { readonly child: ChildProfile }) {
 }
 
 // ---------------------------------------------------------------------------
-// Saved articles section
+// Saved articles
 // ---------------------------------------------------------------------------
 
 function SavedArticlesSection({
@@ -180,9 +337,7 @@ function SavedArticlesSection({
   readonly savedSlugs: readonly string[];
   readonly articleTitles: Record<string, string>;
 }) {
-  if (savedSlugs.length === 0) {
-    return null;
-  }
+  if (savedSlugs.length === 0) return null;
 
   return (
     <div>
@@ -201,7 +356,11 @@ function SavedArticlesSection({
             className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/50"
           >
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sage-50">
-              <WatercolorIcon name="star" size={16} className="text-sage-600" />
+              <WatercolorIcon
+                name="star"
+                size={16}
+                className="text-sage-600"
+              />
             </div>
             <p className="min-w-0 flex-1 truncate text-sm font-medium text-card-foreground">
               {articleTitles[slug] ?? slug}
@@ -214,146 +373,6 @@ function SavedArticlesSection({
           </Link>
         ))}
       </div>
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Summary dashboard
-// ---------------------------------------------------------------------------
-
-function SummaryDashboard({ child }: { readonly child: ChildProfile }) {
-  const timeline = useMemo(
-    () => generateTimeline(child.birthDate, child.completedItems),
-    [child.birthDate, child.completedItems],
-  );
-
-  const pendingItems = timeline.filter(
-    (item) => !item.completed && !item.isExpired,
-  );
-
-  const nextVaccination = pendingItems.find(
-    (item) => item.category === "vaccination",
-  );
-
-  const thisMonthAdmin = pendingItems.filter(
-    (item) =>
-      item.category === "admin" &&
-      (item.urgency === "overdue" ||
-        item.urgency === "urgent" ||
-        item.urgency === "soon"),
-  );
-
-  const thisMonthMedical = pendingItems.find(
-    (item) =>
-      item.category === "medical" &&
-      (item.urgency === "overdue" ||
-        item.urgency === "urgent" ||
-        item.urgency === "soon"),
-  );
-
-  const incompleteCount = pendingItems.filter(
-    (item) =>
-      item.urgency === "overdue" ||
-      item.urgency === "urgent" ||
-      item.urgency === "soon",
-  ).length;
-
-  return (
-    <div className="grid gap-3 sm:grid-cols-2">
-      <Link
-        href="/my/timeline"
-        className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-50 to-white p-4 transition-all hover:shadow-md"
-      >
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-purple-100">
-            <WatercolorIcon
-              name="syringe"
-              size={16}
-              className="text-purple-600"
-            />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs text-muted">次の予防接種</p>
-            <p className="mt-0.5 truncate text-sm font-semibold text-card-foreground">
-              {nextVaccination ? nextVaccination.title : "予定なし"}
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      <Link
-        href="/my/timeline"
-        className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white p-4 transition-all hover:shadow-md"
-      >
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-100">
-            <WatercolorIcon
-              name="building"
-              size={16}
-              className="text-blue-600"
-            />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs text-muted">今月の手続き</p>
-            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
-              {thisMonthAdmin.length > 0
-                ? `${thisMonthAdmin.length}件`
-                : "なし"}
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      <Link
-        href="/my/timeline"
-        className="rounded-xl border border-sage-200 bg-gradient-to-br from-sage-50 to-white p-4 transition-all hover:shadow-md"
-      >
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sage-100">
-            <WatercolorIcon
-              name="stethoscope"
-              size={16}
-              className="text-sage-600"
-            />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs text-muted">今月の健診</p>
-            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
-              {thisMonthMedical ? thisMonthMedical.title : "なし"}
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      <Link
-        href="/my/timeline"
-        className={`rounded-xl border p-4 transition-all hover:shadow-md ${
-          incompleteCount > 0
-            ? "border-orange-200 bg-gradient-to-br from-orange-50 to-white"
-            : "border-border bg-gradient-to-br from-ivory-50 to-white"
-        }`}
-      >
-        <div className="flex items-center gap-3">
-          <div
-            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-              incompleteCount > 0 ? "bg-orange-100" : "bg-ivory-100"
-            }`}
-          >
-            <WatercolorIcon
-              name="alert"
-              size={16}
-              className={incompleteCount > 0 ? "text-orange-600" : "text-muted"}
-            />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs text-muted">未完了アクション</p>
-            <p className="mt-0.5 text-sm font-semibold text-card-foreground">
-              {incompleteCount > 0 ? `${incompleteCount}件` : "なし"}
-            </p>
-          </div>
-        </div>
-      </Link>
     </div>
   );
 }
@@ -398,51 +417,35 @@ function QuickActions() {
         </div>
       </Link>
       <Link
-        href="/my/vaccinations"
-        className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
-      >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
-          <WatercolorIcon
-            name="syringe"
-            size={20}
-            className="text-purple-600"
-          />
-        </div>
-        <div>
-          <h3 className="font-heading text-sm font-semibold text-card-foreground">
-            予防接種記録
-          </h3>
-          <p className="text-xs text-muted">接種記録を管理する</p>
-        </div>
-      </Link>
-      <Link
         href="/my/timeline"
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-sage-200 bg-sage-50">
-          <WatercolorIcon name="calendar" size={20} className="text-sage-600" />
+          <WatercolorIcon
+            name="calendar"
+            size={20}
+            className="text-sage-600"
+          />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
             タイムライン
           </h3>
-          <p className="text-xs text-muted">
-            今やるべき手続き・健診・予防接種を時系列で確認
-          </p>
+          <p className="text-xs text-muted">手続きの期限を時系列で確認</p>
         </div>
       </Link>
       <Link
-        href="/my/milestones"
+        href="/glossary"
         className="flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:border-sage-200 hover:shadow-md"
       >
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-rose-200 bg-rose-50">
-          <WatercolorIcon name="star" size={20} className="text-rose-500" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-purple-200 bg-purple-50">
+          <WatercolorIcon name="book" size={20} className="text-purple-600" />
         </div>
         <div>
           <h3 className="font-heading text-sm font-semibold text-card-foreground">
-            成長マイルストーン
+            用語集
           </h3>
-          <p className="text-xs text-muted">「はじめて」の記録をつける</p>
+          <p className="text-xs text-muted">手続き用語を確認する</p>
         </div>
       </Link>
     </div>
@@ -454,47 +457,42 @@ function QuickActions() {
 // ---------------------------------------------------------------------------
 
 export function MyPageClient({ articleTitles }: MyPageClientProps) {
-  const store = useStore();
-  const { user } = useAuth();
-  const [profile, setProfile] = useState<FamilyProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [showMigration, setShowMigration] = useState(false);
+  const [marriageDateStr, setMarriageDateStr] = useState<string | null>(null);
+  const [options, setOptions] = useState<MarriageTimelineOptions>({});
+  const [completedIds, setCompletedIds] = useState<ReadonlySet<string>>(
+    new Set(),
+  );
+  const [savedArticles, setSavedArticles] = useState<readonly string[]>([]);
 
-  const loadProfile = useCallback(async () => {
-    const loaded = await store.getFamilyProfile();
-    setProfile(loaded);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
+    setMarriageDateStr(loadStoredDate());
+    setOptions(loadStoredOptions());
+    setCompletedIds(loadCompletedIds());
+    setSavedArticles(loadSavedArticles());
     setIsLoading(false);
-  }, [store]);
+  }, []);
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- load profile on mount
-    loadProfile();
+  const marriageDate = useMemo(() => {
+    if (marriageDateStr == null) return null;
+    const d = new Date(marriageDateStr);
+    return isNaN(d.getTime()) ? null : d;
+  }, [marriageDateStr]);
 
-    const handleStorage = (e: StorageEvent) => {
-      if (e.key === "futari-family") {
-        loadProfile();
-      }
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, [loadProfile]);
+  const timelineItems = useMemo(() => {
+    if (marriageDate == null) return null;
+    return generateMarriageTimeline(marriageDate, options, completedIds);
+  }, [marriageDate, options, completedIds]);
 
-  // Show migration dialog when user just logged in and has local data
-  useEffect(() => {
-    if (!user) return;
+  const handleDateSave = useCallback((dateStr: string) => {
     try {
-      const raw = localStorage.getItem("futari-family");
-      if (raw) {
-        const data = JSON.parse(raw);
-        if (data.children && data.children.length > 0) {
-          // eslint-disable-next-line react-hooks/set-state-in-effect -- check migration on login
-          setShowMigration(true);
-        }
-      }
+      localStorage.setItem(STORAGE_KEYS.date, dateStr);
     } catch {
       // Ignore
     }
-  }, [user]);
+    setMarriageDateStr(dateStr);
+  }, []);
 
   if (isLoading) {
     return (
@@ -509,39 +507,27 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
 
   return (
     <>
-      {/* Migration dialog */}
-      {showMigration && (
-        <MigrationDialog
-          onComplete={() => {
-            setShowMigration(false);
-            loadProfile();
-          }}
-        />
-      )}
-
       <section className="bg-gradient-to-b from-sage-50 to-ivory-50 px-4 pb-8 pt-8 sm:pb-12 sm:pt-12">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-heading text-2xl font-semibold text-foreground sm:text-3xl">
             <WatercolorIcon
               name="user"
               size={28}
-              className="mr-2 inline-block   text-sage-600"
+              className="mr-2 inline-block text-sage-600"
             />
             マイページ
           </h1>
           <p className="mt-2 text-sm leading-relaxed text-muted">
-            お子さんの登録と手続きの進捗管理ができます。
+            結婚手続きの進捗管理と各種ツールへのアクセス
           </p>
         </div>
       </section>
 
       <section className="px-4 py-8 sm:py-12">
         <div className="mx-auto max-w-3xl space-y-8">
-          {/* Account status */}
           <AccountBanner />
 
-          {/* Timeline teaser for unregistered users */}
-          {(!profile || profile.children.length === 0) && (
+          {marriageDate == null ? (
             <div className="rounded-2xl border border-sage-200 bg-gradient-to-br from-sage-50 to-white p-6 sm:p-8">
               <div className="flex flex-col items-center text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sage-100">
@@ -552,140 +538,109 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
                   />
                 </div>
                 <h2 className="mt-4 font-heading text-lg font-bold text-foreground sm:text-xl">
-                  お子さんの生年月日を登録してください
+                  入籍日（予定日）を登録してください
                 </h2>
                 <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
-                  登録すると、今週やること・今月やることが自動で表示されます。
-                  予防接種・健診・届出の期限が近づくとお知らせします。
+                  登録すると、今週やること・今月やることが自動で表示されます。届出・名義変更の期限が近づくとお知らせします。
                 </p>
                 <div className="mt-5 grid w-full max-w-sm gap-2 text-left sm:grid-cols-3">
                   <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs text-card-foreground shadow-sm">
                     <WatercolorIcon
-                      name="syringe"
-                      size={16}
-                      className="shrink-0 text-purple-600"
-                    />
-                    <span>予防接種</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs text-card-foreground shadow-sm">
-                    <WatercolorIcon
-                      name="stethoscope"
-                      size={16}
-                      className="shrink-0 text-sage-600"
-                    />
-                    <span>健診</span>
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs text-card-foreground shadow-sm">
-                    <WatercolorIcon
-                      name="building"
+                      name="clipboard"
                       size={16}
                       className="shrink-0 text-blue-600"
                     />
                     <span>届出・申請</span>
                   </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs text-card-foreground shadow-sm">
+                    <WatercolorIcon
+                      name="building"
+                      size={16}
+                      className="shrink-0 text-sage-600"
+                    />
+                    <span>名義変更</span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2.5 text-xs text-card-foreground shadow-sm">
+                    <WatercolorIcon
+                      name="calculator"
+                      size={16}
+                      className="shrink-0 text-purple-600"
+                    />
+                    <span>控除・給付</span>
+                  </div>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const el = document.getElementById(
-                      "family-profile-section",
-                    );
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-sage-600 px-8 py-3 text-sm font-semibold text-white shadow-md transition-all hover:bg-sage-700 hover:shadow-lg"
-                >
-                  <WatercolorIcon name="baby" size={18} />
-                  登録する
-                </button>
+                <div className="mt-6 flex flex-col items-center gap-3">
+                  <label className="text-sm font-medium text-sage-700">
+                    入籍日（予定日）
+                  </label>
+                  <input
+                    type="date"
+                    className="rounded-lg border border-sage-300 px-4 py-2 text-sm text-foreground shadow-sm focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-200"
+                    onChange={(e) => {
+                      if (e.target.value) {
+                        handleDateSave(e.target.value);
+                      }
+                    }}
+                  />
+                  <p className="text-xs text-muted">あとから変更できます</p>
+                </div>
               </div>
             </div>
+          ) : (
+            <>
+              <Link
+                href="/my/timeline"
+                className="flex items-center gap-4 rounded-xl border border-sage-200 bg-gradient-to-r from-sage-50 to-white p-5 transition-all hover:border-sage-300 hover:shadow-md"
+              >
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-100">
+                  <WatercolorIcon
+                    name="calendar"
+                    size={24}
+                    className="text-sage-600"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-heading text-base font-semibold text-card-foreground">
+                    今週やることを確認する
+                  </h3>
+                  <p className="mt-0.5 text-xs text-muted">
+                    届出・名義変更・申請のタイムラインを見る
+                  </p>
+                </div>
+                <WatercolorIcon
+                  name="arrow_right"
+                  size={20}
+                  className="shrink-0 text-sage-400"
+                />
+              </Link>
+
+              {timelineItems != null && (
+                <div>
+                  <h2 className="font-heading text-lg font-semibold text-foreground">
+                    サマリー
+                  </h2>
+                  <div className="mt-4">
+                    <MarriageSummaryDashboard items={timelineItems} />
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
-          {/* Family profile */}
-          <div id="family-profile-section">
+          <div>
             <h2 className="font-heading text-lg font-semibold text-foreground">
-              お子さんの登録
+              手続きの進捗
             </h2>
             <div className="mt-4">
-              <FamilyProfileSetup onProfileChange={loadProfile} />
+              <ChecklistProgressSection />
             </div>
           </div>
 
-          {/* Timeline shortcut for registered users */}
-          {profile && profile.children.length > 0 && (
-            <Link
-              href="/my/timeline"
-              className="flex items-center gap-4 rounded-xl border border-sage-200 bg-gradient-to-r from-sage-50 to-white p-5 transition-all hover:border-sage-300 hover:shadow-md"
-            >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sage-100">
-                <WatercolorIcon
-                  name="calendar"
-                  size={24}
-                  className="text-sage-600"
-                />
-              </div>
-              <div className="flex-1">
-                <h3 className="font-heading text-base font-semibold text-card-foreground">
-                  今週やることを確認する
-                </h3>
-                <p className="mt-0.5 text-xs text-muted">
-                  手続き・健診・予防接種のタイムラインを見る
-                </p>
-              </div>
-              <WatercolorIcon
-                name="arrow_right"
-                size={20}
-                className="shrink-0 text-sage-400"
-              />
-            </Link>
-          )}
+          <SavedArticlesSection
+            savedSlugs={savedArticles}
+            articleTitles={articleTitles}
+          />
 
-          {/* Summary dashboard */}
-          {profile && profile.children.length > 0 && (
-            <div>
-              <h2 className="font-heading text-lg font-semibold text-foreground">
-                サマリー
-              </h2>
-              <div className="mt-4 space-y-4">
-                {profile.children.map((child) => (
-                  <div key={child.id}>
-                    {profile.children.length > 1 && (
-                      <p className="mb-2 text-sm font-medium text-muted">
-                        {child.nickname}
-                      </p>
-                    )}
-                    <SummaryDashboard child={child} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Checklist progress */}
-          {profile && profile.children.length > 0 && (
-            <div>
-              <h2 className="font-heading text-lg font-semibold text-foreground">
-                手続きの進捗
-              </h2>
-              <div className="mt-4 space-y-4">
-                {profile.children.map((child) => (
-                  <ChecklistProgressCard key={child.id} child={child} />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Saved articles */}
-          {profile != null && profile.savedArticles.length > 0 && (
-            <SavedArticlesSection
-              savedSlugs={profile.savedArticles}
-              articleTitles={articleTitles}
-            />
-          )}
-
-          {/* Quick actions */}
           <div>
             <h2 className="font-heading text-lg font-semibold text-foreground">
               クイックアクション
