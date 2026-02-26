@@ -211,3 +211,167 @@ export interface EarnedBadge {
   readonly badgeId: BadgeId;
   readonly earnedAt: string;
 }
+
+/* ── Couple App Types (Paired-style) ── */
+
+export type CoupleStatus = "pending" | "active" | "dissolved";
+
+export interface Couple {
+  readonly id: string;
+  readonly partnerA: string;
+  readonly partnerB: string | null;
+  readonly inviteCode: string;
+  readonly status: CoupleStatus;
+  readonly createdAt: string;
+  readonly pairedAt: string | null;
+}
+
+export interface PartnerProfile {
+  readonly id: string;
+  readonly displayName: string | null;
+}
+
+export interface CoupleAnswer {
+  readonly id: string;
+  readonly coupleId: string;
+  readonly questionId: string;
+  readonly questionDate: string;
+  readonly userId: string;
+  readonly answerText: string;
+  readonly answeredAt: string;
+}
+
+export interface DailyQuestionPair {
+  readonly question: DailyQuestion;
+  readonly date: string;
+  readonly myAnswer: CoupleAnswer | null;
+  readonly partnerAnswer: CoupleAnswer | null;
+  readonly bothAnswered: boolean;
+}
+
+/* ── Quiz Types ── */
+
+export type QuizCategory =
+  | "communication"
+  | "dreams"
+  | "intimacy"
+  | "values"
+  | "support"
+  | "fun";
+
+export interface QuizPack {
+  readonly id: string;
+  readonly title: string;
+  readonly description: string;
+  readonly category: QuizCategory;
+  readonly icon: string;
+  readonly questionCount: number;
+  readonly isPremium: boolean;
+}
+
+export interface QuizQuestion {
+  readonly id: string;
+  readonly packId: string;
+  readonly text: string;
+  readonly sortOrder: number;
+}
+
+export type QuizSessionStatus = "in_progress" | "completed";
+
+export interface QuizSession {
+  readonly id: string;
+  readonly coupleId: string;
+  readonly packId: string;
+  readonly status: QuizSessionStatus;
+  readonly compatibilityScore: number | null;
+  readonly startedAt: string;
+  readonly completedAt: string | null;
+}
+
+export interface QuizAnswer {
+  readonly id: string;
+  readonly sessionId: string;
+  readonly questionId: string;
+  readonly userId: string;
+  readonly score: number;
+  readonly answeredAt: string;
+}
+
+export interface QuizResult {
+  readonly session: QuizSession;
+  readonly pack: QuizPack;
+  readonly myAnswers: readonly QuizAnswer[];
+  readonly partnerAnswers: readonly QuizAnswer[];
+  readonly compatibilityScore: number;
+  readonly questionDetails: readonly QuizQuestionResult[];
+}
+
+export interface QuizQuestionResult {
+  readonly question: QuizQuestion;
+  readonly myScore: number;
+  readonly partnerScore: number;
+  readonly difference: number;
+}
+
+/* ── Prediction Game Types ── */
+
+export interface PredictionRound {
+  readonly id: string;
+  readonly coupleId: string;
+  readonly questionId: string;
+  readonly roundDate: string;
+  readonly status: "in_progress" | "completed";
+  readonly winnerUserId: string | null;
+  readonly createdAt: string;
+}
+
+export interface Prediction {
+  readonly id: string;
+  readonly roundId: string;
+  readonly userId: string;
+  readonly myAnswer: string;
+  readonly predictedPartnerAnswer: string;
+  readonly accuracyScore: number | null;
+  readonly answeredAt: string;
+}
+
+export interface PredictionResult {
+  readonly round: PredictionRound;
+  readonly myPrediction: Prediction;
+  readonly partnerPrediction: Prediction;
+  readonly myAccuracy: number;
+  readonly partnerAccuracy: number;
+  readonly winner: "me" | "partner" | "tie";
+}
+
+/* ── Couple Stats Types ── */
+
+export interface CoupleStats {
+  readonly coupleId: string;
+  readonly currentStreak: number;
+  readonly longestStreak: number;
+  readonly totalQuestionsAnswered: number;
+  readonly totalQuizzesCompleted: number;
+  readonly totalPredictionsPlayed: number;
+  readonly predictionPointsA: number;
+  readonly predictionPointsB: number;
+}
+
+/* ── Likert Scale Labels ── */
+
+export const LIKERT_LABELS: readonly string[] = [
+  "まったく違う",
+  "あまり当てはまらない",
+  "どちらとも言えない",
+  "やや当てはまる",
+  "とても当てはまる",
+] as const;
+
+export const QUIZ_CATEGORY_LABELS: Record<QuizCategory, string> = {
+  communication: "コミュニケーション",
+  dreams: "将来の夢",
+  intimacy: "愛情表現",
+  values: "価値観",
+  support: "サポート",
+  fun: "性格・趣味",
+} as const;

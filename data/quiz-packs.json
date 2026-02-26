@@ -1,0 +1,286 @@
+{
+  "packs": [
+    {
+      "id": "comm-basics",
+      "title": "コミュニケーション基本",
+      "description": "ふたりの伝え方、聴き方を確認しよう",
+      "category": "communication",
+      "icon": "💬",
+      "questionCount": 6,
+      "isPremium": false,
+      "questions": [
+        {
+          "id": "comm-1",
+          "packId": "comm-basics",
+          "text": "相手の話を最後まで聴いてから自分の意見を伝えている",
+          "sortOrder": 1
+        },
+        {
+          "id": "comm-2",
+          "packId": "comm-basics",
+          "text": "言いにくいことでも率直に伝えられる",
+          "sortOrder": 2
+        },
+        {
+          "id": "comm-3",
+          "packId": "comm-basics",
+          "text": "ケンカしても翌日には普通に話せる",
+          "sortOrder": 3
+        },
+        {
+          "id": "comm-4",
+          "packId": "comm-basics",
+          "text": "感謝の気持ちを言葉にして伝えている",
+          "sortOrder": 4
+        },
+        {
+          "id": "comm-5",
+          "packId": "comm-basics",
+          "text": "相手が落ち込んでいるとき、すぐに気づける",
+          "sortOrder": 5
+        },
+        {
+          "id": "comm-6",
+          "packId": "comm-basics",
+          "text": "ふたりの間に「言わなくても通じる」安心感がある",
+          "sortOrder": 6
+        }
+      ]
+    },
+    {
+      "id": "future-plans",
+      "title": "将来の夢",
+      "description": "5年後、10年後のふたりの理想像を共有しよう",
+      "category": "dreams",
+      "icon": "✨",
+      "questionCount": 6,
+      "isPremium": false,
+      "questions": [
+        {
+          "id": "future-1",
+          "packId": "future-plans",
+          "text": "将来どこに住みたいか、お互いのイメージが一致している",
+          "sortOrder": 1
+        },
+        {
+          "id": "future-2",
+          "packId": "future-plans",
+          "text": "子どもについての考え方をしっかり話し合っている",
+          "sortOrder": 2
+        },
+        {
+          "id": "future-3",
+          "packId": "future-plans",
+          "text": "それぞれのキャリアプランを尊重し合えている",
+          "sortOrder": 3
+        },
+        {
+          "id": "future-4",
+          "packId": "future-plans",
+          "text": "老後の暮らし方について話したことがある",
+          "sortOrder": 4
+        },
+        {
+          "id": "future-5",
+          "packId": "future-plans",
+          "text": "一緒にやりたいことリストを作ったことがある",
+          "sortOrder": 5
+        },
+        {
+          "id": "future-6",
+          "packId": "future-plans",
+          "text": "お互いの夢を応援できる関係だと思う",
+          "sortOrder": 6
+        }
+      ]
+    },
+    {
+      "id": "love-language",
+      "title": "愛情表現",
+      "description": "愛の伝え方・受け取り方を知ろう",
+      "category": "intimacy",
+      "icon": "💕",
+      "questionCount": 6,
+      "isPremium": false,
+      "questions": [
+        {
+          "id": "love-1",
+          "packId": "love-language",
+          "text": "「好き」や「ありがとう」を日常的に言葉にしている",
+          "sortOrder": 1
+        },
+        {
+          "id": "love-2",
+          "packId": "love-language",
+          "text": "手をつなぐ・ハグなどスキンシップが自然にある",
+          "sortOrder": 2
+        },
+        {
+          "id": "love-3",
+          "packId": "love-language",
+          "text": "記念日やイベントを大切にしている",
+          "sortOrder": 3
+        },
+        {
+          "id": "love-4",
+          "packId": "love-language",
+          "text": "相手のためにサプライズを企画するのが好き",
+          "sortOrder": 4
+        },
+        {
+          "id": "love-5",
+          "packId": "love-language",
+          "text": "一緒にいる時間を意識的につくっている",
+          "sortOrder": 5
+        },
+        {
+          "id": "love-6",
+          "packId": "love-language",
+          "text": "愛情の伝え方に不安を感じることはほとんどない",
+          "sortOrder": 6
+        }
+      ]
+    },
+    {
+      "id": "money-values",
+      "title": "お金の価値観",
+      "description": "金銭感覚のすり合わせをチェック",
+      "category": "values",
+      "icon": "💰",
+      "questionCount": 6,
+      "isPremium": false,
+      "questions": [
+        {
+          "id": "money-1",
+          "packId": "money-values",
+          "text": "お互いの収入や貯蓄額をオープンにしている",
+          "sortOrder": 1
+        },
+        {
+          "id": "money-2",
+          "packId": "money-values",
+          "text": "毎月の生活費の分担に納得している",
+          "sortOrder": 2
+        },
+        {
+          "id": "money-3",
+          "packId": "money-values",
+          "text": "大きな買い物は必ずふたりで相談して決める",
+          "sortOrder": 3
+        },
+        {
+          "id": "money-4",
+          "packId": "money-values",
+          "text": "それぞれの自由に使えるお金がある",
+          "sortOrder": 4
+        },
+        {
+          "id": "money-5",
+          "packId": "money-values",
+          "text": "将来に向けた貯蓄・投資の方針が合っている",
+          "sortOrder": 5
+        },
+        {
+          "id": "money-6",
+          "packId": "money-values",
+          "text": "お金のことでストレスを感じることは少ない",
+          "sortOrder": 6
+        }
+      ]
+    },
+    {
+      "id": "stress-support",
+      "title": "ストレス対処",
+      "description": "つらいとき、どう支え合える？",
+      "category": "support",
+      "icon": "🤝",
+      "questionCount": 6,
+      "isPremium": false,
+      "questions": [
+        {
+          "id": "stress-1",
+          "packId": "stress-support",
+          "text": "仕事でつらいことがあったとき、パートナーに話せる",
+          "sortOrder": 1
+        },
+        {
+          "id": "stress-2",
+          "packId": "stress-support",
+          "text": "相手がストレスを抱えているとき、適切にサポートできる",
+          "sortOrder": 2
+        },
+        {
+          "id": "stress-3",
+          "packId": "stress-support",
+          "text": "家事・育児の負担が偏らないよう意識している",
+          "sortOrder": 3
+        },
+        {
+          "id": "stress-4",
+          "packId": "stress-support",
+          "text": "お互いのひとり時間を尊重している",
+          "sortOrder": 4
+        },
+        {
+          "id": "stress-5",
+          "packId": "stress-support",
+          "text": "体調が悪いとき、自然と相手がフォローしてくれる",
+          "sortOrder": 5
+        },
+        {
+          "id": "stress-6",
+          "packId": "stress-support",
+          "text": "困難な状況でも「ふたりなら乗り越えられる」と思える",
+          "sortOrder": 6
+        }
+      ]
+    },
+    {
+      "id": "fun-personality",
+      "title": "性格クイズ",
+      "description": "意外な一面を発見しよう！",
+      "category": "fun",
+      "icon": "🎭",
+      "questionCount": 6,
+      "isPremium": false,
+      "questions": [
+        {
+          "id": "fun-1",
+          "packId": "fun-personality",
+          "text": "休日は外出するより家でのんびり派だ",
+          "sortOrder": 1
+        },
+        {
+          "id": "fun-2",
+          "packId": "fun-personality",
+          "text": "計画を立ててから行動するタイプだ",
+          "sortOrder": 2
+        },
+        {
+          "id": "fun-3",
+          "packId": "fun-personality",
+          "text": "新しいレストランやカフェを開拓するのが好き",
+          "sortOrder": 3
+        },
+        {
+          "id": "fun-4",
+          "packId": "fun-personality",
+          "text": "映画やドラマを観ると感情移入しやすい",
+          "sortOrder": 4
+        },
+        {
+          "id": "fun-5",
+          "packId": "fun-personality",
+          "text": "SNSで日常をシェアするのが好き",
+          "sortOrder": 5
+        },
+        {
+          "id": "fun-6",
+          "packId": "fun-personality",
+          "text": "ペットを飼いたい（または飼っている）",
+          "sortOrder": 6
+        }
+      ]
+    }
+  ]
+}

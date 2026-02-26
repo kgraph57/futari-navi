@@ -2,21 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { WatercolorIcon } from "@/components/icons/watercolor-icon";
-import type { WatercolorIconName } from "@/components/icons/watercolor-icon";
+import { Home, MessageCircle, Target, Sparkles, User } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 interface NavTab {
   readonly href: string;
   readonly label: string;
-  readonly icon: WatercolorIconName;
+  readonly Icon: LucideIcon;
 }
 
 const TABS: readonly NavTab[] = [
-  { href: "/", label: "ホーム", icon: "home" },
-  { href: "/my/timeline", label: "タイムライン", icon: "calendar" },
-  { href: "/checklists", label: "チェック", icon: "clipboard" },
-  { href: "/simulator", label: "給付金", icon: "calculator" },
-  { href: "/articles", label: "記事", icon: "book" },
+  { href: "/", label: "ホーム", Icon: Home },
+  { href: "/daily", label: "質問", Icon: MessageCircle },
+  { href: "/quiz", label: "クイズ", Icon: Target },
+  { href: "/prediction", label: "予測", Icon: Sparkles },
+  { href: "/my", label: "マイ", Icon: User },
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {
@@ -44,9 +44,9 @@ export function BottomNav() {
               }`}
               aria-current={active ? "page" : undefined}
             >
-              <WatercolorIcon
-                name={tab.icon}
+              <tab.Icon
                 size={22}
+                strokeWidth={active ? 2.5 : 1.8}
                 className={active ? "opacity-100" : "opacity-70"}
               />
               <span

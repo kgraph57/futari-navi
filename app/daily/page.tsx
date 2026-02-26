@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { WatercolorIcon } from "@/components/icons/watercolor-icon";
-import { DailyQuestionCard } from "@/components/daily/daily-question-card";
+import { ChevronLeft } from "lucide-react";
+import { useCoupleContext } from "@/lib/couple/provider";
+import { CoupleDailyQuestionCard } from "@/components/couple/daily-question-card";
 import { DailyQuestionHistory } from "@/components/daily/daily-question-history";
-import { getDailyState } from "@/lib/daily-questions/store";
 
 export default function DailyPage() {
+  const { couple } = useCoupleContext();
+
   const [stats, setStats] = useState({
     totalAnswered: 0,
     currentStreak: 0,
@@ -15,23 +17,29 @@ export default function DailyPage() {
   });
 
   useEffect(() => {
-    const state = getDailyState();
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
-    setStats({
-      totalAnswered: state.totalAnswered,
-      currentStreak: state.currentStreak,
-      longestStreak: state.longestStreak,
-    });
+    try {
+      const raw = localStorage.getItem("futari-daily-questions");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        setStats({
+          totalAnswered: parsed.answeredIds?.length ?? 0,
+          currentStreak: parsed.currentStreak ?? 0,
+          longestStreak: parsed.longestStreak ?? 0,
+        });
+      }
+    } catch {
+      // ignore
+    }
   }, []);
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8">
+    <div className="mx-auto max-w-md px-4 py-8">
       {/* Back link */}
       <Link
         href="/"
         className="mb-6 inline-flex items-center gap-1 text-sm text-muted transition-colors hover:text-sage-600"
       >
-        <WatercolorIcon name="chevron_left" size={16} />
+        <ChevronLeft size={16} />
         ホームへ戻る
       </Link>
 
@@ -45,12 +53,12 @@ export default function DailyPage() {
         </p>
       </div>
 
-      {/* Today's Question */}
+      {/* Today's Question (couple mode) */}
       <div className="mb-8">
-        <DailyQuestionCard />
+        <CoupleDailyQuestionCard />
       </div>
 
-      {/* Stats */}
+      {/* Couple Streak Stats */}
       <div className="mb-8 grid grid-cols-3 gap-3">
         <div className="rounded-xl border border-ivory-200 bg-white p-4 text-center">
           <p className="text-2xl font-bold text-sage-700">
@@ -73,12 +81,14 @@ export default function DailyPage() {
       </div>
 
       {/* History */}
-      <div>
-        <h2 className="mb-4 font-heading text-lg font-bold text-sage-800">
-          これまでの質問
-        </h2>
-        <DailyQuestionHistory />
-      </div>
+      {couple && (
+        <div>
+          <h2 className="mb-4 font-heading text-lg font-bold text-sage-800">
+            これまでの質問
+          </h2>
+          <DailyQuestionHistory />
+        </div>
+      )}
     </div>
   );
 }

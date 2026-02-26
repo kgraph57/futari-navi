@@ -194,9 +194,71 @@ h1, h2, h3, h4, h5, h6 {
   animation: slide-up 0.4s ease-out;
 }
 
+/* ── Couple reveal animations ── */
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-heart {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes float-dots {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-reveal-scale {
+  animation: reveal-scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.animate-reveal-scale-delay {
+  animation: reveal-scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+.animate-pulse-heart {
+  animation: pulse-heart 1.8s ease-in-out infinite;
+}
+
+.animate-float-dot-1 {
+  animation: float-dots 1.4s ease-in-out infinite;
+}
+
+.animate-float-dot-2 {
+  animation: float-dots 1.4s ease-in-out 0.2s infinite;
+}
+
+.animate-float-dot-3 {
+  animation: float-dots 1.4s ease-in-out 0.4s infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up { animation: none; }
   .animate-slide-up { animation: none; }
+  .animate-reveal-scale { animation: none; opacity: 1; }
+  .animate-reveal-scale-delay { animation: none; opacity: 1; }
+  .animate-pulse-heart { animation: none; }
+  .animate-float-dot-1 { animation: none; }
+  .animate-float-dot-2 { animation: none; }
+  .animate-float-dot-3 { animation: none; }
 }
 
 /* ── Print styles ── */
