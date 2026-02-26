@@ -1,7 +1,7 @@
 import type { LineEvent, LineReplyMessage } from "./types";
 import {
   WELCOME_MESSAGE,
-  TRIAGE_REPLY,
+  CHECKLIST_REPLY,
   SIMULATOR_REPLY,
   VACCINE_REPLY,
   DEFAULT_REPLY,
@@ -34,17 +34,15 @@ function handleTextMessage(
 ): readonly LineReplyMessage[] {
   const normalized = text.toLowerCase().trim();
 
-  if (
-    /熱|発熱|ねつ|はつねつ|咳|せき|嘔吐|下痢|発疹|けいれん/.test(normalized)
-  ) {
-    return [TRIAGE_REPLY];
+  if (/届出|届け出|婚姻届|手続き|名義変更|戸籍/.test(normalized)) {
+    return [CHECKLIST_REPLY];
   }
 
-  if (/助成|給付|補助|お金|手当|医療費|出産/.test(normalized)) {
+  if (/助成|給付|補助|お金|手当|控除|結婚新生活/.test(normalized)) {
     return [SIMULATOR_REPLY];
   }
 
-  if (/ワクチン|予防接種|注射|接種/.test(normalized)) {
+  if (/記事|ガイド|Q&A|コラム/.test(normalized)) {
     return [VACCINE_REPLY];
   }
 

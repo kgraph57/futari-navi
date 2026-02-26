@@ -11,7 +11,6 @@ import type { FamilyProfile, ChildProfile } from "@/lib/store";
 import { getChildAge } from "@/lib/utils/age";
 import { getAllChecklists } from "@/lib/checklists";
 import { generateTimeline } from "@/lib/timeline-engine";
-import type { TimelineItem } from "@/lib/timeline-engine";
 
 interface MyPageClientProps {
   readonly articleTitles: Record<string, string>;
@@ -468,6 +467,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
   }, [store]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- load profile on mount
     loadProfile();
 
     const handleStorage = (e: StorageEvent) => {
@@ -487,6 +487,7 @@ export function MyPageClient({ articleTitles }: MyPageClientProps) {
       if (raw) {
         const data = JSON.parse(raw);
         if (data.children && data.children.length > 0) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect -- check migration on login
           setShowMigration(true);
         }
       }

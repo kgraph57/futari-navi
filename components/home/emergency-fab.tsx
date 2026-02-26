@@ -4,28 +4,28 @@ import { useState } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 
-const EMERGENCY_OPTIONS = [
+const SUPPORT_OPTIONS = [
   {
-    href: "/triage",
-    iconName: "stethoscope" as const,
-    label: "受診判断ガイド",
-    description: "症状から判断",
-    color: "bg-orange-50",
+    href: "/emergency",
+    iconName: "alert" as const,
+    label: "相談窓口・サポート",
+    description: "各種相談先一覧",
+    color: "bg-blue-50",
   },
   {
-    href: "tel:03-5285-8898",
+    href: "tel:0570-064-370",
     iconName: "phone" as const,
-    label: "#8000（小児救急相談）",
-    description: "夜間・休日の相談",
-    color: "bg-red-50",
+    label: "法テラス（法律相談）",
+    description: "平日 9:00〜21:00",
+    color: "bg-sage-50",
     external: true,
   },
   {
-    href: "/clinics",
-    iconName: "alert" as const,
-    label: "夜間・休日対応の病院",
-    description: "近くの医療機関を探す",
-    color: "bg-blue-50",
+    href: "/glossary",
+    iconName: "book" as const,
+    label: "用語集",
+    description: "手続き用語を確認",
+    color: "bg-purple-50",
   },
 ];
 
@@ -35,10 +35,10 @@ export function EmergencyFab() {
   return (
     <div className="fixed bottom-20 right-6 z-40 flex flex-col items-end gap-3 md:bottom-6">
       {isOpen && (
-        <div className="mb-2 w-72 rounded-2xl border border-red-100 bg-white p-4 shadow-xl">
+        <div className="mb-2 w-72 rounded-2xl border border-sage-100 bg-white p-4 shadow-xl">
           <div className="flex items-center justify-between">
             <h3 className="font-heading text-sm font-semibold text-foreground">
-              緊急・受診相談
+              困ったときは
             </h3>
             <button
               type="button"
@@ -50,7 +50,7 @@ export function EmergencyFab() {
             </button>
           </div>
           <div className="mt-3 space-y-2">
-            {EMERGENCY_OPTIONS.map((option) => {
+            {SUPPORT_OPTIONS.map((option) => {
               const content = (
                 <div className="flex items-center gap-3">
                   <div
@@ -72,7 +72,7 @@ export function EmergencyFab() {
                   <a
                     key={option.label}
                     href={option.href}
-                    className="block rounded-xl border border-border p-3 transition-colors hover:border-red-200 hover:bg-red-50/30"
+                    className="block rounded-xl border border-border p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/30"
                   >
                     {content}
                   </a>
@@ -83,7 +83,7 @@ export function EmergencyFab() {
                 <Link
                   key={option.label}
                   href={option.href}
-                  className="block rounded-xl border border-border p-3 transition-colors hover:border-red-200 hover:bg-red-50/30"
+                  className="block rounded-xl border border-border p-3 transition-colors hover:border-sage-200 hover:bg-sage-50/30"
                   onClick={() => setIsOpen(false)}
                 >
                   {content}
@@ -91,9 +91,6 @@ export function EmergencyFab() {
               );
             })}
           </div>
-          <p className="mt-3 text-center text-xs text-red-500">
-            命に関わる緊急時は迷わず119番
-          </p>
         </div>
       )}
 
@@ -103,15 +100,15 @@ export function EmergencyFab() {
         className={`flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-all ${
           isOpen
             ? "bg-gray-600 hover:bg-gray-700"
-            : "bg-red-500 hover:bg-red-600 animate-pulse hover:animate-none"
+            : "bg-sage-600 hover:bg-sage-700"
         }`}
-        aria-label={isOpen ? "緊急メニューを閉じる" : "緊急・受診相談"}
+        aria-label={isOpen ? "サポートメニューを閉じる" : "困ったときは"}
         aria-expanded={isOpen}
       >
         {isOpen ? (
           <WatercolorIcon name="check" size={24} className="text-white" />
         ) : (
-          <WatercolorIcon name="phone" size={24} className="text-white" />
+          <WatercolorIcon name="book" size={24} className="text-white" />
         )}
       </button>
     </div>

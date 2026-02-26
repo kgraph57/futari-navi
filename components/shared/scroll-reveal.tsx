@@ -27,6 +27,7 @@ export function ScrollReveal({
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mq.matches) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- immediate reveal for reduced motion
       setIsVisible(true);
       return;
     }

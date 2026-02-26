@@ -50,8 +50,8 @@ export const WELCOME_MESSAGE: LineReplyFlexMessage = {
           type: "button",
           action: {
             type: "uri",
-            label: "症状チェック",
-            uri: `${SITE_URL}/triage`,
+            label: "手続きガイド",
+            uri: `${SITE_URL}/checklists`,
           },
           style: "secondary",
         },
@@ -72,9 +72,9 @@ export const WELCOME_MESSAGE: LineReplyFlexMessage = {
 
 // --- Keyword auto-replies ---
 
-export const TRIAGE_REPLY: LineReplyFlexMessage = {
+export const CHECKLIST_REPLY: LineReplyFlexMessage = {
   type: "flex",
-  altText: "受診判断ガイド — お子さんの症状をチェックできます",
+  altText: "手続きガイド — 結婚後の届出・名義変更をチェック",
   contents: {
     type: "bubble",
     body: {
@@ -83,14 +83,14 @@ export const TRIAGE_REPLY: LineReplyFlexMessage = {
       contents: [
         {
           type: "text",
-          text: "受診判断ガイド",
+          text: "手続きガイド",
           weight: "bold",
           size: "md",
-          color: "#DC2626",
+          color: "#0D9488",
         },
         {
           type: "text",
-          text: "届出・手続きの進め方をステップ形式で確認できます。くらしアドバイザーのみなと先生が監修。",
+          text: "婚姻届・名義変更・届出の進め方をステップ形式で確認できます。漏れなく手続きを完了しましょう。",
           wrap: true,
           size: "sm",
           color: "#666666",
@@ -107,11 +107,11 @@ export const TRIAGE_REPLY: LineReplyFlexMessage = {
           type: "button",
           action: {
             type: "uri",
-            label: "症状チェックを始める",
-            uri: `${SITE_URL}/triage`,
+            label: "チェックリストを開く",
+            uri: `${SITE_URL}/checklists`,
           },
           style: "primary",
-          color: "#DC2626",
+          color: "#0D9488",
         },
       ],
       paddingAll: "lg",
@@ -179,17 +179,17 @@ export const DEFAULT_REPLY: LineReplyTextMessage = {
 // --- Rich Menu Layout Spec ---
 //
 // +------------------+------------------+
-// |   症状チェック    |  給付金シミュレ   |  Top row: 2 large
-// |   (red-500)      |  ーター (teal)    |
+// |  手続きガイド     |  給付金シミュレ   |  Top row: 2 large
+// |   (teal)         |  ーター (teal)    |
 // +--------+---------+------------------+
-// | 予防接種| 記事を  |  マイページ      |  Bottom: 3 medium
-// |スケジュール|読む  |                  |
+// | タイム  | 記事を  |  マイページ      |  Bottom: 3 medium
+// | ライン  |読む     |                  |
 // +--------+---------+------------------+
 //
 // Rich Menu Image: 2500 x 1686 px
 // Areas (tap regions):
-//   [0] Top-left:     uri -> /triage
+//   [0] Top-left:     uri -> /checklists
 //   [1] Top-right:    uri -> /simulator
-//   [2] Bottom-left:  uri -> /vaccines
+//   [2] Bottom-left:  uri -> /my/timeline
 //   [3] Bottom-center: uri -> /articles
 //   [4] Bottom-right: uri -> /my

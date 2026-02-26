@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
 import type { ChecklistItem } from "@/lib/checklists";
@@ -44,6 +44,7 @@ function useLocalCheckedItems(slug: string) {
       const stored = localStorage.getItem(`checklist-${slug}`);
       if (stored) {
         const parsed = JSON.parse(stored) as string[];
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
         setCheckedItems(new Set(parsed));
       }
     } catch {
@@ -387,17 +388,17 @@ function CelebrationBanner() {
 // ---------------------------------------------------------------------------
 
 function ChildSelector({
-  children,
+  childProfiles,
   selectedChildId,
   onSelect,
 }: {
-  readonly children: readonly ChildProfile[];
+  readonly childProfiles: readonly ChildProfile[];
   readonly selectedChildId: string;
   readonly onSelect: (childId: string) => void;
 }) {
   return (
     <div className="mb-4 flex gap-2 overflow-x-auto pb-1">
-      {children.map((child) => {
+      {childProfiles.map((child) => {
         const isActive = child.id === selectedChildId;
         return (
           <button
@@ -507,9 +508,13 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
     familyProfile?.children.find((c) => c.id === selectedChildId) ?? null;
 
   // Build the set of completed item IDs
-  const checkedItems: ReadonlySet<string> = selectedChild
-    ? new Set(selectedChild.completedItems)
-    : localStore.checkedItems;
+  const checkedItems: ReadonlySet<string> = useMemo(
+    () =>
+      selectedChild
+        ? new Set(selectedChild.completedItems)
+        : localStore.checkedItems,
+    [selectedChild, localStore.checkedItems],
+  );
 
   const isLoaded =
     profileLoaded && (selectedChild ? true : localStore.isLoaded);
@@ -603,7 +608,7 @@ export function ChecklistContent({ slug, items }: ChecklistContentProps) {
         familyProfile.children.length > 0 &&
         selectedChildId && (
           <ChildSelector
-            children={familyProfile.children}
+            childProfiles={familyProfile.children}
             selectedChildId={selectedChildId}
             onSelect={setSelectedChildId}
           />

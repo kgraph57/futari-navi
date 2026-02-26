@@ -365,6 +365,12 @@ const CATEGORY_LABELS: Record<MarriageCategory, string> = {
   benefits: "給付金・支援",
 };
 
+/** Parse "YYYY-MM-DD" as local-timezone midnight (not UTC). */
+export function parseLocalDate(dateStr: string): Date {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
 function addDays(date: Date, days: number): Date {
   const result = new Date(date);
   result.setDate(result.getDate() + days);
@@ -373,7 +379,7 @@ function addDays(date: Date, days: number): Date {
 
 function diffDays(a: Date, b: Date): number {
   const msPerDay = 1000 * 60 * 60 * 24;
-  return Math.round((a.getTime() - b.getTime()) / msPerDay);
+  return Math.floor((a.getTime() - b.getTime()) / msPerDay);
 }
 
 function computeUrgency(

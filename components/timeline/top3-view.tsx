@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { WatercolorIcon } from "@/components/icons/watercolor-icon";
+import {
+  WatercolorIcon,
+  type WatercolorIconName,
+} from "@/components/icons/watercolor-icon";
 import type { TimelineItem, TimelineUrgency } from "@/lib/timeline-engine";
 
 const URGENCY_LABELS: Record<TimelineUrgency, string> = {
@@ -16,14 +19,37 @@ const URGENCY_COLORS: Record<
   TimelineUrgency,
   { readonly bg: string; readonly text: string; readonly border: string }
 > = {
-  overdue: { bg: "bg-red-50", text: "text-red-700", border: "border-l-red-500" },
-  urgent: { bg: "bg-orange-50", text: "text-orange-700", border: "border-l-orange-400" },
-  soon: { bg: "bg-amber-50", text: "text-amber-700", border: "border-l-amber-400" },
-  upcoming: { bg: "bg-sage-50", text: "text-sage-700", border: "border-l-sage-400" },
-  future: { bg: "bg-gray-50", text: "text-gray-600", border: "border-l-gray-300" },
+  overdue: {
+    bg: "bg-red-50",
+    text: "text-red-700",
+    border: "border-l-red-500",
+  },
+  urgent: {
+    bg: "bg-orange-50",
+    text: "text-orange-700",
+    border: "border-l-orange-400",
+  },
+  soon: {
+    bg: "bg-amber-50",
+    text: "text-amber-700",
+    border: "border-l-amber-400",
+  },
+  upcoming: {
+    bg: "bg-sage-50",
+    text: "text-sage-700",
+    border: "border-l-sage-400",
+  },
+  future: {
+    bg: "bg-gray-50",
+    text: "text-gray-600",
+    border: "border-l-gray-300",
+  },
 };
 
-const CATEGORY_ICONS: Record<string, { readonly name: string; readonly color: string }> = {
+const CATEGORY_ICONS: Record<
+  string,
+  { readonly name: string; readonly color: string }
+> = {
   admin: { name: "building", color: "text-blue-600" },
   medical: { name: "stethoscope", color: "text-sage-600" },
   vaccination: { name: "syringe", color: "text-purple-600" },
@@ -71,7 +97,10 @@ export function Top3View({
       <div className="space-y-4">
         {items.map((item, index) => {
           const urgencyColor = URGENCY_COLORS[item.urgency];
-          const categoryIcon = CATEGORY_ICONS[item.category] ?? { name: "star", color: "text-gray-500" };
+          const categoryIcon = CATEGORY_ICONS[item.category] ?? {
+            name: "star",
+            color: "text-gray-500",
+          };
           const isExternal =
             item.actionUrl.startsWith("https://") ||
             item.actionUrl.startsWith("http://");
@@ -89,7 +118,7 @@ export function Top3View({
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <WatercolorIcon
-                        name={categoryIcon.name as any}
+                        name={categoryIcon.name as WatercolorIconName}
                         size={16}
                         className={categoryIcon.color}
                       />

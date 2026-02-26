@@ -16,6 +16,7 @@ export function DailyQuestionPreview() {
   const [question, setQuestion] = useState<DailyQuestion | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR hydration flag
     setMounted(true);
     const state = getDailyState();
     const todayStr = new Date().toISOString().slice(0, 10);
@@ -35,9 +36,7 @@ export function DailyQuestionPreview() {
   }, []);
 
   if (!mounted) {
-    return (
-      <div className="h-48 animate-pulse rounded-2xl bg-ivory-100" />
-    );
+    return <div className="h-48 animate-pulse rounded-2xl bg-ivory-100" />;
   }
 
   return (

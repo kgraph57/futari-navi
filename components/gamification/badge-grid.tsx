@@ -23,6 +23,7 @@ export function BadgeGrid() {
 
   useEffect(() => {
     const state = getGamificationState();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
     setEarnedBadges(state.earnedBadges);
   }, []);
 

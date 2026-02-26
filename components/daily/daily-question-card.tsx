@@ -53,6 +53,7 @@ export function DailyQuestionCard() {
   }, [partnerInput, state, todayStr]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
     setState(getDailyState());
   }, []);
 

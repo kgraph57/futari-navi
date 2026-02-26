@@ -17,6 +17,7 @@ export function LoveTank({ compact = false }: LoveTankProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR hydration flag
     setMounted(true);
     const state = getGamificationState();
     setLevel(calculateTankLevel(state.loveTank));

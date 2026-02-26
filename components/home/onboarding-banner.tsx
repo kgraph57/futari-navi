@@ -3,29 +3,21 @@
 import { useState, useEffect } from "react";
 import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import Link from "next/link";
-import { useStore } from "@/lib/store";
 
 const ONBOARDING_STEPS = [
   {
-    href: "/my",
-    icon: "sparkles",
-    title: "お子さんを登録",
-    description: "生年月日を登録するとパーソナライズされた情報が届きます",
+    href: "/my/timeline",
+    icon: "calendar",
+    title: "婚姻届の日を登録",
+    description: "入籍日を登録すると、やるべき手続きが時系列で表示されます",
     color: "bg-sage-50 text-sage-600",
   },
   {
-    href: "/my/timeline",
-    icon: "calendar",
-    title: "タイムラインを確認",
-    description: "今やるべき手続き・健診・予防接種を時系列で表示",
+    href: "/checklists",
+    icon: "check",
+    title: "チェックリストで確認",
+    description: "婚姻届・名義変更・届出の漏れをチェック",
     color: "bg-blue-50 text-blue-600",
-  },
-  {
-    href: "/vaccines",
-    icon: "syringe",
-    title: "予防接種スケジュール",
-    description: "お子さんの月齢に合わせた接種スケジュールを確認",
-    color: "bg-purple-50 text-purple-600",
   },
   {
     href: "/simulator/start",
@@ -34,28 +26,27 @@ const ONBOARDING_STEPS = [
     description: "受けられる行政サービス・助成金を一括検索",
     color: "bg-blush-50 text-blush-500",
   },
+  {
+    href: "/glossary",
+    icon: "book",
+    title: "用語集で予習",
+    description: "戸籍・届出・控除など、結婚手続きの用語を解説",
+    color: "bg-purple-50 text-purple-600",
+  },
 ] as const;
 
 const DISMISSED_KEY = "futari-onboarding-dismissed";
 
 export function OnboardingBanner() {
-  const store = useStore();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
     const dismissed = localStorage.getItem(DISMISSED_KEY);
-    if (dismissed === "true") return;
-
-    store.getFamilyProfile().then((profile) => {
-      if (!cancelled && profile === null) {
-        setIsVisible(true);
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [store]);
+    if (dismissed !== "true") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
+      setIsVisible(true);
+    }
+  }, []);
 
   if (!isVisible) {
     return null;
@@ -85,10 +76,10 @@ export function OnboardingBanner() {
               はじめての方へ
             </p>
             <h2 className="mt-3 font-heading text-lg font-semibold text-foreground sm:text-xl">
-              4ステップで始めるすくすくナビ
+              4ステップで始めるふたりナビ
             </h2>
             <p className="mt-1 text-sm text-muted">
-              お子さんに合わせた情報を受け取るための簡単ガイド
+              結婚後の手続きをスムーズに進めるための簡単ガイド
             </p>
           </div>
 
@@ -133,10 +124,10 @@ export function OnboardingBanner() {
 
           <div className="mt-5 text-center">
             <Link
-              href="/my"
+              href="/my/timeline"
               className="inline-flex items-center gap-2 rounded-full bg-sage-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-700"
             >
-              まずはお子さんを登録する
+              まずは入籍日を登録する
               <WatercolorIcon name="arrow_right" size={16} />
             </Link>
           </div>

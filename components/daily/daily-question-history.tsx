@@ -26,6 +26,7 @@ export function DailyQuestionHistory() {
 
   useEffect(() => {
     const state = getDailyState();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
     setAnswers([...state.answers].reverse());
   }, []);
 

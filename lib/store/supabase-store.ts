@@ -3,7 +3,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type {
   DataStore,
-  FamilyProfile,
   ChildProfile,
   VaccinationRecord,
   MilestoneRecord,
@@ -106,7 +105,7 @@ export function createSupabaseStore(client: SupabaseClient): DataStore {
       };
     },
 
-    async saveFamilyProfile(_profile) {
+    async saveFamilyProfile() {
       // Individual operations handle their own saves
     },
 

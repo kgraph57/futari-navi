@@ -1,7 +1,7 @@
 "use client";
 
 import type { SupabaseClient, User } from "@supabase/supabase-js";
-import type { DataStore, FamilyProfile } from "./types";
+import type { DataStore } from "./types";
 import { createLocalStore } from "./local-store";
 import { createSupabaseStore } from "./supabase-store";
 

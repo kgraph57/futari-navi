@@ -6,6 +6,7 @@ import { WatercolorIcon } from "@/components/icons/watercolor-icon";
 import {
   generateMarriageTimeline,
   groupByCategory,
+  parseLocalDate,
 } from "@/lib/marriage-timeline-engine";
 import type {
   MarriageTimelineItem,
@@ -77,10 +78,7 @@ function saveCompletedIds(ids: ReadonlySet<string>): void {
 function SetupForm({
   onSubmit,
 }: {
-  readonly onSubmit: (
-    date: string,
-    options: MarriageTimelineOptions,
-  ) => void;
+  readonly onSubmit: (date: string, options: MarriageTimelineOptions) => void;
 }) {
   const [dateValue, setDateValue] = useState("");
   const [includeMoving, setIncludeMoving] = useState(false);
@@ -89,11 +87,7 @@ function SetupForm({
   return (
     <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-sage-200 bg-sage-50/50 px-6 py-14 text-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sage-100">
-        <WatercolorIcon
-          name="calendar"
-          size={32}
-          className="text-sage-600"
-        />
+        <WatercolorIcon name="calendar" size={32} className="text-sage-600" />
       </div>
       <h2 className="mt-4 font-heading text-lg font-semibold text-foreground">
         結婚予定日を登録しましょう
@@ -183,7 +177,8 @@ function Dashboard({
   readonly items: readonly MarriageTimelineItem[];
   readonly onEditSettings: () => void;
 }) {
-  const today = new Date();
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const diffMs = marriageDate.getTime() - today.getTime();
   const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
 
@@ -338,8 +333,7 @@ function buildModelSchedule(
       i.location.includes("役場"),
   );
   const policeTasks = pending.filter(
-    (i) =>
-      i.location.includes("警察署") || i.location.includes("運転免許"),
+    (i) => i.location.includes("警察署") || i.location.includes("運転免許"),
   );
   const bankTasks = pending.filter(
     (i) =>
@@ -348,8 +342,7 @@ function buildModelSchedule(
       i.location.includes("キャリア"),
   );
   const workTasks = pending.filter(
-    (i) =>
-      i.location.includes("勤務先") || i.location.includes("人事"),
+    (i) => i.location.includes("勤務先") || i.location.includes("人事"),
   );
   const webTasks = pending.filter(
     (i) =>
@@ -549,16 +542,18 @@ export default function TimelinePage() {
   const [viewMode, setViewMode] = useState<ViewMode>("schedule");
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration from localStorage
     setMarriageDateStr(loadStoredDate());
     setOptions(loadStoredOptions());
     setCompletedIds(loadCompletedIds());
     setIsLoading(false);
   }, []);
 
-  const marriageDate = useMemo(
-    () => (marriageDateStr != null ? new Date(marriageDateStr) : null),
-    [marriageDateStr],
-  );
+  const marriageDate = useMemo(() => {
+    if (marriageDateStr == null) return null;
+    const d = parseLocalDate(marriageDateStr);
+    return isNaN(d.getTime()) ? null : d;
+  }, [marriageDateStr]);
 
   const timelineItems = useMemo(() => {
     if (marriageDate == null) return null;

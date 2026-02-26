@@ -81,6 +81,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       supabase = createClient();
     } catch {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- error recovery
       setState((prev) => ({ ...prev, loading: false }));
       return;
     }

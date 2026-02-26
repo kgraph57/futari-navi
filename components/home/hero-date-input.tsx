@@ -7,6 +7,7 @@ import {
   generateMarriageTimeline,
   getThisWeekEvents,
   getThisMonthEvents,
+  parseLocalDate,
   type MarriageTimelineOptions,
 } from "@/lib/marriage-timeline-engine";
 
@@ -50,7 +51,7 @@ interface TaskStats {
 
 function computeStats(dateStr: string): TaskStats | null {
   if (!dateStr) return null;
-  const marriageDate = new Date(dateStr);
+  const marriageDate = parseLocalDate(dateStr);
   if (isNaN(marriageDate.getTime())) return null;
 
   const completedIds = loadCompletedIds();
@@ -69,7 +70,8 @@ function computeStats(dateStr: string): TaskStats | null {
     thisWeek: weekItems.length,
     thisMonth: monthItems.length,
     overdue,
-    percent: items.length > 0 ? Math.round((completed / items.length) * 100) : 0,
+    percent:
+      items.length > 0 ? Math.round((completed / items.length) * 100) : 0,
   };
 }
 
@@ -80,6 +82,7 @@ export function HeroDateInput() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR hydration flag
     setMounted(true);
     const stored = loadStoredDate();
     if (stored) {
@@ -135,9 +138,7 @@ export function HeroDateInput() {
             {/* Progress bar */}
             <div>
               <div className="flex items-center justify-between text-xs text-sage-600">
-                <span>
-                  手続き完了率
-                </span>
+                <span>手続き完了率</span>
                 <span className="font-bold text-sage-800">
                   {stats.percent}%
                 </span>
